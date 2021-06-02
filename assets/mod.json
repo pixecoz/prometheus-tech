@@ -1,11 +1,11 @@
 {
-  "name": "modtemplate",
-  "displayName": "Template",
-  "author": "[#8738ff[]]Sonnicon[[]]",
-  "description": "Gradle jar Mindustry mod template",
-  "version": "0",
+  "name": "prometheus",
+  "displayName": "Prometheus Tech",
+  "author": "[#8738ff[]]Prometheus Team[[]]",
+  "description": "Mindustry Java mod, collaboration of russian mod devs.",
+  "version": "1.0",
   "main": "sonnicon.modtemplate.ModTemplate",
-  "minGameVersion": "105",
+  "minGameVersion": "126",
   "dependencies": [],
   "hidden": false,
   "java": true
