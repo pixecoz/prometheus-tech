@@ -4,7 +4,7 @@
   "author": "[#b6f42e[]]Prometheus Team[[]]",
   "description": "Mindustry Java mod, collaboration of russian mod devs.",
   "version": "1.0",
-  "main": "sonnicon.modtemplate.ModTemplate",
+  "main": "prometheus.PrometheusMod",
   "minGameVersion": "126",
   "dependencies": [],
   "hidden": false,
