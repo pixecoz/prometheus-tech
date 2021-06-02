@@ -1,5 +1,5 @@
-# Mindustry Mod Template
-A blank template for Mindustry mods with an existing Gradle configuration to compile and dex-ify, and Github Actions to automatically do both and upload the artifacts.
+# Prometheus Technologies
+Java mod for Mindustry, biggest RU megacollab
 
 ## Compiling
 JDK 8.\
