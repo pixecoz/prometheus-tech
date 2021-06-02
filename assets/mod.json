@@ -1,7 +1,7 @@
 {
   "name": "prometheus",
   "displayName": "Prometheus Tech",
-  "author": "[#8738ff[]]Prometheus Team[[]]",
+  "author": "[#b6f42e[]]Prometheus Team[[]]",
   "description": "Mindustry Java mod, collaboration of russian mod devs.",
   "version": "1.0",
   "main": "sonnicon.modtemplate.ModTemplate",
