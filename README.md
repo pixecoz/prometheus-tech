@@ -1,6 +1,8 @@
 # Prometheus Technologies
 Java mod for Mindustry, biggest RU megacollab
 
+![alt tag]()
+
 ## Compiling
 JDK 8.\
 Task `dexify` requires `d8` from Android `build-tools` > `28.0.1`.
