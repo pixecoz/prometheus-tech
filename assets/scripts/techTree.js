@@ -21,4 +21,9 @@ return PB;
 
 ///TECH TREE///
 
-//А ВОТ ПУСТО;
+const SerpuloPlanetIcon = createPhantomBlock("Planet Serpulo", 64);
+SerpuloPlanetIcon.alwaysUnlocked = true;
+
+TechNode(Blocks.coreShard, SerpuloPlanetIcon, ItemStack.empty);
+
+
