@@ -2,5 +2,5 @@
 
 function R(dir){require(dir)};
 
-R("TechTree");
-R("blocks/ModTurrets");
+R("techTree");
+R("blocks/turrets");
