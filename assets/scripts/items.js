@@ -10,4 +10,4 @@ function newItem(name, hardness, flammability, radioactivity, explosiveness, col
 	return item;
 };
 
-const platinum = newItem("platinum", 0.0, 0.0, 0.02, 0.0, "#8276a6");
+const platinum = newItem("platinum", 0.0, 0.0, 0.02, 0.0, "#bfd7d9");
