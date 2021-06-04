@@ -55,3 +55,6 @@ const graniteFloor = newFloor("granite-floor", 2, 1.0, false, 0.0);
 
 const graniteBoulder = newBoulder("granite-boulder", 1);
 
+
+const purelyWater = newLiquidFloor("purely-water", 0, 0.2);
+purelyWater.liquidDrop = Liquids.water;
