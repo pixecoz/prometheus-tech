@@ -36,3 +36,6 @@ function newBlock(name, variants, solid){
 
 const whiteStoneWall = newBlock("white-stone-block", 1, true);
 const whiteStoneFloor = newFloor("white-stone-floor", 2, 1.0, false, 0.0);
+
+const whiteStoneWater = newLiquidFloor("white-stone-water", 0, 0.2);
+whiteStoneWater.liquidDrop = Liquids.water;
