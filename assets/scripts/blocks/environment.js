@@ -30,6 +30,13 @@ function newBlock(name, variants, solid){
   return StaticBlock;
 };
 
+function newBoulder(name, variants){
+  const boulder = extendContent(Prop, name, {});
+  boulder.variants = variants;
+  
+  return boulder;
+};
+
 //ATTEIBUTES and OTHER write separately!!!
 
 //CONTENT//
@@ -39,3 +46,5 @@ const whiteStoneFloor = newFloor("white-stone-floor", 2, 1.0, false, 0.0);
 
 const whiteStoneWater = newLiquidFloor("white-stone-water", 0, 0.2);
 whiteStoneWater.liquidDrop = Liquids.water;
+
+const whiteStoneBoulder = newBoulder("white-stone-boulder", 1);
