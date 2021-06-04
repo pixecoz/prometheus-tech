@@ -10,13 +10,13 @@ function newRegenWall(name, health, size, item, colich, liCha, liDam, liLength, 
   regWall.buildVisibility = BuildVisibility.shown;
   regWall.category = Category.defense;
   regWall.update = true;
-  
-	regWall.size = size;
-	regWall.health = health;
+ 
+  regWall.size = size;
+  regWall.health = health;
   regWall.requirements = ItemStack.with(item, colich);
   
-	regWall.lightningChance = liCha;
-	regWall.lightningDamage = liDam;
+  regWall.lightningChance = liCha;
+  regWall.lightningDamage = liDam;
   regWall.lightningLength = liLength;
   regWall.lightningColor = liColor;
   
