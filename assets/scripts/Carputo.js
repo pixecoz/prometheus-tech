@@ -1,3 +1,6 @@
+const koluroFile = require("Koluro");
+const koluro = Koluro.Koluro;
+
 const simplex = new Packages.arc.util.noise.Simplex();
 const rid = new Packages.arc.util.noise.RidgedPerlin(1, 2);
 
@@ -86,9 +89,9 @@ CarputoGenerator.tars = new ObjectMap().of(
     Blocks.water, Blocks.snow,
     Blocks.dacite, Blocks.ice
 );
-const CarputoPlanet = new JavaAdapter(Planet, {}, "Carputo", Planets.sun, 3, 1.0);
+const CarputoPlanet = new JavaAdapter(Planet, {}, "Carputo", koluro, 3, 1.0);
 CarputoPlanet.generator = CarputoGenerator;
-CarputoPlanet.startSector = 25;
+CarputoPlanet.startSector = 47;
 
 CarputoPlanet.hasAtmosphere = true;
 CarputoPlanet.atmosphereRadIn = 0.019;
@@ -96,8 +99,8 @@ CarputoPlanet.atmosphereRadOut = 0.29;
 CarputoPlanet.atmosphereColor = Color.valueOf("7B5959FF");
 			
 CarputoPlanet.meshLoader = prov(() => new HexMesh(CarputoPlanet, 6));
-CarputoPlanet.orbitRadius = 21.8;
+CarputoPlanet.orbitRadius = 5.8;
 CarputoPlanet.rotateTime = 10800;
-CarputoPlanet.orbitTime = Mathf.pow((2.0 + 14.0 + 0.66), 1.5) * 80;
+CarputoPlanet.orbitTime = Mathf.pow((1.0 + 10.0 + 0.66), 1.5) * 90;
 
 CarputoPlanet.accessible = true;//In tech tree normal is false
