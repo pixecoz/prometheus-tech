@@ -8,11 +8,13 @@ import mindustry.ctype.ContentList;
 import mindustry.entities.bullet.LaserBulletType;
 import mindustry.entities.bullet.PointBulletType;
 import mindustry.gen.Sounds;
+import mindustry.world.blocks.power.*;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.Block;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.production.GenericSmelter;
+import prometheus.PrtFx;
 
 public class PrtBlocks implements ContentList {
 
@@ -92,19 +94,21 @@ public class PrtBlocks implements ContentList {
             burstSpacing = 3;
             inaccuracy = 7;
             range = 240;
-            size = 4;
+            size = 5;
             health = 2500;
         }};
         dystopia = new ItemTurret("dystopia"){{
+            localizedName = "Dystopia";
+            description = "";
             float brange = range = 500f;
 
             requirements(Category.turret, ItemStack.with(Items.copper, 1000, Items.metaglass, 600, Items.surgeAlloy, 300, Items.plastanium, 200, Items.silicon, 600));
             ammo(
                     Items.surgeAlloy, new PointBulletType(){{
-                        shootEffect = Fx.instShoot;
-                        hitEffect = Fx.instHit;
+                        shootEffect = PrtFx.dystopiaShoot;
+                        hitEffect = PrtFx.dystopiaHit;
                         smokeEffect = Fx.smokeCloud;
-                        trailEffect = Fx.instTrail;
+                        trailEffect = PrtFx.dystopiaTrail;
                         despawnEffect = Fx.instBomb;
                         trailSpacing = 20f;
                         damage = 1350;
@@ -137,7 +141,22 @@ public class PrtBlocks implements ContentList {
 
             consumes.powerCond(10f, TurretBuild::isActive);
         }};
+
+        plutoniumReactor = new ImpactReactor("odinum-reactor") {{
+            localizedName = "Plutonium Reactor";
+            description = "";//KOSTOLOM make descriptions
+            size = 4;
+            hasPower = true;
+            hasLiquids = true;
+            hasItems = true;
+            itemCapacity = 20;
+            liquidCapacity = 20;
+            itemDuration = 90;
+            powerProduction = 120;
+            consumes.power(9f);
+            consumes.liquid(PrtLiquids.liquidPlatinum, 0.1f);
+            consumes.items(ItemStack.with(PrtItems.plutonium, 1));
+            requirements(Category.power, ItemStack.with(Items.metaglass, 500, PrtItems.platinum, 300, Items.silicon, 400, Items.plastanium, 200));
+        }};
     }
-
-
 }
