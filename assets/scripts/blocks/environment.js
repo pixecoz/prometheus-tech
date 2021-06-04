@@ -37,14 +37,21 @@ function newBoulder(name, variants){
   return boulder;
 };
 
-//ATTEIBUTES and OTHER write separately!!!
+//ATTREIBUTES and OTHER write separately!!!
 
 //CONTENT//
 
 const whiteStoneWall = newBlock("white-stone-block", 2, true);
 const whiteStoneFloor = newFloor("white-stone-floor", 2, 1.0, false, 0.0);
 
-const whiteStoneWater = newLiquidFloor("white-stone-water", 0, 0.2);
-whiteStoneWater.liquidDrop = Liquids.water;
+//const whiteStoneWater = newLiquidFloor("white-stone-water", 0, 0.2);
+//whiteStoneWater.liquidDrop = Liquids.water;
 
 const whiteStoneBoulder = newBoulder("white-stone-boulder", 1);
+
+
+const graniteWall = newBlock("granite-block", 2, true);
+const graniteFloor = newFloor("granite-floor", 2, 1.0, false, 0.0);
+
+const graniteBoulder = newBoulder("granite-boulder", 1);
+
