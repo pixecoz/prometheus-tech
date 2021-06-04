@@ -1,5 +1,3 @@
-const modItems = this.global.items;
-
 ///DEFENSE///
 
 //WALLS//
@@ -26,7 +24,7 @@ function newRegenWall(name, health, size, item, colich, liCha, liDam, liLength, 
     return regWall;
 };
 
-const platinum = moditems.platinum;
+const platinum = PrtItems.platinum;
 
 const platinumWall = newRegenWall("platinum-wall", 1000, 1, platinum, 6 , 0, 0, 0, null, false, false);
 
