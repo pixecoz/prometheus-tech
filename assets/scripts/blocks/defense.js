@@ -45,3 +45,12 @@ platinumWallLarge.buildType = () => extendContent(Wall.WallBuild, platinumWallLa
          };
     };
 };
+
+
+const magnetiteWall = newRegenWall("magnetite-wall", 300, 1, magnetite, 6, 0, 0, 0, null, true, true);
+magnetiteWall.flashHit = true;
+magnetiteWall.chanceDeflect = 12.3;
+
+const magnetiteWallLarge = newRegenWall("magnetite-wall-large", 1200, 2, magnetite, 24, 0, 0, 0, null, true,true);
+magnetiteWallLarge.flashHit = true;
+magnetiteWallLarge.chance = 12.3;
