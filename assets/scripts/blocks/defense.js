@@ -16,7 +16,7 @@ function newRegenWall(name, health, size, item, colich, liCha, liDam, liLength, 
   regWall.lightningChance = liCha;
   regWall.lightningDamage = liDam;
   regWall.lightningLength = liLength;
-  regWall.lightningColor = liColor;
+  regWall.lightningColor = Color.value.of(liColor);
   
   regWall.insulated = insulated;//POWER NODES
   regWall.absorbLasers = absorbLasers;//LASERS
@@ -25,6 +25,7 @@ function newRegenWall(name, health, size, item, colich, liCha, liDam, liLength, 
 };
 
 const platinum = PrtItems.platinum;
+const magnetite = PrtItems.magnetite;
 
 const platinumWall = newRegenWall("platinum-wall", 1000, 1, platinum, 6 , 0, 0, 0, null, false, false);
 
@@ -45,3 +46,12 @@ platinumWallLarge.buildType = () => extendContent(Wall.WallBuild, platinumWallLa
          };
     };
 };
+
+
+const magnetiteWall = newRegenWall("magnetite-wall", 300, 1, magnetite, 6, 0.25, 30, 6.1, "FF8D5C", true, true);
+magnetiteWall.flashHit = true;
+magnetiteWall.chanceDeflect = 12.3;
+
+const magnetiteWallLarge = newRegenWall("magnetite-wall-large", 1200, 2, magnetite, 24, 0.25, 30, 6.3, "FF8D5C", true,true);
+magnetiteWallLarge.flashHit = true;
+magnetiteWallLarge.chance = 12.3;
