@@ -14,13 +14,11 @@ public class PrometheusMod extends Mod{
 
     private final ContentList[] prometheusContent = {
             new PrtItems(),
-          //  new PrtUnitTypes(),
             new PrtBlocks(),
             new PrtLiquids()
     };
 
     public PrometheusMod(){
-        //Log.info("Loaded ExampleJavaMod constructor.");
 
         //listen for game load event
         Events.on(EventType.ClientLoadEvent.class, e -> {
