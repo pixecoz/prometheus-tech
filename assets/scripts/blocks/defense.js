@@ -25,6 +25,7 @@ function newRegenWall(name, health, size, item, colich, liCha, liDam, liLength, 
 };
 
 const platinum = PrtItems.platinum;
+const magnetite = PrtItems.magnetite;
 
 const platinumWall = newRegenWall("platinum-wall", 1000, 1, platinum, 6 , 0, 0, 0, null, false, false);
 
