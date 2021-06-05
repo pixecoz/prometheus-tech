@@ -13,10 +13,10 @@ import prometheus.content.*;
 public class PrometheusMod extends Mod{
 
     private final ContentList[] prometheusContent = {
-            //new PrtItems(),
-           // new PrtUnitTypes(),
-           // new PrtBlocks(),
-           // new PrtLiquids()
+            new PrtItems(),
+          //  new PrtUnitTypes(),
+            new PrtBlocks(),
+            new PrtLiquids()
     };
 
     public PrometheusMod(){
