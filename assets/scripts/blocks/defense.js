@@ -24,8 +24,8 @@ function newRegenWall(name, health, size, item, colich, liCha, liDam, liLength, 
     return regWall;
 };
 
-const platinum = PrtItems.platinum;
-const magnetite = PrtItems.magnetite;
+const platinum = prometheus.content.PrtItems.platinum;
+const magnetite = prometheus.content.PrtItems.magnetite;
 
 const platinumWall = newRegenWall("platinum-wall", 1000, 1, platinum, 6 , 0, 0, 0, null, false, false);
 
