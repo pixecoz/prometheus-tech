@@ -1,10 +1,14 @@
 package prometheus.content;
 
+import arc.Core;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
+import mindustry.Vars;
 import mindustry.entities.*;
 import mindustry.graphics.Drawf;
+import mindustry.graphics.Layer;
+import mindustry.graphics.Pal;
 
 import static arc.graphics.g2d.Draw.rect;
 
