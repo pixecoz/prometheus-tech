@@ -71,6 +71,31 @@ public class PrtFx {
                 Fill.square(e.x + x, e.y + y, c.fout() * 3.0F, 45.0F);
             });
         });
-    });
+    }),
+    orbitalLaserCharge = new Effect(80f, 100f, e -> {
+         Draw.color(Pal.lancerLaser);
+         Lines.stroke(2f * e.fout());
+         Lines.circle(e.x, e.y, 100f);
 
+        Lines.stroke(2f * e.fout());
+        Lines.circle(e.x, e.y, 100f * e.fin());
+    }),
+    
+    launchPodFall = new Effect(150f, 100f, e->{
+        TextureRegion pod = Core.atlas.find("launchpod");
+        float alpha = 1f - e.fout(Interp.pow5Out);
+        float scale =  (1f - alpha) * 2f + 1f;
+        float cx = e.x, cy = e.y;
+        float rotation = e.fin() * 145f;
+        float rw = pod.width * Draw.scl * scale, ry = pod.height * Draw.scl * scale;
+        Draw.color(Color.clear, Color.red, e.fin());
+        Draw.z(Layer.flyingUnit + 1);
+        Draw.alpha(alpha);
+        Draw.rect(pod, cx, cy, rw, ry, rotation);
+        if(e.fin() > 0.95){
+            Effect.shake(50f, 120f, e.x, e.y);
+            for (int i = 0; i < Mathf.random(2, 6); i++)
+                Fires.create(Vars.world.tileWorld(e.x + Mathf.random(-3 * 8, 3 * 8), e.y + Mathf.random(-3 * 8, 3 * 8)));
+        }
+    });
 }
