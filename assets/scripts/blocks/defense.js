@@ -33,8 +33,8 @@ platinumWall.buildType = () => extendContent(Wall.WallBuild, platinumWall, {
     update(){
          if (this.damaged() && timer.get(0, 1800)) {
          heal(maxHealth / 4);
-        };
-    };
+        }
+    }
 });
                                              
 const platinumWallLarge = newRegenWall("platinum-wall-large", 4000, 2, platinum, 24, 0, 0, 0, null, false, false);
@@ -43,8 +43,8 @@ platinumWallLarge.buildType = () => extendContent(Wall.WallBuild, platinumWallLa
     update(){
          if (this.damaged() && timer.get(0, 1800)) {
          heal(maxHealth / 4);
-         };
-    };
+         }
+    }
 });
 
 
