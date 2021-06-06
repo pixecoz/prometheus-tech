@@ -91,7 +91,8 @@ CarputoGenerator.tars = new ObjectMap().of(
     Blocks.water, Blocks.snow,
     Blocks.dacite, Blocks.ice
 );
-const CarputoPlanet = new JavaAdapter(Planet, {}, "Carputo", koluro, 3, 1.0);
+
+const CarpitoPlanet = new Planet("Carputo", koliro, 3, 1);
 CarputoPlanet.generator = CarputoGenerator;
 CarputoPlanet.startSector = 47;
 
