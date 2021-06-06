@@ -12,7 +12,7 @@ function newFloor(name, variants, speedMultiplier, emitLight, lightRadius){
   return floor;
 };
 
-function newLiquidFloor(name, variants, speedMultiplier,){
+function newLiquidFloor(name, variants, speedMultiplier){
   const liqFloor = extendContent(Floor, name, {});
   liqFloor.isLiquid = true;
   liqFloor.variants = variants;
