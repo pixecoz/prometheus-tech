@@ -146,7 +146,7 @@ public class PrtBlocks implements ContentList {
         plutoniumReactor = new ImpactReactor("plutonium-reactor") {{
             localizedName = "Plutonium Reactor";
             description = "";//KOSTOLOM make descriptions
-            size = 4;
+            size = 5;
             hasPower = true;
             hasLiquids = true;
             hasItems = true;
