@@ -31,7 +31,7 @@ function newBlock(name, variants, solid){
 };
 
 function newBoulder(name, variants){
-  const boulder = extendContent(Prop, name, {});
+  const boulder = extendContent(StaticTree, name, {});
   boulder.variants = variants;
   
   return boulder;
