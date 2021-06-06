@@ -1,4 +1,4 @@
-package prometheus;
+package prometheus.content;
 
 import arc.graphics.*;
 import arc.graphics.g2d.*;
@@ -18,7 +18,7 @@ public class PrtFx {
             float rot = e.rotation + 180.0F;
             float w = 20.0F * e.fout() * m;
             Drawf.tri(e.x, e.y, w, (35.0F + Mathf.randomSeedRange((long) e.id, 19.0F)) * m, rot);
-            Drawf.tri(e.x, e.y, w, 15.0F * m, 60);
+            Drawf.tri(e.x, e.y, w, 15.0F * m, 90);
         }
 
     }),
@@ -56,6 +56,7 @@ public class PrtFx {
                 float w = 23.0F * e.fout() * m;
                 Drawf.tri(e.x, e.y, w, (80.0F + Mathf.randomSeedRange((long) (e.id + j), 40.0F)) * m, rot);
                 Drawf.tri(e.x, e.y, w, 20.0F * m, rot + 180.0F);
+                Drawf.circles(e.x, e.y, 40);
             }
         }
 

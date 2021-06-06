@@ -2,7 +2,7 @@
   "name": "prometheus",
   "displayName": "Prometheus Tech",
   "author": "[#b6f42e[]]Prometheus Team[[]]",
-  "description": "Mindustry Java mod, collaboration of russian mod devs.",
+  "description": "[#7EA821[]]Mindustry Java mod, biggest collaboration of russian mod devs.[[]]",
   "version": "1.0",
   "main": "prometheus.PrometheusMod",
   "minGameVersion": "126",

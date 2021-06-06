@@ -1,4 +1,4 @@
-package prometheus;
+package prometheus.content;
 
 import arc.graphics.Color;
 import mindustry.graphics.Pal;

@@ -4,6 +4,7 @@ import arc.graphics.Color;
 import arc.math.Mathf;
 import mindustry.content.Fx;
 import mindustry.content.Items;
+import mindustry.content.Liquids;
 import mindustry.ctype.ContentList;
 import mindustry.entities.bullet.LaserBulletType;
 import mindustry.entities.bullet.PointBulletType;
@@ -14,7 +15,6 @@ import mindustry.type.ItemStack;
 import mindustry.world.Block;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.production.GenericSmelter;
-import prometheus.PrtFx;
 
 public class PrtBlocks implements ContentList {
 
@@ -22,11 +22,12 @@ public class PrtBlocks implements ContentList {
 
             platinumForge, plutoniumForge, magnetiteKiln,
             darkFlare, dystopia,
-            plutoniumReactor;
+            plutoniumReactor,
+            platinumWall, platinumWalLarge, magnetiteWall, magnetiteWallLarge;
 
     public void load() {
 
-        platinumForge = new GenericSmelter("platinum-forge") {
+        /*platinumForge = new GenericSmelter("platinum-forge") {
             {
                 this.localizedName = "Platinum Forge";
                 this.description = "Make Platinum from Titanium and Lead.";
@@ -43,7 +44,7 @@ public class PrtBlocks implements ContentList {
                 this.requirements(Category.crafting, ItemStack.with(Items.plastanium, 80, Items.titanium, 100, Items.metaglass, 120, Items.silicon, 200, Items.graphite, 200));
                 this.outputItem = new ItemStack(PrtItems.platinum, 1);
             }
-        };
+        };*/
 
         darkFlare  = new ItemTurret("dark-flare") {{
             localizedName = "Dark Flare";
@@ -109,8 +110,8 @@ public class PrtBlocks implements ContentList {
                         hitEffect = PrtFx.dystopiaHit;
                         smokeEffect = Fx.smokeCloud;
                         trailEffect = PrtFx.dystopiaTrail;
-                        despawnEffect = Fx.instBomb;
-                        trailSpacing = 20f;
+                        despawnEffect = PrtFx.dystopiaHit;
+                        trailSpacing = 15f;
                         damage = 1350;
                         buildingDamageMultiplier = 0.25f;
                         speed = brange;
@@ -142,7 +143,7 @@ public class PrtBlocks implements ContentList {
             consumes.powerCond(10f, TurretBuild::isActive);
         }};
 
-        plutoniumReactor = new ImpactReactor("odinum-reactor") {{
+        plutoniumReactor = new ImpactReactor("plutonium-reactor") {{
             localizedName = "Plutonium Reactor";
             description = "";//KOSTOLOM make descriptions
             size = 4;
@@ -154,7 +155,7 @@ public class PrtBlocks implements ContentList {
             itemDuration = 90;
             powerProduction = 120;
             consumes.power(9f);
-            consumes.liquid(PrtLiquids.liquidPlatinum, 0.1f);
+            consumes.liquid(Liquids.cryofluid, 0.1f);
             consumes.items(ItemStack.with(PrtItems.plutonium, 1));
             requirements(Category.power, ItemStack.with(Items.metaglass, 500, PrtItems.platinum, 300, Items.silicon, 400, Items.plastanium, 200));
         }};
