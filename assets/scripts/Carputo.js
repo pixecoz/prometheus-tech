@@ -1,5 +1,5 @@
 const koluroFile = require("Koluro");
-const koluro = Koluro.Koluro;
+const koluro = koluroFile.Koluro;
 
 const simplex = new Packages.arc.util.noise.Simplex();
 const rid = new Packages.arc.util.noise.RidgedPerlin(1, 2);
