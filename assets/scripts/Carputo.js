@@ -1,6 +1,8 @@
 const koluroFile = require("Koluro");
 const koluro = koluroFile.Koluro;
 
+const modBlocks = require("blocks/environment");
+
 const simplex = new Packages.arc.util.noise.Simplex();
 const rid = new Packages.arc.util.noise.RidgedPerlin(1, 2);
 
@@ -59,19 +61,19 @@ const CarputoGenerator = extend(PlanetGenerator, {
 });
 
 CarputoGenerator.arr = [
-    [Blocks.water, Blocks.ice, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.ice, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.water, Blocks.dacite, Blocks.snow],
-    [Blocks.dacite, Blocks.water, Blocks.water, Blocks.snow, Blocks.ice, Blocks.water, Blocks.stone, Blocks.snow, Blocks.snow, Blocks.water, Blocks.dacite, Blocks.dacite, Blocks.stone],
-    [Blocks.snow, Blocks.dacite, Blocks.snow, Blocks.water, Blocks.dacite, Blocks.snow, Blocks.dacite, Blocks.dacite, Blocks.dacite, Blocks.water, Blocks.water, Blocks.ice, Blocks.dacite],
-    [Blocks.water, Blocks.water, Blocks.snow, Blocks.water, Blocks.dacite, Blocks.ice, Blocks.snow, Blocks.dacite, Blocks.dacite, Blocks.dacite, Blocks.water, Blocks.water, Blocks.stone],  
-    [Blocks.ice, Blocks.water, Blocks.water, Blocks.dacite, Blocks.snow, Blocks.dacite, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.snow],  
-    [Blocks.snow, Blocks.water, Blocks.water, Blocks.water, Blocks.snow, Blocks.snow, Blocks.water, Blocks.snow, Blocks.dacite, Blocks.snow, Blocks.dacite, Blocks.water, Blocks.snow],  
-    [Blocks.water, Blocks.water, Blocks.snow, Blocks.snow, Blocks.dacite, Blocks.dacite, Blocks.snow, Blocks.stone, Blocks.stone, Blocks.stone, Blocks.snow, Blocks.ice, Blocks.ice],  
-    [Blocks.water, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.water, Blocks.dacite, Blocks.snow, Blocks.dacite, Blocks.stone, Blocks.dacite, Blocks.dacite, Blocks.iceSnow, Blocks.snow],  
-    [Blocks.water, Blocks.water, Blocks.snow, Blocks.water, Blocks.water, Blocks.water, Blocks.water, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.dacite, Blocks.dacite],
-    [Blocks.dacite, Blocks.ice, Blocks.snow, Blocks.dacite, Blocks.water, Blocks.dacite, Blocks.water, Blocks.water, Blocks.snow, Blocks.snow, Blocks.dacite, Blocks.snow, Blocks.ice], 
-    [Blocks.water, Blocks.water, Blocks.dacite, Blocks.stone, Blocks.water, Blocks.ice, Blocks.water, Blocks.water, Blocks.ice, Blocks.dacite, Blocks.stone, Blocks.stone, Blocks.dacite], 
-    [Blocks.water, Blocks.water, Blocks.stone, Blocks.ice, Blocks.ice, Blocks.stone, Blocks.dacite, Blocks.water, Blocks.dacite, Blocks.water, Blocks.dacite, Blocks.ice, Blocks.snow],
-    [Blocks.ice, Blocks.dacite, Blocks.snow, Blocks.dacite, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.dacite, Blocks.dacite, Blocks.snow, Blocks.ice, Blocks.ice]
+    [modBlocks.purelyWater, Blocks.ice, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.ice, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.snow, modBlocks.purelyWater, modBlocks.whiteStoneFloor, Blocks.snow],
+    [modBlocks.whiteStoneFloor, modBlocks.purelyWater, modBlocks.purelyWater, Blocks.snow, Blocks.ice, modBlocks.purelyWater, Blocks.stone, Blocks.snow, Blocks.snow, modBlocks.purelyWater, modBlocks.whiteStoneFloor, modBlocks.whiteStoneFloor, Blocks.stone],
+    [Blocks.snow, modBlocks.whiteStoneFloor, Blocks.snow, modBlocks.purelyWater, modBlocks.whiteStoneFloor, Blocks.snow, modBlocks.whiteStoneFloor, modBlocks.whiteStoneFloor, modBlocks.whiteStoneFloor, modBlocks.purelyWater, modBlocks.purelyWater, Blocks.ice, modBlocks.whiteStoneFloor],
+    [modBlocks.purelyWater, modBlocks.purelyWater, Blocks.snow, modBlocks.purelyWater, modBlocks.whiteStoneFloor, Blocks.ice, Blocks.snow, modBlocks.whiteStoneFloor, modBlocks.whiteStoneFloor, modBlocks.whiteStoneFloor, modBlocks.purelyWater, modBlocks.purelyWater, Blocks.stone],  
+    [Blocks.ice, modBlocks.purelyWater, modBlocks.purelyWater, modBlocks.whiteStoneFloor, Blocks.snow, modBlocks.whiteStoneFloor, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.snow],  
+    [Blocks.snow, modBlocks.purelyWater, modBlocks.purelyWater, modBlocks.purelyWater, Blocks.snow, Blocks.snow, modBlocks.purelyWater, Blocks.snow, modBlocks.whiteStoneFloor, Blocks.snow, modBlocks.whiteStoneFloor, modBlocks.purelyWater, Blocks.snow],  
+    [modBlocks.purelyWater, modBlocks.purelyWater, Blocks.snow, Blocks.snow, modBlocks.whiteStoneFloor, modBlocks.whiteStoneFloor, Blocks.snow, Blocks.stone, Blocks.stone, Blocks.stone, Blocks.snow, Blocks.ice, Blocks.ice],  
+    [modBlocks.purelyWater, Blocks.snow, Blocks.snow, Blocks.snow, modBlocks.purelyWater, modBlocks.whiteStoneFloor, Blocks.snow, modBlocks.whiteStoneFloor, Blocks.stone, modBlocks.whiteStoneFloor, modBlocks.whiteStoneFloor, Blocks.iceSnow, Blocks.snow],  
+    [modBlocks.purelyWater, modBlocks.purelyWater, Blocks.snow, modBlocks.purelyWater, modBlocks.purelyWater, modBlocks.purelyWater, modBlocks.purelyWater, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.snow, modBlocks.whiteStoneFloor, modBlocks.whiteStoneFloor],
+    [modBlocks.whiteStoneFloor, Blocks.ice, Blocks.snow, modBlocks.whiteStoneFloor, modBlocks.purelyWater, modBlocks.whiteStoneFloor, modBlocks.purelyWater, modBlocks.purelyWater, Blocks.snow, Blocks.snow, modBlocks.whiteStoneFloor, Blocks.snow, Blocks.ice], 
+    [modBlocks.purelyWater, modBlocks.purelyWater, modBlocks.whiteStoneFloor, Blocks.stone, modBlocks.purelyWater, Blocks.ice, modBlocks.purelyWater, modBlocks.purelyWater, Blocks.ice, modBlocks.whiteStoneFloor, Blocks.stone, Blocks.stone, modBlocks.whiteStoneFloor], 
+    [modBlocks.purelyWater, modBlocks.purelyWater, Blocks.stone, Blocks.ice, Blocks.ice, Blocks.stone, modBlocks.whiteStoneFloor, modBlocks.purelyWater, modBlocks.whiteStoneFloor, modBlocks.purelyWater, modBlocks.whiteStoneFloor, Blocks.ice, Blocks.snow],
+    [Blocks.ice, modBlocks.whiteStoneFloor, Blocks.snow, modBlocks.whiteStoneFloor, Blocks.snow, Blocks.snow, Blocks.snow, Blocks.snow, modBlocks.whiteStoneFloor, modBlocks.whiteStoneFloor, Blocks.snow, Blocks.ice, Blocks.ice]
 ];
 CarputoGenerator.scl = 6.281931105;
 CarputoGenerator.waterOffset = 0.02;
