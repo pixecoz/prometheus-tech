@@ -24,11 +24,11 @@ public class PrometheusMod extends Mod{
         Events.on(EventType.ClientLoadEvent.class, e -> {
             //show dialog upon startup
             Time.runTask(10f, () -> {
-                BaseDialog dialog = new BaseDialog("hello");
+                BaseDialog dialog = new BaseDialog("Hello");
                 dialog.cont.add("behold").row();
                 //mod sprites are prefixed with the mod name (this mod is called 'example-java-mod' in its config)
-                dialog.cont.image(Core.atlas.find("icon")).pad(20f).row();
-                dialog.cont.button("I see", dialog::hide).size(100f, 50f);
+                dialog.cont.image(Core.atlas.find("prometheus-icon")).pad(20f).row();
+                dialog.cont.button("Ok", dialog::hide).size(100f, 50f);
                 dialog.show();
             });
         });
