@@ -1,7 +1,5 @@
 ///CONSTANTS///
 
-const ModTurrets = require("blocks/turrets");
-
 ///FUNCTIONS///
 
 function TechNode(Parent, block, requirements) {
