@@ -45,7 +45,7 @@ public class DroneBase extends Block {
     @Override
     public void setBars(){
         super.setBars();
-        bars.add("shots", (prometheus.world.blocks.turrets.DroneBase.DroneBaseBuild entity) -> new Bar("Shots", Pal.accent, ()-> (1f - (float) entity.shots / maxShots) - 0.01f));
+        bars.add("shots", (DroneBaseBuild entity) -> new Bar("Shots", Pal.accent, ()-> (1f - (float) entity.shots / maxShots) - 0.01f));
     }
 
     public class DroneBaseBuild extends Building {
