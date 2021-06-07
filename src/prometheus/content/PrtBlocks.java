@@ -15,6 +15,7 @@ import mindustry.type.ItemStack;
 import mindustry.world.Block;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.production.GenericSmelter;
+import prometheus.world.blocks.turrets.DroneBase;
 
 public class PrtBlocks implements ContentList {
 
@@ -23,7 +24,8 @@ public class PrtBlocks implements ContentList {
             platinumForge, plutoniumForge, magnetiteKiln,
             darkFlare, dystopia,
             plutoniumReactor,
-            platinumWall, platinumWalLarge, magnetiteWall, magnetiteWallLarge;
+            platinumWall, platinumWalLarge, magnetiteWall, magnetiteWallLarge,
+            droneBase;
 
     public void load() {
 
@@ -158,6 +160,16 @@ public class PrtBlocks implements ContentList {
             consumes.liquid(Liquids.cryofluid, 0.1f);
             consumes.items(ItemStack.with(PrtItems.plutonium, 1));
             requirements(Category.power, ItemStack.with(Items.metaglass, 500, PrtItems.platinum, 300, Items.silicon, 400, Items.plastanium, 200));
+        }};
+
+        droneBase = new DroneBase("drone-base"){{
+            size = 3;
+            requirements(Category.turret, ItemStack.with(Items.copper, 65, Items.lead, 40, Items.titanium, 115));
+            consumes.items(ItemStack.with(
+                    Items.titanium, 10,
+                          Items.silicon, 15
+            ));
+            itemCapacity = 15;
         }};
     }
 }
