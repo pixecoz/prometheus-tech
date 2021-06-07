@@ -9,7 +9,7 @@ return node;
 };
 
 function createPhantomBlock(name, TexturePixelSize) {
-const PB = extendContent(Block, name, {});
+const PB = extendContent(Wall, name, {});
 PB.size = TexturePixelSize/32;
 //not change
 PB.health = 0.1;
