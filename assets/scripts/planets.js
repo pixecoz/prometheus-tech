@@ -22,7 +22,7 @@ const CarputoGenerator = extend(PlanetGenerator, {
         var block = this.getBlock(position);
 
         Tmp.c1.set(block.mapColor).a = 1 - block.albedo;
-        return Tmp.c1
+        return Tmp.c1;
     },
     
     getBlock(pos){
