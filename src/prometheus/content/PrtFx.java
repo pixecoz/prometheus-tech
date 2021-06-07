@@ -6,7 +6,6 @@ import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.util.Interval;
 import arc.util.Tmp;
-import com.sun.javafx.sg.prism.EffectFilter;
 import mindustry.Vars;
 import mindustry.content.Fx;
 import mindustry.entities.*;
