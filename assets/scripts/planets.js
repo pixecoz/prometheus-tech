@@ -1,5 +1,16 @@
-const koluroFile = require("Koluro");
-const koluro = koluroFile.Koluro;
+const koluro = new JavaAdapter(Planet, {}, "Koluro", Planets.sun, 3, 1.6);
+koluro.meshLoader = () => new SunMesh( 
+    koluro, 4, 5, 0.3, 1.7, 1.2, 1, 1.1, 
+    Color.valueOf("e693ea"), 
+    Color.valueOf("fbbcff"), 
+    Color.valueOf("e4aded"), 
+    Color.valueOf("f9e8f9"),
+    Color.valueOf("cf9cd3"),
+    Color.valueOf("cd92ce"));
+);
+koluro.orbitRadius = 27.3;
+koluro.accessible = false;
+koluro.bloom = true;
 
 const modBlocks = require("blocks/environment");
 
@@ -92,28 +103,20 @@ CarputoGenerator.tars = new ObjectMap().of(
     Blocks.dacite, Blocks.ice
 );
 
-        serpulo = new Planet("serpulo", sun, 3, 1){{
-            generator = new SerpuloPlanetGenerator();
-            meshLoader = () -> new HexMesh(this, 6);
-            atmosphereColor = Color.valueOf("3c1b8f");
-            atmosphereRadIn = 0.02f;
-            atmosphereRadOut = 0.3f;
-            startSector = 15;
-        }};
-const CarputoPlanet = new Planet("Carputo", koluro, 3, 1){{
-generator = CarputoGenerator;
-startSector = 47;
+const CarputoPlanet = new JavaAdapter(Planet, {}, "Carputo", koluro, 3, 1.0);
 
-hasAtmosphere = true;
-atmosphereRadIn = 0.019;
-atmosphereRadOut = 0.29;
-atmosphereColor = Color.valueOf("7B5959FF");
-	
-meshLoader = prov(() => new HexMesh(CarputoPlanet, 6));
-	
-orbitRadius = 5.8;
-rotateTime = 10800;
-orbitTime = Mathf.pow((1.0 + 10.0 + 0.66), 1.5) * 90;
+CarputoPlanet.generator = CarputoGenerator;
+CarputoPlanet.startSector = 47;
 
-accessible = true;//In tech tree normal is false
-}};			
+CarputoPlanet.hasAtmosphere = true;
+CarputoPlanet.atmosphereRadIn = 0.019;
+CarputoPlanet.atmosphereRadOut = 0.29;
+CarputoPlanet.atmosphereColor = Color.valueOf("7B5959FF");
+	
+CarputoPlanet.meshLoader = prov(() => new HexMesh(CarputoPlanet, 6));
+	
+CarputoPlanet.orbitRadius = 5.8;
+CarputoPlanet.rotateTime = 10800;
+CarputoPlanet.orbitTime = Mathf.pow((1.0 + 10.0 + 0.66), 1.5) * 90;
+
+CarputoPlanet.accessible = true;//In tech tree normal is false			
