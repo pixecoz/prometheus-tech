@@ -165,11 +165,23 @@ public class PrtBlocks implements ContentList {
         droneBase = new DroneBase("drone-base"){{
             size = 3;
             requirements(Category.turret, ItemStack.with(Items.copper, 65, Items.lead, 40, Items.titanium, 115));
-            consumes.items(ItemStack.with(
-                    Items.titanium, 10,
-                          Items.silicon, 15
-            ));
             itemCapacity = 15;
+            ammo(
+                    Items.silicon, new PodStat(){{
+                        damage = 5000f;
+                        range = 16f;
+                        effect = StatusEffects.none;
+                        hitEffect = PrtFx.orbitalLaserCharge;
+                        itemCap = 10;
+                    }},
+                    Items.pyratite, new PodStat(){{
+                        damage = 30f;
+                        range = 150f;
+                        effect = StatusEffects.burning;
+                        hitEffect = PrtFx.orbitalLaserCharge;
+                        itemCap = 15;
+                    }}
+            );
         }};
     }
 }
