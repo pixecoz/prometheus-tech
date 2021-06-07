@@ -1,6 +1,6 @@
 ///DEFENSE///
 
-importPackage(Packages.prometheus.content);
+importPackage(Packages.prometheus.content.PrtItems);
 
 //WALLS//
 
