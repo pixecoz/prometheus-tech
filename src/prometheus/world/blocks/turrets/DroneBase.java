@@ -1,4 +1,4 @@
-package prometheus.world;
+package prometheus.world.blocks.turrets;
 
 import arc.Core;
 import arc.math.Mathf;
@@ -15,9 +15,10 @@ import prometheus.content.PrtFx;
 import static mindustry.Vars.*;
 
 public class DroneBase extends Block {
-    public TextureRegion podRegion;
+    public static TextureRegion podRegion;
     public float range = 200f;
     public float buildTime = 20f;
+
     public Effect shootEffect = PrtFx.orbitalLaserCharge;
     public int shootReload = 60;
     public int nextTimer = timers++;
@@ -64,11 +65,7 @@ public class DroneBase extends Block {
         public void launch() {
             launched = true;
             shots = 0;
-            LaunchPayload entity = LaunchPayload.create();
-            entity.set(this);
-            entity.lifetime(120f);
-            entity.team(team);
-            entity.add();
+            PrtFx.launchPodLaunch.at(x, y);
             Fx.launch.at(this);
             Effect.shake(3f, 3f, this);
         }
