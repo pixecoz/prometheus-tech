@@ -92,18 +92,28 @@ CarputoGenerator.tars = new ObjectMap().of(
     Blocks.dacite, Blocks.ice
 );
 
-const CarpitoPlanet = new Planet("Carputo", koliro, 3, 1);
-CarputoPlanet.generator = CarputoGenerator;
-CarputoPlanet.startSector = 47;
+        serpulo = new Planet("serpulo", sun, 3, 1){{
+            generator = new SerpuloPlanetGenerator();
+            meshLoader = () -> new HexMesh(this, 6);
+            atmosphereColor = Color.valueOf("3c1b8f");
+            atmosphereRadIn = 0.02f;
+            atmosphereRadOut = 0.3f;
+            startSector = 15;
+        }};
+const CarputoPlanet = new Planet("Carputo", koluro, 3, 1){{
+generator = CarputoGenerator;
+startSector = 47;
 
-CarputoPlanet.hasAtmosphere = true;
-CarputoPlanet.atmosphereRadIn = 0.019;
-CarputoPlanet.atmosphereRadOut = 0.29;
-CarputoPlanet.atmosphereColor = Color.valueOf("7B5959FF");
-			
-CarputoPlanet.meshLoader = prov(() => new HexMesh(CarputoPlanet, 6));
-CarputoPlanet.orbitRadius = 5.8;
-CarputoPlanet.rotateTime = 10800;
-CarputoPlanet.orbitTime = Mathf.pow((1.0 + 10.0 + 0.66), 1.5) * 90;
+hasAtmosphere = true;
+atmosphereRadIn = 0.019;
+atmosphereRadOut = 0.29;
+atmosphereColor = Color.valueOf("7B5959FF");
+	
+meshLoader = prov(() => new HexMesh(CarputoPlanet, 6));
+	
+orbitRadius = 5.8;
+rotateTime = 10800;
+orbitTime = Mathf.pow((1.0 + 10.0 + 0.66), 1.5) * 90;
 
-CarputoPlanet.accessible = true;//In tech tree normal is false
+accessible = true;//In tech tree normal is false
+}};			
