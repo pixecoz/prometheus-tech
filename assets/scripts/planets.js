@@ -6,7 +6,7 @@ koluro.meshLoader = () => new SunMesh(
     Color.valueOf("e4aded"), 
     Color.valueOf("f9e8f9"),
     Color.valueOf("cf9cd3"),
-    Color.valueOf("cd92ce");
+    Color.valueOf("cd92ce")
 );
 koluro.orbitRadius = 27.3;
 koluro.accessible = false;
