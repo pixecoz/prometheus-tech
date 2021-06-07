@@ -5,6 +5,7 @@ import arc.math.Mathf;
 import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.Liquids;
+import mindustry.content.StatusEffects;
 import mindustry.ctype.ContentList;
 import mindustry.entities.bullet.LaserBulletType;
 import mindustry.entities.bullet.PointBulletType;
@@ -14,8 +15,8 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.Block;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
-import mindustry.world.blocks.production.GenericSmelter;
 import prometheus.world.blocks.turrets.DroneBase;
+import prometheus.world.meta.PodStat;
 
 public class PrtBlocks implements ContentList {
 
