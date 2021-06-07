@@ -2,9 +2,7 @@
 
 function R(dir){require(dir)};
 
-R("blocks/environment");
-
-R("planets");
+R("planets&environment");
 
 R("techTree");//в самом конце
 
