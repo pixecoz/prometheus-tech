@@ -48,6 +48,40 @@ public class PrtBlocks implements ContentList {
                 this.outputItem = new ItemStack(PrtItems.platinum, 1);
             }
         };*/
+        
+        plutoniumForge = new GenericSmelter("plutonium-forge") {{
+                localizedName = "Plutonium Forge";
+                description = "Make Plutonium from Plastanium and Lead.";
+                health = 360;
+                liquidCapacity = 0;
+                size = 3;
+                hasPower = true;
+                hasLiquids = false;
+                hasItems = true;
+                craftTime = 120;
+                updateEffect = Fx.plasticburn;
+                consumes.power(3.5f);
+                consumes.items(ItemStack.with(Items.lead, 3, Items.plastanium, 1));
+                requirements(Category.crafting, ItemStack.with(Items.copper, 10));
+                outputItem = new ItemStack(PrtItems.plutonium, 1);
+            }};
+        
+        magnetiteKiln = new GenericSmelter("magnetite-kiln") {{
+                localizedName = "Magnetite Kiln";
+                description = "Make Magnetite from Platinum, Copper and Surge Alloy.";
+                health = 360;
+                liquidCapacity = 0;
+                size = 3;
+                hasPower = true;
+                hasLiquids = false;
+                hasItems = true;
+                craftTime = 180;
+                updateEffect = Fx.generatespark;
+                consumes.power(7f);
+                consumes.items(ItemStack.with(Items.surge-alloy, 1, Items.platinum, 1, Items.copper, 5));
+                requirements(Category.crafting, ItemStack.with(Items.copper, 10));
+                outputItem = new ItemStack(PrtItems.magnetite, 1);
+            }};
 
         darkFlare  = new ItemTurret("dark-flare") {{
             localizedName = "Dark Flare";
