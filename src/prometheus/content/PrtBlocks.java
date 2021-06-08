@@ -193,7 +193,7 @@ public class PrtBlocks implements ContentList {
                         itemCap = 15;
                         maxShots = 6;
                     }},
-                    Items.Silicon, new PodStat(){{
+                    Items.silicon, new PodStat(){{
                         damage = 400f;
                         range = 10f;
                         effect = StatusEffects.none;
