@@ -169,20 +169,38 @@ public class PrtBlocks implements ContentList {
             requirements(Category.turret, ItemStack.with(Items.copper, 65, Items.lead, 40, Items.titanium, 115));
             itemCapacity = 15;
             ammo(
-                    Items.silicon, new PodStat(){{
+                    Items.surgeAlloy, new PodStat(){{
                         damage = 1000f;
-                        range = 16f;
+                        range = 5f;
+                        effect = StatusEffects.none;
+                        hitEffect = Fx.shieldApply;
+                        itemCap = 10;
+                        maxShots = 2;
+                    }},
+                    Items.plastanium, new PodStat(){{
+                        damage = 300f;
+                        range = 300f;
                         effect = StatusEffects.none;
                         hitEffect = PrtFx.orbitalLaserCharge;
                         itemCap = 10;
+                        maxShots = 3;
                     }},
                     Items.pyratite, new PodStat(){{
-                        damage = 100f;
+                        damage = 150f;
                         range = 150f;
-                        effect = StatusEffects.burning;
+                        effect = StatusEffects.burning, StatusEffects.melting;
                         hitEffect = PrtFx.orbitalLaserCharge;
                         itemCap = 15;
                         maxShots = 6;
+                    }},
+                    Items.Silicon, new PodStat(){{
+                        damage = 400f;
+                        range = 10f;
+                        effect = StatusEffects.none;
+                        hitEffect = PrtFx.orbitalLaserCharge;
+                        itemCap = 10;
+                        maxShots = 3;
+                    }},
                     }}
             );
         }};
