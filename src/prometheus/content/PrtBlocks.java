@@ -93,11 +93,12 @@ public class PrtBlocks implements ContentList {
                         }
                     }*/
             );
-            reloadTime = 120;
-            shots = 3;
-            burstSpacing = 3;
-            inaccuracy = 7;
-            range = 240;
+            reloadTime = 110;
+            shots = 5;
+            burstSpacing = 8;
+            inaccuracy = 5;
+            shootSound = Sounds.laser;
+            range = 120;
             size = 5;
             health = 2500;
         }};
@@ -126,7 +127,7 @@ public class PrtBlocks implements ContentList {
             maxAmmo = 40;
             ammoPerShot = 5;
             rotateSpeed = 2f;
-            reloadTime = 200f;
+            reloadTime = 235f;
             ammoUseEffect = Fx.casing3Double;
             recoilAmount = 5f;
             restitution = 0.009f;
@@ -169,14 +170,14 @@ public class PrtBlocks implements ContentList {
             itemCapacity = 15;
             ammo(
                     Items.silicon, new PodStat(){{
-                        damage = 5000f;
+                        damage = 1000f;
                         range = 16f;
                         effect = StatusEffects.none;
                         hitEffect = PrtFx.orbitalLaserCharge;
                         itemCap = 10;
                     }},
                     Items.pyratite, new PodStat(){{
-                        damage = 30f;
+                        damage = 300f;
                         range = 150f;
                         effect = StatusEffects.burning;
                         hitEffect = PrtFx.orbitalLaserCharge;
