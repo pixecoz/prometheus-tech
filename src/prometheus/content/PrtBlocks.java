@@ -188,7 +188,7 @@ public class PrtBlocks implements ContentList {
                     Items.pyratite, new PodStat(){{
                         damage = 150f;
                         range = 150f;
-                        effect = StatusEffects.burning, StatusEffects.melting;
+                        effect = StatusEffects.burning;
                         hitEffect = PrtFx.orbitalLaserCharge;
                         itemCap = 15;
                         maxShots = 6;
