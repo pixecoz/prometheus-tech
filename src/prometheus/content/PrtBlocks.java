@@ -200,7 +200,6 @@ public class PrtBlocks implements ContentList {
                         hitEffect = PrtFx.orbitalLaserCharge;
                         itemCap = 10;
                         maxShots = 3;
-                    }},
                     }}
             );
         }};
