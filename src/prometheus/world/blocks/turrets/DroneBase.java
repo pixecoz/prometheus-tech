@@ -53,6 +53,7 @@ public class DroneBase extends Block {
     public void setBars(){
         super.setBars();
         bars.add("shots", (DroneBaseBuild entity) -> new Bar("Shots", Pal.accent, ()-> (1f - (float) entity.shots / maxShots) - 0.01f));
+        bars.add("countdown", (DroneBaseBuild entity) -> new Bar("Build countdown", Pal.lancerLaser, () -> (float) entity.countDown / buildTime));
     }
 
     @Override
@@ -192,11 +193,8 @@ public class DroneBase extends Block {
                             current.hitEffect.at(target.x(), target.y());
                         }
                         //TODO: 7.0 fix
-                        Units.nearbyEnemies(team, target.x() - current.range/2, target.y() - current.range/2,
-                                                target.x() + current.range/2,  target.y() + current.range/2, unit -> {
-                            unit.damage(current.damage);
-                            unit.apply(StatusEffects.burning, 60f * 8);
-                        });
+                        Damage.damage(team, target.x(), target.y(), current.range, current.damage);
+                        Damage.status(team, target.x(), target.y(), current.range, current.effect, 60f * 8, true, true);
                     }
                 }
             }

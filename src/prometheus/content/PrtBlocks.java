@@ -173,7 +173,7 @@ public class PrtBlocks implements ContentList {
                         damage = 1000f;
                         range = 5f;
                         effect = StatusEffects.none;
-                        hitEffect = Fx.shieldApply;
+                        hitEffect = PrtFx.orbitalLaserCharge;
                         itemCap = 10;
                         maxShots = 2;
                     }},
