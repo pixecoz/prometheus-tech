@@ -1,26 +1,21 @@
 package prometheus.world.blocks.turrets;
 
 import arc.Core;
-import arc.math.Mathf;
-import arc.scene.ui.layout.Table;
-import arc.struct.ObjectMap;
-import arc.struct.OrderedMap;
-import arc.struct.Seq;
-import mindustry.type.Item;
-import mindustry.type.ItemStack;
+import arc.struct.*;
+import mindustry.type.*;
 import mindustry.ui.*;
-import mindustry.world.Block;
-import mindustry.world.consumers.ConsumeItemFilter;
-import mindustry.world.meta.BlockGroup;
 import arc.graphics.g2d.*;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
+import mindustry.world.meta.*;
 
-import mindustry.world.meta.Stat;
-import mindustry.world.meta.StatUnit;
-import mindustry.world.meta.Stats;
+import arc.math.Mathf;
+import arc.scene.ui.layout.Table;
+import mindustry.world.Block;
+import mindustry.world.consumers.ConsumeItemFilter;
+
 import prometheus.content.PrtFx;
 import prometheus.world.meta.PodStat;
 
@@ -79,14 +74,16 @@ public class DroneBase extends Block {
 
                 table.table(bt -> {
                     bt.left().defaults().padRight(3).left();
-                    bt.add("Damage: " + stat.damage);
+                    bt.add(Core.bundle.format("bullet.damage", stat.damage));
                     bt.row();
-                    bt.add("Range: " + stat.range);
+                    bt.add("[stat]" + stat.range + " [][GREY]range[]");
                     bt.row();
-                    bt.add("Need items: " + stat.itemCap);
+                    bt.add("[stat]" + stat.itemCap + " [][GREY]items need for pod[]");
+                    bt.row();
+                    bt.add("[stat]" + stat.maxShots + " [][GREY]max shots");
                     if(stat.effect != StatusEffects.none) {
                         bt.row();
-                        bt.add("Effect: [ORANGE]" + stat.effect.name + "[]");
+                        bt.add("[stat]" + stat.effect.name + "[]");
                     }
                     bt.row();
                 }).padTop(-9).left().get().background(Tex.underline);
@@ -104,9 +101,9 @@ public class DroneBase extends Block {
             @Override
             public void build(Building tile, Table table){
                 MultiReqImage image = new MultiReqImage();
-                content.items().each(i -> filter.get(i), item -> image.add(new ReqImage(new ItemImage(item.icon(Cicon.tiny)),
-                        () -> tile instanceof DroneBaseBuild)));
-
+                //TODO: 7.0 remove
+                content.items().each(i -> filter.get(i), item -> image.add(new ReqImage(item.icon(Cicon.tiny),
+                        () -> tile instanceof DroneBaseBuild && !tile.items().empty() && tile.items.has(item, 1))));
                 table.add(image).size(8 * 4);
             }
 
@@ -132,7 +129,7 @@ public class DroneBase extends Block {
         public Teamc target;
         public float speedScl = 0;
         public float time = 0f;
-        public int shots = 0;
+        public int shots = maxShots;
         public PodStat current;
 
         @Override
@@ -167,6 +164,8 @@ public class DroneBase extends Block {
                             consume();
                             items.remove(ItemStack.with(t, ammoTypes.get(t).itemCap));
                             current = ammoTypes.get(t);
+                            maxShots = current.maxShots;
+                            shots = maxShots;
                             buildStatus = true;
                             break;
                         }
@@ -203,11 +202,12 @@ public class DroneBase extends Block {
             }
             //constructing animation
             if (!launched){
-                if(countDown == 0)
-                    speedScl = Mathf.lerpDelta(speedScl, 0f, 0.05f);
-                else{
+                if(countDown != 0 && buildStatus) {
                     time += edelta() * speedScl;
                     speedScl = Mathf.lerpDelta(speedScl, 1f, 0.05f);
+                }
+                else{
+                    speedScl = Mathf.lerpDelta(speedScl, 0f, 0.05f);
                 }
             }
         }

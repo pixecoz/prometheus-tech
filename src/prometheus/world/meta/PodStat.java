@@ -15,6 +15,8 @@ public class PodStat {
     public Effect hitEffect = null;
     //target's effect
     public StatusEffect effect;
+    //amount of shots
+    public int maxShots = 3;
 
     public PodStat(){
     }
