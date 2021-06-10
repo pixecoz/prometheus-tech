@@ -1,10 +1,10 @@
 ///DEFENSE///
 
-importPackage(Packages.prometheus.content);
+importPackage(Packages.prometheus.content.PrtItems);
 
 //WALLS//
 
-function newRegenWall(name, health, size, item, colich, liCha, liDam, liLength, liColor, insulated, absorbLasers){
+function newRegenWall(name, health, size, liCha, liDam, liLength, liColor, insulated, absorbLasers){
   const regWall = extendContent(Wall, name, {});
   
   regWall.buildVisibility = BuildVisibility.shown;
@@ -13,7 +13,7 @@ function newRegenWall(name, health, size, item, colich, liCha, liDam, liLength, 
  
   regWall.size = size;
   regWall.health = health;
-  regWall.requirements = ItemStack.with(item, colich);
+  //regWall.requirements = ItemStack.with(item, colich);
   
   regWall.lightningChance = liCha;
   regWall.lightningDamage = liDam;
@@ -26,10 +26,11 @@ function newRegenWall(name, health, size, item, colich, liCha, liDam, liLength, 
     return regWall;
 };
 
-const platinum = Packages.prometheus.content.PrtItems.platinum;
-const magnetite = Packages.prometheus.content.PrtItems.magnetite;
-
-const platinumWall = newRegenWall("platinum-wall", 1000, 1, platinum, 6 , 0, 0, 0, null, false, false);
+const platinumWall = newRegenWall("platinum-wall", 1000, 1, 0, 0, 0, null, false, false);
+init(){
+const platinum = PrtItems.platinum;
+platinumWall.requirements = ItemStack.with(platinum,100);
+};
 
 platinumWall.buildType = () => extendContent(Wall.WallBuild, platinumWall, {
     update(){
@@ -39,7 +40,7 @@ platinumWall.buildType = () => extendContent(Wall.WallBuild, platinumWall, {
     }
 });
                                              
-const platinumWallLarge = newRegenWall("platinum-wall-large", 4000, 2, platinum, 24, 0, 0, 0, null, false, false);
+const platinumWallLarge = newRegenWall("platinum-wall-large", 4000, 2, 0, 0, 0, null, false, false);
 
 platinumWallLarge.buildType = () => extendContent(Wall.WallBuild, platinumWallLarge, {
     update(){
@@ -50,10 +51,10 @@ platinumWallLarge.buildType = () => extendContent(Wall.WallBuild, platinumWallLa
 });
 
 
-const magnetiteWall = newRegenWall("magnetite-wall", 300, 1, magnetite, 6, 0.25, 30, 6.1, "FF8D5C", true, true);
+const magnetiteWall = newRegenWall("magnetite-wall", 300, 1, 0.25, 30, 6.1, "FF8D5C", true, true);
 magnetiteWall.flashHit = true;
 magnetiteWall.chanceDeflect = 12.3;
 
-const magnetiteWallLarge = newRegenWall("magnetite-wall-large", 1200, 2, magnetite, 24, 0.25, 30, 6.3, "FF8D5C", true,true);
+const magnetiteWallLarge = newRegenWall("magnetite-wall-large", 1200, 2, 0.25, 30, 6.3, "FF8D5C", true,true);
 magnetiteWallLarge.flashHit = true;
 magnetiteWallLarge.chance = 12.3;
