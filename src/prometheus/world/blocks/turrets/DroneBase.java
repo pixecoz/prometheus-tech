@@ -1,7 +1,12 @@
 package prometheus.world.blocks.turrets;
 
 import arc.Core;
+import arc.Events;
 import arc.struct.*;
+import arc.util.Strings;
+import arc.util.io.Reads;
+import arc.util.io.Writes;
+import mindustry.game.EventType;
 import mindustry.type.*;
 import mindustry.ui.*;
 import arc.graphics.g2d.*;
@@ -17,6 +22,7 @@ import mindustry.world.Block;
 import mindustry.world.consumers.ConsumeItemFilter;
 
 import prometheus.content.PrtFx;
+import prometheus.entities.PodEffects;
 import prometheus.world.meta.PodStat;
 
 import static mindustry.Vars.*;
@@ -31,6 +37,10 @@ public class DroneBase extends Block {
     public int nextTimer = timers++;
     public int maxShots = 3;
     public ObjectMap<Item, PodStat> ammoTypes;
+    //fall settings
+    public float fallFireRange = 48f;
+    public float fallShakeIntensity = 50f;
+    public float fallShakeDuration = 120f;
     public DroneBase(String name) {
         super(name);
         update = true;
@@ -68,7 +78,7 @@ public class DroneBase extends Block {
             for (Item i : keys){
                 PodStat stat = ammoTypes.get(i);
 
-                //TODO: 7.0 remove
+                //TODO: 7.0 recode
                 //also if we use everything that is not Cicon.full, we recieve uiIcon
                 table.image(i.icon(Cicon.large)).size(3 * 8).padRight(4).right().top();
                 table.add(i.localizedName).padRight(10).left().top();
@@ -77,11 +87,15 @@ public class DroneBase extends Block {
                     bt.left().defaults().padRight(3).left();
                     bt.add(Core.bundle.format("bullet.damage", stat.damage));
                     bt.row();
-                    bt.add("[stat]" + stat.range + " [][GREY]range[]");
+                    bt.add(Core.bundle.format("pod.damageradius", stat.range));
                     bt.row();
-                    bt.add("[stat]" + stat.itemCap + " [][GREY]items need for pod[]");
+                    bt.add(Core.bundle.format("pod.neededitems", stat.itemCap));
                     bt.row();
-                    bt.add("[stat]" + stat.maxShots + " [][GREY]max shots");
+                    bt.add(Core.bundle.format("pod.maxshots", stat.maxShots));
+                    if (stat.speedScale != 1f){
+                        bt.row();
+                        bt.add(Core.bundle.format("bullet.reload", Strings.autoFixed(stat.speedScale, 2)));
+                    }
                     if(stat.effect != StatusEffects.none) {
                         bt.row();
                         bt.add("[stat]" + stat.effect.name + "[]");
@@ -149,7 +163,7 @@ public class DroneBase extends Block {
         public void reloadLaunch(){
             launched = false;
             countDown = buildTime;
-            PrtFx.launchPodFall.at(x + Mathf.random(-range, range), y + Mathf.random(-range, range));
+            PodEffects.podFallEffect(x + Mathf.random(-range, range), y + Mathf.random(-range, range), fallFireRange, fallShakeIntensity, fallShakeDuration);
         }
 
         @Override
@@ -182,7 +196,7 @@ public class DroneBase extends Block {
                     launch();
             }
 
-            if(timer(nextTimer, shootReload)) {
+            if(timer(nextTimer, shootReload / (current == null ? 1f : current.speedScale))) {
                 target = Units.closestTarget(team, x, y, range);
                 if (target != null) {
                     if (launched) {
@@ -193,6 +207,7 @@ public class DroneBase extends Block {
                             current.hitEffect.at(target.x(), target.y());
                         }
                         //TODO: 7.0 fix
+                        PodEffects.podDust(target.x(), target.y());
                         Damage.damage(team, target.x(), target.y(), current.range, current.damage);
 
                         Damage.status(team, target.x(), target.y(), current.range, current.effect, 60f * 8, true, true);
@@ -227,6 +242,23 @@ public class DroneBase extends Block {
         @Override
         public void drawSelect(){
             Drawf.dashCircle(x, y, range, team.color);
+        }
+
+        @Override
+        public void write(Writes write){
+            super.write(write);
+            write.bool(launched);
+            write.bool(buildStatus);
+            write.f(countDown);
+            write.i(shots);
+        }
+        @Override
+        public void read(Reads read, byte revision){
+            super.read(read, revision);
+            launched = read.bool();
+            buildStatus = read.bool();
+            countDown = read.f();
+            shots = read.i();
         }
     }
 }

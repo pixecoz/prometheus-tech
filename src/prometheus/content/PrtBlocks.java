@@ -205,6 +205,7 @@ public class PrtBlocks implements ContentList {
             requirements(Category.turret, ItemStack.with(Items.copper, 65, Items.lead, 40, Items.titanium, 115));
             itemCapacity = 15;
             buildVisibility = BuildVisibility.sandboxOnly;
+            shootEffect = PrtFx.orbitalLaserCharge;
             ammo(
                     Items.surgeAlloy, new PodStat(){{
                         damage = 1000f;
@@ -213,6 +214,7 @@ public class PrtBlocks implements ContentList {
                         hitEffect = PrtFx.orbitalLaserChargeSurge;
                         itemCap = 10;
                         maxShots = 2;
+                        speedScale = 2f;
                     }},
                     Items.plastanium, new PodStat(){{
                         damage = 300f;
