@@ -187,13 +187,14 @@ public class DroneBase extends Block {
                 if (target != null) {
                     if (launched) {
                         shots++;
-                        if(current.hitEffect == null)
+                        if (current.hitEffect == null)
                             shootEffect.at(target.x(), target.y());
-                        else{
+                        else {
                             current.hitEffect.at(target.x(), target.y());
                         }
                         //TODO: 7.0 fix
                         Damage.damage(team, target.x(), target.y(), current.range, current.damage);
+
                         Damage.status(team, target.x(), target.y(), current.range, current.effect, 60f * 8, true, true);
                     }
                 }

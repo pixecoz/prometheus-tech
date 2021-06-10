@@ -15,6 +15,7 @@ import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.Block;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
+import mindustry.world.blocks.production.GenericSmelter;
 import prometheus.world.blocks.turrets.DroneBase;
 import prometheus.world.meta.PodStat;
 
@@ -78,7 +79,7 @@ public class PrtBlocks implements ContentList {
                 craftTime = 180;
                 updateEffect = Fx.generatespark;
                 consumes.power(7f);
-                consumes.items(ItemStack.with(Items.surge-alloy, 1, Items.platinum, 1, Items.copper, 5));
+                consumes.items(ItemStack.with(Items.surgeAlloy, 1, PrtItems.platinum, 1, Items.copper, 5));
                 requirements(Category.crafting, ItemStack.with(Items.copper, 10));
                 outputItem = new ItemStack(PrtItems.magnetite, 1);
             }};
@@ -223,7 +224,7 @@ public class PrtBlocks implements ContentList {
                         damage = 150f;
                         range = 150f;
                         effect = StatusEffects.burning;
-                        hitEffect = PrtFx.orbitalLaserCharge;
+                        hitEffect = PrtFx.orbitalLaserChargePyro;
                         itemCap = 15;
                         maxShots = 6;
                     }},

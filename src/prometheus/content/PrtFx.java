@@ -78,14 +78,20 @@ public class PrtFx {
             });
         });
     }),
-            orbitalLaserCharge = new Effect(80f, 100f, e -> {
-                Draw.color(Pal.lancerLaser);
-                Lines.stroke(2f * e.fout());
-                Lines.circle(e.x, e.y, 100f);
+    orbitalLaserCharge = new Effect(80f, 100f, e -> {
+        Draw.color(Pal.lancerLaser);
+        Lines.stroke(2f * e.fout());
+        Lines.circle(e.x, e.y, 100f);
 
-                Lines.stroke(2f * e.fout());
-                Lines.circle(e.x, e.y, 100f * e.fin());
-            }),
+        Lines.circle(e.x, e.y, 100f * e.fin());
+    }),
+    orbitalLaserChargePyro = new Effect(80f, 100f, e->{
+        Draw.color(Pal.lightPyraFlame);
+        Lines.stroke(2f * e.fout());
+        Lines.circle(e.x, e.y, 100f);
+
+        Lines.circle(e.x, e.y, 100f * e.fout());
+    }),
 
     launchPodLaunch = new Effect(150f, 100f, e->{
         Interval in = new Interval();
