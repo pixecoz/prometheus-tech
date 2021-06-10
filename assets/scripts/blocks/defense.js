@@ -18,7 +18,7 @@ function newRegenWall(name, health, size, liCha, liDam, liLength, liColor, insul
   regWall.lightningChance = liCha;
   regWall.lightningDamage = liDam;
   regWall.lightningLength = liLength;
-  regWall.lightningColor = Color.value.of(liColor);
+  regWall.lightningColor = Color.valueOf(liColor);
   
   regWall.insulated = insulated;//POWER NODES
   regWall.absorbLasers = absorbLasers;//LASERS
