@@ -2,13 +2,14 @@ package prometheus.content;
 
 import arc.graphics.Color;
 import arc.math.Mathf;
-import mindustry.content.*;
+import mindustry.content.Fx;
+import mindustry.content.Items;
+import mindustry.content.Liquids;
+import mindustry.content.StatusEffects;
 import mindustry.ctype.ContentList;
-import mindustry.entities.bullet.ArtilleryBulletType;
 import mindustry.entities.bullet.LaserBulletType;
 import mindustry.entities.bullet.PointBulletType;
 import mindustry.gen.Sounds;
-import mindustry.graphics.Pal;
 import mindustry.world.blocks.power.*;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
@@ -27,7 +28,7 @@ public class PrtBlocks implements ContentList {
             darkFlare, dystopia,
             plutoniumReactor,
             platinumWall, platinumWalLarge, magnetiteWall, magnetiteWallLarge,
-            seraphim, sentinel;
+            droneBase;
 
     public void load() {
 
@@ -49,40 +50,40 @@ public class PrtBlocks implements ContentList {
                 this.outputItem = new ItemStack(PrtItems.platinum, 1);
             }
         };*/
-        
+
         plutoniumForge = new GenericSmelter("plutonium-forge") {{
-                localizedName = "Plutonium Forge";
-                description = "Make Plutonium from Plastanium and Lead.";
-                health = 360;
-                liquidCapacity = 0;
-                size = 3;
-                hasPower = true;
-                hasLiquids = false;
-                hasItems = true;
-                craftTime = 120;
-                updateEffect = Fx.plasticburn;
-                consumes.power(3.5f);
-                consumes.items(ItemStack.with(Items.lead, 3, Items.plastanium, 1));
-                requirements(Category.crafting, ItemStack.with(Items.copper, 10));
-                outputItem = new ItemStack(PrtItems.plutonium, 1);
-            }};
-        
+            localizedName = "Plutonium Forge";
+            description = "Make Plutonium from Plastanium and Lead.";
+            health = 360;
+            liquidCapacity = 0;
+            size = 3;
+            hasPower = true;
+            hasLiquids = false;
+            hasItems = true;
+            craftTime = 120;
+            updateEffect = Fx.plasticburn;
+            consumes.power(3.5f);
+            consumes.items(ItemStack.with(Items.lead, 3, Items.plastanium, 1));
+            requirements(Category.crafting, ItemStack.with(Items.copper, 10));
+            outputItem = new ItemStack(PrtItems.plutonium, 1);
+        }};
+
         magnetiteKiln = new GenericSmelter("magnetite-kiln") {{
-                localizedName = "Magnetite Kiln";
-                description = "Make Magnetite from Platinum, Copper and Surge Alloy.";
-                health = 360;
-                liquidCapacity = 0;
-                size = 3;
-                hasPower = true;
-                hasLiquids = false;
-                hasItems = true;
-                craftTime = 180;
-                updateEffect = Fx.generatespark;
-                consumes.power(7f);
-                consumes.items(ItemStack.with(Items.surgeAlloy, 1, PrtItems.platinum, 1, Items.copper, 5));
-                requirements(Category.crafting, ItemStack.with(Items.copper, 10));
-                outputItem = new ItemStack(PrtItems.magnetite, 1);
-            }};
+            localizedName = "Magnetite Kiln";
+            description = "Make Magnetite from Platinum, Copper and Surge Alloy.";
+            health = 360;
+            liquidCapacity = 0;
+            size = 3;
+            hasPower = true;
+            hasLiquids = false;
+            hasItems = true;
+            craftTime = 180;
+            updateEffect = Fx.generatespark;
+            consumes.power(7f);
+            consumes.items(ItemStack.with(Items.surgeAlloy, 1, PrtItems.platinum, 1, Items.copper, 5));
+            requirements(Category.crafting, ItemStack.with(Items.copper, 10));
+            outputItem = new ItemStack(PrtItems.magnetite, 1);
+        }};
 
         darkFlare  = new ItemTurret("dark-flare") {{
             localizedName = "Dark Flare";
@@ -199,14 +200,12 @@ public class PrtBlocks implements ContentList {
             requirements(Category.power, ItemStack.with(Items.metaglass, 500, PrtItems.platinum, 300, Items.silicon, 400, Items.plastanium, 200));
         }};
 
-        seraphim = new DroneBase("seraphim"){{
-            localizedName = "Seraphim";
-            description = "A powerful orbital drone, carries powerful weapons.\n" +
-                    "[gray] -In order to live, you need changes, new beginnings. It's that simple. All you have to do is just press the keys.";
+        droneBase = new DroneBase("drone-base"){{
             size = 3;
-            requirements(Category.turret, ItemStack.with(Items.copper, 65, Items.plastanium, 400, Items.titanium, 115));
+            requirements(Category.turret, ItemStack.with(Items.copper, 65, Items.lead, 40, Items.titanium, 115));
             itemCapacity = 15;
-            //buildVisibility = BuildVisibility.sandboxOnly;
+            buildVisibility = BuildVisibility.sandboxOnly;
+            shootEffect = PrtFx.orbitalLaserCharge;
             ammo(
                     Items.surgeAlloy, new PodStat(){{
                         damage = 1000f;
@@ -215,6 +214,7 @@ public class PrtBlocks implements ContentList {
                         hitEffect = PrtFx.orbitalLaserChargeSurge;
                         itemCap = 10;
                         maxShots = 2;
+                        speedScale = 2f;
                     }},
                     Items.plastanium, new PodStat(){{
                         damage = 300f;
@@ -241,54 +241,6 @@ public class PrtBlocks implements ContentList {
                         maxShots = 3;
                     }}
             );
-        }};
-        sentinel = new ItemTurret("sentinel"){{
-            localizedName = "Zodiac";
-            requirements(Category.turret,  ItemStack.with(Items.copper, 900, Items.graphite, 300, Items.surgeAlloy, 250, Items.plastanium, 175, Items.thorium, 250));
-            ammo(
-                    PrtItems.platinum, new ArtilleryBulletType(3.4f, 20, "shell"){
-                        {
-                            hitEffect = Fx.plasticExplosion;
-                            knockback = 1f;
-                            lifetime = 84f;
-                            width = height = 15f;
-                            collidesTiles = false;
-                            splashDamageRadius = 35f * 0.75f;
-                            splashDamage = 50f;
-                            fragBullet = new ArtilleryBulletType(3.4f, 20, "shell"){
-                                {
-                                    hitEffect = Fx.plasticExplosion;
-                                    knockback = 1f;
-                                    lifetime = 70f;
-                                    width = height = 14f;
-                                    collidesTiles = false;
-                                    splashDamageRadius = 35f * 0.75f;
-                                    splashDamage = 50f;
-                                    backColor = PrtColors.platinumBackColor;
-                                    frontColor = PrtColors.platinumFrontColor;
-                                }};
-                            fragBullets = 12;
-                            backColor = PrtColors.platinumBackColor;
-                            frontColor = PrtColors.platinumFrontColor;
-                        }});
-            reloadTime = 7f;
-            coolantMultiplier = 0.5f;
-            restitution = 0.1f;
-            ammoUseEffect = Fx.casing3;
-            range = 260f;
-            inaccuracy = 3f;
-            recoilAmount = 3f;
-            spread = 8f;
-            alternate = true;
-            shootShake = 2f;
-            shots = 2;
-            size = 4;
-            shootCone = 24f;
-            shootSound = Sounds.shootBig;
-
-            health = 160 * size * size;
-            coolantUsage = 1f;
-
         }};
     }
 }
