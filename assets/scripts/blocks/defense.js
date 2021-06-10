@@ -27,11 +27,11 @@ function newRegenWall(name, health, size, liCha, liDam, liLength, liColor, insul
 };
 
 const platinumWall = newRegenWall("platinum-wall", 1000, 1, 0, 0, 0, null, false, false);
-platinumWall.requirements = 
-  init(){
+platinumWall.init = function(){
+    this.super$init();
     const platinum = PrtItems.platinum;
     
-    return ItemStack.with(platinum, 100);
+    this.requirements = ItemStack.with(platinum, 100);
   };
 
 platinumWall.buildType = () => extendContent(Wall.WallBuild, platinumWall, {
