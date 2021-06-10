@@ -26,7 +26,7 @@ function newRegenWall(name, health, size, liCha, liDam, liLength, liColor, insul
     return regWall;
 };
 
-const platinumWall = newRegenWall("platinum-wall", 1000, 1, 0, 0, 0, null, false, false);
+const platinumWall = newRegenWall("platinum-wall", 1000, 1, 0, 0, 0, "#000000", false, false);
 platinumWall.init = function(){
     this.super$init();
     const platinum = PrtItems.platinum;
@@ -42,7 +42,7 @@ platinumWall.buildType = () => extendContent(Wall.WallBuild, platinumWall, {
     }
 });
                                              
-const platinumWallLarge = newRegenWall("platinum-wall-large", 4000, 2, 0, 0, 0, null, false, false);
+const platinumWallLarge = newRegenWall("platinum-wall-large", 4000, 2, 0, 0, 0, "#000000", false, false);
 
 platinumWallLarge.buildType = () => extendContent(Wall.WallBuild, platinumWallLarge, {
     update(){
@@ -53,10 +53,10 @@ platinumWallLarge.buildType = () => extendContent(Wall.WallBuild, platinumWallLa
 });
 
 
-const magnetiteWall = newRegenWall("magnetite-wall", 300, 1, 0.25, 30, 6.1, "FF8D5C", true, true);
+const magnetiteWall = newRegenWall("magnetite-wall", 300, 1, 0.25, 30, 6.1, "#FF8D5C", true, true);
 magnetiteWall.flashHit = true;
 magnetiteWall.chanceDeflect = 12.3;
 
-const magnetiteWallLarge = newRegenWall("magnetite-wall-large", 1200, 2, 0.25, 30, 6.3, "FF8D5C", true,true);
+const magnetiteWallLarge = newRegenWall("magnetite-wall-large", 1200, 2, 0.25, 30, 6.3, "#FF8D5C", true,true);
 magnetiteWallLarge.flashHit = true;
 magnetiteWallLarge.chance = 12.3;
