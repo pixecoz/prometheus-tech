@@ -78,6 +78,7 @@ public class PrtFx {
             });
         });
     }),
+
     orbitalLaserCharge = new Effect(80f, 100f, e -> {
         Draw.color(Pal.lancerLaser);
         Lines.stroke(2f * e.fout());
@@ -91,6 +92,20 @@ public class PrtFx {
         Lines.circle(e.x, e.y, 100f);
 
         Lines.circle(e.x, e.y, 100f * e.fout());
+    }),
+    orbitalLaserChargeSurge = new Effect(80f, 100f, e->{
+        Draw.color(Pal.surge);
+        Lines.stroke(2f * e.fout());
+        Lines.circle(e.x, e.y, 100f);
+        Lines.circle(e.x, e.y, 100f * e.fout());
+        Lines.circle(e.x, e.y, 100f + 25f * e.fin());
+    }),
+    orbitalLaserChargePlast = new Effect(80f, 100f, e->{
+        Draw.color(Pal.plastanium);
+        Lines.stroke(2f * e.fout());
+        Lines.circle(e.x, e.y, 100f);
+        Lines.circle(e.x, e.y, 100f * e.fout());
+        Lines.circle(e.x, e.y, 100f + 25f * e.fout());
     }),
 
     launchPodLaunch = new Effect(150f, 100f, e->{

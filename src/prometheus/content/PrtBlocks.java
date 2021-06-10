@@ -16,6 +16,7 @@ import mindustry.type.ItemStack;
 import mindustry.world.Block;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.production.GenericSmelter;
+import mindustry.world.meta.BuildVisibility;
 import prometheus.world.blocks.turrets.DroneBase;
 import prometheus.world.meta.PodStat;
 
@@ -203,20 +204,21 @@ public class PrtBlocks implements ContentList {
             size = 3;
             requirements(Category.turret, ItemStack.with(Items.copper, 65, Items.lead, 40, Items.titanium, 115));
             itemCapacity = 15;
+            buildVisibility = BuildVisibility.sandboxOnly;
             ammo(
                     Items.surgeAlloy, new PodStat(){{
                         damage = 1000f;
                         range = 5f;
-                        effect = StatusEffects.none;
-                        hitEffect = PrtFx.orbitalLaserCharge;
+                        effect = StatusEffects.shocked;
+                        hitEffect = PrtFx.orbitalLaserChargeSurge;
                         itemCap = 10;
                         maxShots = 2;
                     }},
                     Items.plastanium, new PodStat(){{
                         damage = 300f;
                         range = 300f;
-                        effect = StatusEffects.none;
-                        hitEffect = PrtFx.orbitalLaserCharge;
+                        effect = StatusEffects.slow;
+                        hitEffect = PrtFx.orbitalLaserChargePlast;
                         itemCap = 10;
                         maxShots = 3;
                     }},
