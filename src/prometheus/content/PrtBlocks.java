@@ -2,14 +2,13 @@ package prometheus.content;
 
 import arc.graphics.Color;
 import arc.math.Mathf;
-import mindustry.content.Fx;
-import mindustry.content.Items;
-import mindustry.content.Liquids;
-import mindustry.content.StatusEffects;
+import mindustry.content.*;
 import mindustry.ctype.ContentList;
+import mindustry.entities.bullet.ArtilleryBulletType;
 import mindustry.entities.bullet.LaserBulletType;
 import mindustry.entities.bullet.PointBulletType;
 import mindustry.gen.Sounds;
+import mindustry.graphics.Pal;
 import mindustry.world.blocks.power.*;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
@@ -28,7 +27,7 @@ public class PrtBlocks implements ContentList {
             darkFlare, dystopia,
             plutoniumReactor,
             platinumWall, platinumWalLarge, magnetiteWall, magnetiteWallLarge,
-            droneBase;
+            seraphim, sentinel;
 
     public void load() {
 
@@ -200,11 +199,14 @@ public class PrtBlocks implements ContentList {
             requirements(Category.power, ItemStack.with(Items.metaglass, 500, PrtItems.platinum, 300, Items.silicon, 400, Items.plastanium, 200));
         }};
 
-        droneBase = new DroneBase("drone-base"){{
+        seraphim = new DroneBase("seraphim"){{
+            localizedName = "Seraphim";
+            description = "A powerful orbital drone, carries powerful weapons.\n" +
+                    "[gray] -In order to live, you need changes, new beginnings. It's that simple. All you have to do is just press the keys.";
             size = 3;
-            requirements(Category.turret, ItemStack.with(Items.copper, 65, Items.lead, 40, Items.titanium, 115));
+            requirements(Category.turret, ItemStack.with(Items.copper, 65, Items.plastanium, 400, Items.titanium, 115));
             itemCapacity = 15;
-            buildVisibility = BuildVisibility.sandboxOnly;
+            //buildVisibility = BuildVisibility.sandboxOnly;
             ammo(
                     Items.surgeAlloy, new PodStat(){{
                         damage = 1000f;
@@ -239,6 +241,54 @@ public class PrtBlocks implements ContentList {
                         maxShots = 3;
                     }}
             );
+        }};
+        sentinel = new ItemTurret("sentinel"){{
+            localizedName = "Zodiac";
+            requirements(Category.turret,  ItemStack.with(Items.copper, 900, Items.graphite, 300, Items.surgeAlloy, 250, Items.plastanium, 175, Items.thorium, 250));
+            ammo(
+                    PrtItems.platinum, new ArtilleryBulletType(3.4f, 20, "shell"){
+                        {
+                            hitEffect = Fx.plasticExplosion;
+                            knockback = 1f;
+                            lifetime = 84f;
+                            width = height = 15f;
+                            collidesTiles = false;
+                            splashDamageRadius = 35f * 0.75f;
+                            splashDamage = 50f;
+                            fragBullet = new ArtilleryBulletType(3.4f, 20, "shell"){
+                                {
+                                    hitEffect = Fx.plasticExplosion;
+                                    knockback = 1f;
+                                    lifetime = 70f;
+                                    width = height = 14f;
+                                    collidesTiles = false;
+                                    splashDamageRadius = 35f * 0.75f;
+                                    splashDamage = 50f;
+                                    backColor = PrtColors.platinumBackColor;
+                                    frontColor = PrtColors.platinumFrontColor;
+                                }};
+                            fragBullets = 12;
+                            backColor = PrtColors.platinumBackColor;
+                            frontColor = PrtColors.platinumFrontColor;
+                        }});
+            reloadTime = 7f;
+            coolantMultiplier = 0.5f;
+            restitution = 0.1f;
+            ammoUseEffect = Fx.casing3;
+            range = 260f;
+            inaccuracy = 3f;
+            recoilAmount = 3f;
+            spread = 8f;
+            alternate = true;
+            shootShake = 2f;
+            shots = 2;
+            size = 4;
+            shootCone = 24f;
+            shootSound = Sounds.shootBig;
+
+            health = 160 * size * size;
+            coolantUsage = 1f;
+
         }};
     }
 }
