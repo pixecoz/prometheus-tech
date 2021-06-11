@@ -200,51 +200,7 @@ public class PrtBlocks implements ContentList {
             requirements(Category.power, ItemStack.with(Items.metaglass, 500, PrtItems.platinum, 300, Items.silicon, 400, Items.plastanium, 200));
         }};
 
-        droneBase = new DroneBase("Syraphim"){{
-            size = 4;
-            range = 220;
-            requirements(Category.turret, ItemStack.with(Items.copper, 65, Items.lead, 40, Items.titanium, 115));
-            itemCapacity = 20;
-            buildVisibility = BuildVisibility.sandboxOnly;
-            shootEffect = PrtFx.orbitalLaserCharge;
-            ammo(
-                    Items.surgeAlloy, new PodStat(){{
-                        damage = 1000f;
-                        range = 10f;
-                        effect = StatusEffects.shocked;
-                        hitEffect = PrtFx.orbitalLaserChargeSurge;
-                        itemCap = 10;
-                        maxShots = 3;
-                        speedScale = 0.5f;
-                    }},
-                    Items.plastanium, new PodStat(){{
-                        damage = 300f;
-                        range = 150f;
-                        effect = StatusEffects.slow;
-                        hitEffect = PrtFx.orbitalLaserChargePlast;
-                        itemCap = 20;
-                        maxShots = 3;
-                        speedScale = 0.2f;
-                    }},
-                    Items.pyratite, new PodStat(){{
-                        damage = 150f;
-                        range = 100f;
-                        effect = StatusEffects.burning;
-                        hitEffect = PrtFx.orbitalLaserChargePyro;
-                        itemCap = 15;
-                        maxShots = 6;
-                    }},
-                    Items.silicon, new PodStat(){{
-                        damage = 400f;
-                        range = 50f;
-                        effect = StatusEffects.none;
-                        hitEffect = PrtFx.orbitalLaserCharge;
-                        itemCap = 10;
-                        maxShots = 5;
-                        speedScale = 1.2f;
-                    }}
-            );
-        }};
+       
             droneBase = new DroneBase("Adam"){{
             size = 7;
             range = 460;
