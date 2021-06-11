@@ -31,33 +31,58 @@ function newBlock(name, variants, solid){
 };
 
 function newBoulder(name, variants){
-  const boulder = extendContent(StaticTree, name, {});
+  const boulder = extendContent(StaticTree, name, {});//Why not work type "Prop"???
   boulder.variants = variants;
   
   return boulder;
 };
 
+function newPine(name, variants){
+  const pine = extendContent(StaticTree, name, {});
+  pine.variants = variants;
+  
+  return pine;
+};
+
 //ATTREIBUTES and OTHER write separately!!!
 
-//CONTENT//
+///CONTENT///
+
+//WHITE STONE//
 
 const whiteStoneWall = newBlock("white-stone-block", 2, true);
-const whiteStoneFloor = newFloor("white-stone-floor", 2, 1.0, false, 0.0);
+const whiteStoneFloor = newFloor("white-stone-floor", 3, 1.0, false, 0.0);
 
-//const whiteStoneWater = newLiquidFloor("white-stone-water", 0, 0.2);
-//whiteStoneWater.liquidDrop = Liquids.water;
+const whiteStoneBoulder = newBoulder("white-stone-boulder", 2);
 
-const whiteStoneBoulder = newBoulder("white-stone-boulder", 1);
-
+//GRANITE//
 
 const graniteWall = newBlock("granite-block", 2, true);
-const graniteFloor = newFloor("granite-floor", 2, 1.0, false, 0.0);
+const graniteFloor = newFloor("granite-floor", 3, 1.0, false, 0.0);
 
-const graniteBoulder = newBoulder("granite-boulder", 1);
+const graniteBoulder = newBoulder("granite-boulder", 2);
 
+//ANDESITE//
+
+const andesiteWall = newBlock("andesite-wall", 2, true);
+const andesiteFloor = newFloor("andesite floor", 3, 1.0, false, 0.0);
+
+const andesiteBoulder = newBoulder("andesite-boulder", 2);
+
+//PURIFIED BLOCKS//
+
+const purifiedShrubs = newBlock("purified-shrubs", 2, true);
+const purifiedGrass = newFloor("purified-grass-floor", 3, 1.0, false, 0.0);
+
+const purifiedPine = newPine("purified-pine", 0);
+
+//LIQUIDS//
 
 const purelyWater = newLiquidFloor("purely-water", 0, 0.2);
 purelyWater.liquidDrop = Liquids.water;
+
+const purelySandWater = newLiquidFloor("purely-sand-water-floor1", 0, 0.2);
+purelySandWater.liquidDrop = Liquids.water;
 
 ///PLANETS///
 
