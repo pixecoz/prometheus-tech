@@ -26,7 +26,7 @@ function newLiquidFloor(name, variants, speedMultiplier){
 function newBlock(name, variants, solid){
   const StaticBlock = extendContent(StaticWall, name, {});
   StaticBlock.variants = variants;
-  StaticBlock.solid = solid;
+  //Solid is bad!
   
   return StaticBlock;
 };
