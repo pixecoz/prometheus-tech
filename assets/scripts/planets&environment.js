@@ -17,7 +17,8 @@ function newLiquidFloor(name, variants, speedMultiplier){
   liqFloor.isLiquid = true;
   liqFloor.variants = variants;
   liqFloor.speedMultiplier = speedMultiplier;
-  //SuperJaba2000 НАПИШЕТ!
+  liqFloor.cacheLayer = CacheLayer.water;
+  liqFloor.albedo = 0.5f;
   
   return liqFloor;
 };
@@ -80,9 +81,13 @@ const purifiedPine = newPine("purified-pine", 0);
 
 const purelyWater = newLiquidFloor("purely-water-floor", 0, 0.2);
 purelyWater.liquidDrop = Liquids.water;
+purelyWater.status = StatusEffects.wet;
+purelyWater.statusDuration = 90;
 
 const purelySandWater = newLiquidFloor("purely-sand-water-floor", 0, 0.2);
 purelySandWater.liquidDrop = Liquids.water;
+purelySandWater.status = StatusEffects.wet;
+purelySandWater.statusDuration = 90;
 
 ///PLANETS///
 
