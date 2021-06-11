@@ -2,7 +2,10 @@ package prometheus.content;
 
 import arc.graphics.Color;
 import arc.math.Mathf;
-import mindustry.content.*;
+import mindustry.content.Fx;
+import mindustry.content.Items;
+import mindustry.content.Liquids;
+import mindustry.content.StatusEffects;
 import mindustry.ctype.ContentList;
 import mindustry.entities.bullet.ArtilleryBulletType;
 import mindustry.entities.bullet.LaserBulletType;
@@ -91,7 +94,7 @@ public class PrtBlocks implements ContentList {
             ammo(
                     Items.surgeAlloy, new LaserBulletType() {
                         {
-                            length = 240;
+                            length = 110;
                             damage = 300;
                             width = 60;
                             lifetime = 30;
@@ -128,12 +131,12 @@ public class PrtBlocks implements ContentList {
                         }
                     }*/
             );
-            reloadTime = 110;
+            reloadTime = 160;
             shots = 5;
-            burstSpacing = 8;
+            burstSpacing = 2;
             inaccuracy = 5;
             shootSound = Sounds.laser;
-            range = 120;
+            range = 220;
             size = 5;
             health = 2500;
         }};
@@ -184,7 +187,7 @@ public class PrtBlocks implements ContentList {
 
         plutoniumReactor = new ImpactReactor("plutonium-reactor") {{
             localizedName = "Plutonium Reactor";
-            description = "";//KOSTOLOM make descriptions
+            description = "Powerful reactor which take based on nuclear decay of Plutonium";
             size = 5;
             hasPower = true;
             hasLiquids = true;
@@ -264,12 +267,12 @@ public class PrtBlocks implements ContentList {
                                     collidesTiles = false;
                                     splashDamageRadius = 35f * 0.75f;
                                     splashDamage = 50f;
-                                    backColor = Pal.plastaniumBack;
-                                    frontColor = Pal.plastaniumFront;
+                                    backColor = PrtColors.platinumBackColor;
+                                    frontColor = PrtColors.platinumFrontColor;
                                 }};
                             fragBullets = 12;
-                            backColor = Pal.plastaniumBack;
-                            frontColor = Pal.plastaniumFront;
+                            backColor = PrtColors.platinumBackColor;
+                            frontColor = PrtColors.platinumFrontColor;
                         }});
             reloadTime = 7f;
             coolantMultiplier = 0.5f;
