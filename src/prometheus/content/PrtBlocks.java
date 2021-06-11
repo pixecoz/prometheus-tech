@@ -92,7 +92,7 @@ public class PrtBlocks implements ContentList {
             ammo(
                     Items.surgeAlloy, new LaserBulletType() {
                         {
-                            length = 240;
+                            length = 110;
                             damage = 300;
                             width = 60;
                             lifetime = 30;
@@ -129,12 +129,12 @@ public class PrtBlocks implements ContentList {
                         }
                     }*/
             );
-            reloadTime = 110;
+            reloadTime = 160;
             shots = 5;
-            burstSpacing = 8;
+            burstSpacing = 2;
             inaccuracy = 5;
             shootSound = Sounds.laser;
-            range = 120;
+            range = 220;
             size = 5;
             health = 2500;
         }};
@@ -200,33 +200,34 @@ public class PrtBlocks implements ContentList {
             requirements(Category.power, ItemStack.with(Items.metaglass, 500, PrtItems.platinum, 300, Items.silicon, 400, Items.plastanium, 200));
         }};
 
-        droneBase = new DroneBase("drone-base"){{
-            size = 3;
-            requirements(Category.turret, ItemStack.with(Items.copper, 65, Items.lead, 40, Items.titanium, 115));
-            itemCapacity = 15;
+        droneBase = new DroneBase("Syraphim"){{
+            size = 4;
+            requirements(Category.turret, ItemStack.withItemStack.with(Items.copper, 65, Items.lead, 40, Items.titanium, 115));
+            itemCapacity = 20;
             buildVisibility = BuildVisibility.sandboxOnly;
             shootEffect = PrtFx.orbitalLaserCharge;
             ammo(
                     Items.surgeAlloy, new PodStat(){{
                         damage = 1000f;
-                        range = 5f;
+                        range = 10f;
                         effect = StatusEffects.shocked;
                         hitEffect = PrtFx.orbitalLaserChargeSurge;
                         itemCap = 10;
-                        maxShots = 2;
-                        speedScale = 2f;
+                        maxShots = 3;
+                        speedScale = 0.5f;
                     }},
                     Items.plastanium, new PodStat(){{
                         damage = 300f;
-                        range = 300f;
+                        range = 150f;
                         effect = StatusEffects.slow;
                         hitEffect = PrtFx.orbitalLaserChargePlast;
-                        itemCap = 10;
+                        itemCap = 20;
                         maxShots = 3;
+                        speedScale = 0.2f;
                     }},
                     Items.pyratite, new PodStat(){{
                         damage = 150f;
-                        range = 150f;
+                        range = 100f;
                         effect = StatusEffects.burning;
                         hitEffect = PrtFx.orbitalLaserChargePyro;
                         itemCap = 15;
@@ -234,11 +235,57 @@ public class PrtBlocks implements ContentList {
                     }},
                     Items.silicon, new PodStat(){{
                         damage = 400f;
-                        range = 10f;
+                        range = 50f;
                         effect = StatusEffects.none;
                         hitEffect = PrtFx.orbitalLaserCharge;
                         itemCap = 10;
-                        maxShots = 3;
+                        maxShots = 5;
+                        speedScale = 1.2f;
+                    }}
+            );
+        }};
+            droneBase = new DroneBase("Adam"){{
+            size = 7;
+            requirements(Category.turret, ItemStack.with(Items.copper, 1500, Items.lead, 2000, Items.metaglass, 500, PrtItems.platinum, 400, Items.silicon, 800, Items.plastanium, 400));
+            itemCapacity = 400;
+            buildVisibility = BuildVisibility.sandboxOnly;
+            shootEffect = PrtFx.orbitalLaserCharge;
+            ammo(
+                    Items.surgeAlloy, new PodStat(){{
+                        damage = 3000f;
+                        range = 1f;
+                        effect = StatusEffects.shocked;
+                        hitEffect = PrtFx.orbitalLaserChargeSurge;
+                        itemCap = 250;
+                        maxShots = 10;
+                        speedScale = 0.4f;
+                    }},
+                    Items.plastanium, new PodStat(){{
+                        damage = 400f;
+                        range = 150f;
+                        effect = StatusEffects.slow;
+                        hitEffect = PrtFx.orbitalLaserChargePlast;
+                        itemCap = 200;
+                        maxShots = 50;
+                        speedScale = 0.2f;
+                    }},
+                    Items.pyratite, new PodStat(){{
+                        damage = 150f;
+                        range = 100f;
+                        effect = StatusEffects.burning;
+                        hitEffect = PrtFx.orbitalLaserChargePyro;
+                        itemCap = 400;
+                        maxShots = 100;
+                        speedScale = 0.8f;
+                    }},
+                    Items.lead, new PodStat(){{
+                        damage = 700f;
+                        range = 4f;
+                        effect = StatusEffects.none;
+                        hitEffect = PrtFx.orbitalLaserCharge;
+                        itemCap = 400;
+                        maxShots = 100;
+                        speedScale = 10f;
                     }}
             );
         }};
