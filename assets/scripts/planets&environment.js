@@ -78,10 +78,10 @@ const purifiedPine = newPine("purified-pine", 0);
 
 //LIQUIDS//
 
-const purelyWater = newLiquidFloor("purely-water", 0, 0.2);
+const purelyWater = newLiquidFloor("purely-water-floor", 0, 0.2);
 purelyWater.liquidDrop = Liquids.water;
 
-const purelySandWater = newLiquidFloor("purely-sand-water-floor1", 0, 0.2);
+const purelySandWater = newLiquidFloor("purely-sand-water-floor", 0, 0.2);
 purelySandWater.liquidDrop = Liquids.water;
 
 ///PLANETS///
