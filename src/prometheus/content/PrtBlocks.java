@@ -202,6 +202,7 @@ public class PrtBlocks implements ContentList {
 
         droneBase = new DroneBase("Syraphim"){{
             size = 4;
+            BuildTime = 600;
             requirements(Category.turret, ItemStack.with(Items.copper, 65, Items.lead, 40, Items.titanium, 115));
             itemCapacity = 20;
             buildVisibility = BuildVisibility.sandboxOnly;
@@ -246,8 +247,9 @@ public class PrtBlocks implements ContentList {
         }};
             droneBase = new DroneBase("Adam"){{
             size = 7;
+            BuildTime = 3600;
             requirements(Category.turret, ItemStack.with(Items.copper, 1500, Items.lead, 2000, Items.metaglass, 500, PrtItems.platinum, 400, Items.silicon, 800, Items.plastanium, 400));
-            itemCapacity = 400;
+            itemCapacity = 1000;
             buildVisibility = BuildVisibility.sandboxOnly;
             shootEffect = PrtFx.orbitalLaserCharge;
             ammo(
@@ -258,7 +260,7 @@ public class PrtBlocks implements ContentList {
                         hitEffect = PrtFx.orbitalLaserChargeSurge;
                         itemCap = 250;
                         maxShots = 10;
-                        speedScale = 0.4f;
+                        speedScale = 2f;
                     }},
                     Items.plastanium, new PodStat(){{
                         damage = 400f;
@@ -267,7 +269,7 @@ public class PrtBlocks implements ContentList {
                         hitEffect = PrtFx.orbitalLaserChargePlast;
                         itemCap = 200;
                         maxShots = 50;
-                        speedScale = 0.2f;
+                        speedScale = 0.5f;
                     }},
                     Items.pyratite, new PodStat(){{
                         damage = 150f;
@@ -279,12 +281,12 @@ public class PrtBlocks implements ContentList {
                         speedScale = 0.8f;
                     }},
                     Items.lead, new PodStat(){{
-                        damage = 700f;
+                        damage = 500f;
                         range = 4f;
                         effect = StatusEffects.none;
                         hitEffect = PrtFx.orbitalLaserCharge;
-                        itemCap = 400;
-                        maxShots = 100;
+                        itemCap = 1000;
+                        maxShots = 70;
                         speedScale = 10f;
                     }}
             );
