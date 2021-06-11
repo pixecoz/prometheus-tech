@@ -18,7 +18,7 @@ function newLiquidFloor(name, variants, speedMultiplier){
   liqFloor.variants = variants;
   liqFloor.speedMultiplier = speedMultiplier;
   liqFloor.cacheLayer = CacheLayer.water;
-  liqFloor.albedo = 0.5f;
+  liqFloor.albedo = 0.5;
   
   return liqFloor;
 };
