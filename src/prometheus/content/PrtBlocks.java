@@ -264,12 +264,12 @@ public class PrtBlocks implements ContentList {
                                     collidesTiles = false;
                                     splashDamageRadius = 35f * 0.75f;
                                     splashDamage = 50f;
-                                    backColor = PrtColors.platinumBackColor;
-                                    frontColor = PrtColors.platinumFrontColor;
+                                    backColor = Pal.plastaniumBack;
+                                    frontColor = Pal.plastaniumFront;
                                 }};
                             fragBullets = 12;
-                            backColor = PrtColors.platinumBackColor;
-                            frontColor = PrtColors.platinumFrontColor;
+                            backColor = Pal.plastaniumBack;
+                            frontColor = Pal.plastaniumFront;
                         }});
             reloadTime = 7f;
             coolantMultiplier = 0.5f;
