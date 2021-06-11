@@ -203,6 +203,7 @@ public class PrtBlocks implements ContentList {
         droneBase = new DroneBase("Syraphim"){{
             size = 4;
             BuildTime = 600;
+            range = 220;
             requirements(Category.turret, ItemStack.with(Items.copper, 65, Items.lead, 40, Items.titanium, 115));
             itemCapacity = 20;
             buildVisibility = BuildVisibility.sandboxOnly;
@@ -247,6 +248,7 @@ public class PrtBlocks implements ContentList {
         }};
             droneBase = new DroneBase("Adam"){{
             size = 7;
+            range = 460;
             BuildTime = 3600;
             requirements(Category.turret, ItemStack.with(Items.copper, 1500, Items.lead, 2000, Items.metaglass, 500, PrtItems.platinum, 400, Items.silicon, 800, Items.plastanium, 400));
             itemCapacity = 1000;
