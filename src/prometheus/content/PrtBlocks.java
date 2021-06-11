@@ -185,7 +185,7 @@ public class PrtBlocks implements ContentList {
 
         plutoniumReactor = new ImpactReactor("plutonium-reactor") {{
             localizedName = "Plutonium Reactor";
-            description = "";//KOSTOLOM make descriptions
+            description = "powerful reactor which take based on nuclear decay of plutonium";
             size = 5;
             hasPower = true;
             hasLiquids = true;
@@ -202,7 +202,7 @@ public class PrtBlocks implements ContentList {
 
         droneBase = new DroneBase("Syraphim"){{
             size = 4;
-            requirements(Category.turret, ItemStack.withItemStack.with(Items.copper, 65, Items.lead, 40, Items.titanium, 115));
+            requirements(Category.turret, ItemStack.with(Items.copper, 65, Items.lead, 40, Items.titanium, 115));
             itemCapacity = 20;
             buildVisibility = BuildVisibility.sandboxOnly;
             shootEffect = PrtFx.orbitalLaserCharge;
