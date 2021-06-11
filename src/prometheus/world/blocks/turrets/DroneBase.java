@@ -6,6 +6,7 @@ import arc.struct.*;
 import arc.util.Strings;
 import arc.util.io.Reads;
 import arc.util.io.Writes;
+import mindustry.Vars;
 import mindustry.game.EventType;
 import mindustry.type.*;
 import mindustry.ui.*;
@@ -141,6 +142,7 @@ public class DroneBase extends Block {
         public float countDown = buildTime;
         public boolean launched = false;
         public boolean buildStatus = false;
+        public boolean ready = false;
         public Teamc target;
         public float speedScl = 0;
         public float time = 0f;
@@ -154,6 +156,7 @@ public class DroneBase extends Block {
 
         public void launch() {
             launched = true;
+            ready = true;
             shots = 0;
             PrtFx.launchPodLaunch.at(x, y);
             Fx.launch.at(this);
@@ -195,22 +198,27 @@ public class DroneBase extends Block {
                 if(!launched)
                     launch();
             }
-
-            if(timer(nextTimer, shootReload / (current == null ? 1f : current.speedScale))) {
-                target = Units.closestTarget(team, x, y, range);
-                if (target != null) {
-                    if (launched) {
-                        shots++;
-                        if (current.hitEffect == null)
-                            shootEffect.at(target.x(), target.y());
-                        else {
-                            current.hitEffect.at(target.x(), target.y());
-                        }
-                        //TODO: 7.0 fix
+            if(launched) {
+                if(!ready){
+                    if(timer(nextTimer, shootReload / current.speedScale)){
+                        ready = true;
+                    }
+                }
+                if (ready) {
+                    target = Units.closestTarget(team, x, y, range);
+                    if (target != null) {
+                       shots++;
+                       ready = false;
+                       if (current.hitEffect == null)
+                           shootEffect.at(target.x(), target.y());
+                       else {
+                           current.hitEffect.at(target.x(), target.y());
+                       }
+                       //TODO: 7.0 fix
                         PodEffects.podDust(target.x(), target.y());
-                        Damage.damage(team, target.x(), target.y(), current.range, current.damage);
+                       Damage.damage(team, target.x(), target.y(), current.range, current.damage);
 
-                        Damage.status(team, target.x(), target.y(), current.range, current.effect, 60f * 8, true, true);
+                       Damage.status(team, target.x(), target.y(), current.range, current.effect, 60f * 8, true, true);
                     }
                 }
             }
@@ -249,16 +257,18 @@ public class DroneBase extends Block {
             super.write(write);
             write.bool(launched);
             write.bool(buildStatus);
-            write.f(countDown);
             write.i(shots);
+            write.f(countDown);
+            write.i(ammoTypes.findKey(current, false).id);
         }
         @Override
         public void read(Reads read, byte revision){
             super.read(read, revision);
             launched = read.bool();
             buildStatus = read.bool();
-            countDown = read.f();
             shots = read.i();
+            countDown = read.f();
+            current = ammoTypes.get(content.item(read.i()));
         }
     }
 }
