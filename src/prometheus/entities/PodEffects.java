@@ -16,6 +16,8 @@ import mindustry.graphics.Layer;
 import mindustry.graphics.Pal;
 import mindustry.world.Tile;
 
+import java.util.Random;
+
 import static arc.graphics.g2d.Lines.lineAngle;
 import static arc.math.Angles.randLenVectors;
 
@@ -46,22 +48,23 @@ public class PodEffects {
 
     public static void podDust(float ex, float ey){
         Tile t = Vars.world.tileWorld(ex, ey);
-        Effect effect = new Effect(80, 500f, e->{
+        Effect effect = new Effect(1200, 500f, e->{
             Draw.color(t.floor().mapColor);
-
-            Lines.stroke(2f * e.fout());
-            Lines.circle(e.x, e.y, 100f);
-            Lines.circle(e.x, e.y, 100f * e.fin());
-            Lines.circle(e.x, e.y, 100f + 25f * e.fout());
+            e.scaled(e.lifetime / 15, b->{
+                Lines.stroke(2f * e.fout());
+                Lines.circle(e.x, e.y, 100f);
+                Lines.circle(e.x, e.y, 100f * e.fin());
+                Lines.circle(e.x, e.y, 100f + 25f * e.fout());
+            });
 
             float intensity = 6.8f;
 
             Draw.alpha(0.7f);
             for(int i = 0; i < 4; i++){
                 Mathf.rand.setSeed(e.id*2 + i);
-                float lenScl = 0.4f;
+                float lenScl = Mathf.random(0.1f, 1f);
                 int fi = i;
-                e.scaled(e.lifetime * 0.9f, b -> {
+                e.scaled(e.lifetime * lenScl, b -> {
                     randLenVectors(b.id + fi - 1, b.fin(Interp.pow5Out), (int)(1.5f * intensity), 22f * intensity, (x, y, in, out) -> {
                         float fout = b.fout(Interp.pow5Out) * Mathf.rand.random(0.5f, 1f);
                         float rad = fout * ((2f + intensity) * 2.35f);
