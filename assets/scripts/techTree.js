@@ -30,7 +30,7 @@ const SerpuloPlanetIcon = createPhantomBlock("SerpuloPlanetIcon", 64);
 SerpuloPlanetIcon.alwaysUnlocked = true;
 
 TechNode(Blocks.coreShard, SerpuloPlanetIcon, ItemStack.empty);
-TechTree.TechNode(SerpuloPlanetIcon, TechTree.get(Blocks.coreShard), ItemStack.empty);
+//TechTree.TechNode(SerpuloPlanetIcon, TechTree.get(Blocks.coreShard), ItemStack.empty);
 
 changeParent(SectorPresets.groundZero, SerpuloPlanetIcon);
 changeParent(SectorPresets.frozenForest, SectorPresets.groundZero);
