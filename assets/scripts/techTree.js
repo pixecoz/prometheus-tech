@@ -2,6 +2,13 @@
 
 ///FUNCTIONS///
 
+function changeParent(child, newParent){
+	var childNode = TechTree.get(child);
+	var newParentNode = TechTree.get(newParent);
+	childNode.parent.children.remove(childNode);
+	newParentNode.children.add(childNode);	
+};
+
 function TechNode(Parent, block, requirements) {
 var parent = TechTree.all.find(node => node.content == Parent);
 var node = new TechTree.TechNode(parent, block, requirements);
@@ -23,5 +30,16 @@ const SerpuloPlanetIcon = createPhantomBlock("SerpuloPlanetIcon", 64);
 SerpuloPlanetIcon.alwaysUnlocked = true;
 
 TechNode(Blocks.coreShard, SerpuloPlanetIcon, ItemStack.empty);
+TechTree.TechNode(SerpuloPlanetIcon, TechTree.get(Blocks.coreShard), ItemStack.empty);
 
+changeParent(SectorPresets.groundZero, SerpuloPlanetIcon);
+changeParent(SectorPresets.frozenForest, SectorPresets.groundZero);
+changeParent(SectorPresets.craters, SectorPresets.frozenForest);
+changeParent(SectorPresets.ruinousShores, SectorPresets.craters);
+changeParent(SectorPresets.windsweptIslands, SectorPresets.ruinousShores);
+changeParent(SectorPresets.tarFields, SectorPresets.windsweptIslands);
+changeParent(SectorPresets.impact0078, SectorPresets.tarFields);
+changeParent(SectorPresets.desolateRift, SectorPresets.impact0078);
+changeParent(SectorPresets.planetaryTerminal, SectorPresets.desolateRift);
 
+//ВСЁ парам-парам-пам!
