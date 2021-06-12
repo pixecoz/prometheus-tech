@@ -1,7 +1,7 @@
 # Prometheus Technologies
 Java mod for Mindustry, biggest RU megacollab
 
-![alt tag](https://raw.githubusercontent.com/pixaxeofpixie/pictures/main/ptposter.png)
+![alt tag](https://repository-images.githubusercontent.com/373268920/728ab700-cbd8-11eb-9191-c47f56ebbf92)
 
 ## Compiling
 JDK 8.\
