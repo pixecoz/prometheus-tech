@@ -54,21 +54,21 @@ function newPine(name, variants){
 const whiteStoneWall = newBlock("white-stone-block", 2, true);
 const whiteStoneFloor = newFloor("white-stone-floor", 3, 1.0, false, 0.0);
 
-const whiteStoneBoulder = newBoulder("white-stone-boulder", 2);
+const whiteStoneBoulder = newBoulder("white-stone-boulder", 1);
 
 //GRANITE//
 
 const graniteWall = newBlock("granite-block", 2, true);
 const graniteFloor = newFloor("granite-floor", 3, 1.0, false, 0.0);
 
-const graniteBoulder = newBoulder("granite-boulder", 2);
+const graniteBoulder = newBoulder("granite-boulder", 1);
 
 //ANDESITE//
 
 const andesiteWall = newBlock("andesite-wall", 2, true);
 const andesiteFloor = newFloor("andesite floor", 3, 1.0, false, 0.0);
 
-const andesiteBoulder = newBoulder("andesite-boulder", 2);
+const andesiteBoulder = newBoulder("andesite-boulder", 1);
 
 //PURIFIED BLOCKS//
 
