@@ -52,7 +52,9 @@ public class DroneBase extends Block {
     public void load(){
         super.load();
         if(podRegion == null)
-            podRegion = Core.atlas.find("launchpod");
+            podRegion = Core.atlas.find(name + "-pod");
+            if(podRegion = null)
+                podRegion = Core.atlas.find("launchpod");
     }
 
     @Override
