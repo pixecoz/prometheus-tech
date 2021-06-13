@@ -26,10 +26,14 @@ return PB;
 
 ///TECH TREE///
 
+const SunStarIcon = createPhantomBlock("SunStarIcon", 64);
+SerpuloStarIcon.alwaysUnlocked = true;
+
 const SerpuloPlanetIcon = createPhantomBlock("SerpuloPlanetIcon", 64);
 SerpuloPlanetIcon.alwaysUnlocked = true;
 
-TechNode(Blocks.coreShard, SerpuloPlanetIcon, ItemStack.empty);
+TechNode(Blocks.coreShard, SunStarIcon, ItemStack.empty);//временно
+TechNode(SunStarIcon, SerpuloPlanetIcon, ItemStack.empty);
 //TechTree.TechNode(SerpuloPlanetIcon, TechTree.get(Blocks.coreShard), ItemStack.empty);
 
 changeParent(SectorPresets.groundZero, SerpuloPlanetIcon);
