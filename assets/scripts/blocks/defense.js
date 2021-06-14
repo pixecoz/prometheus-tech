@@ -59,8 +59,8 @@ magnetiteWallLarge.chance = 12.3;
 
 Events.on(ClientLoadEvent, cons(e=>{
     platinumWall.requirements = ItemStack.with(Vars.content.getByName(ContentType.item,"prometheus-platinum"), 6);
-    platinumWallLarge.requirements = ItemStack.with(Vars.content.getByName(ContentType.item,"prometheus-platinum", 24);
+    platinumWallLarge.requirements = ItemStack.with(Vars.content.getByName(ContentType.item,"prometheus-platinum"), 24);
 
-    magnetiteWall.requirements = ItemStack.with(Vars.content.getByName(ContentType.item,"prometheus-magnetite", 6);
-    magnetiteWallLarge.requirements = ItemStack.with(Vars.content.getByName(ContentType.item,"prometheus-magnetite", 24);
+    magnetiteWall.requirements = ItemStack.with(Vars.content.getByName(ContentType.item,"prometheus-magnetite"), 6);
+    magnetiteWallLarge.requirements = ItemStack.with(Vars.content.getByName(ContentType.item,"prometheus-magnetite"), 24);
 }));
