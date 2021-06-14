@@ -11,7 +11,6 @@ import mindustry.entities.bullet.ArtilleryBulletType;
 import mindustry.entities.bullet.LaserBulletType;
 import mindustry.entities.bullet.PointBulletType;
 import mindustry.gen.Sounds;
-import mindustry.graphics.Pal;
 import mindustry.world.blocks.power.*;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
@@ -19,18 +18,21 @@ import mindustry.world.Block;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.production.GenericSmelter;
 import mindustry.world.meta.BuildVisibility;
+import prometheus.world.blocks.production.ExchangeBoard;
 import prometheus.world.blocks.turrets.DroneBase;
 import prometheus.world.meta.PodStat;
 
 public class PrtBlocks implements ContentList {
 
     public static Block
-
+            //production
             platinumForge, plutoniumForge, magnetiteKiln,
-            darkFlare, dystopia,
+            //turrets
+            darkFlare, dystopia, seraphim, adam, sentinel,
+            //power
             plutoniumReactor,
-            platinumWall, platinumWalLarge, magnetiteWall, magnetiteWallLarge,
-            seraphim, sentinel;
+            //defense
+            platinumWall, platinumWalLarge, magnetiteWall, magnetiteWallLarge;
 
     public void load() {
 
@@ -52,40 +54,40 @@ public class PrtBlocks implements ContentList {
                 this.outputItem = new ItemStack(PrtItems.platinum, 1);
             }
         };*/
-        
+
         plutoniumForge = new GenericSmelter("plutonium-forge") {{
-                localizedName = "Plutonium Forge";
-                description = "Make Plutonium from Plastanium and Lead.";
-                health = 360;
-                liquidCapacity = 0;
-                size = 3;
-                hasPower = true;
-                hasLiquids = false;
-                hasItems = true;
-                craftTime = 120;
-                updateEffect = Fx.plasticburn;
-                consumes.power(3.5f);
-                consumes.items(ItemStack.with(Items.lead, 3, Items.plastanium, 1));
-                requirements(Category.crafting, ItemStack.with(Items.copper, 10));
-                outputItem = new ItemStack(PrtItems.plutonium, 1);
-            }};
-        
+            localizedName = "Plutonium Forge";
+            description = "Make Plutonium from Plastanium and Lead.";
+            health = 360;
+            liquidCapacity = 0;
+            size = 3;
+            hasPower = true;
+            hasLiquids = false;
+            hasItems = true;
+            craftTime = 120;
+            updateEffect = Fx.plasticburn;
+            consumes.power(3.5f);
+            consumes.items(ItemStack.with(Items.lead, 3, Items.plastanium, 1));
+            requirements(Category.crafting, ItemStack.with(Items.copper, 10));
+            outputItem = new ItemStack(PrtItems.plutonium, 1);
+        }};
+
         magnetiteKiln = new GenericSmelter("magnetite-kiln") {{
-                localizedName = "Magnetite Kiln";
-                description = "Make Magnetite from Platinum, Copper and Surge Alloy.";
-                health = 360;
-                liquidCapacity = 0;
-                size = 3;
-                hasPower = true;
-                hasLiquids = false;
-                hasItems = true;
-                craftTime = 180;
-                updateEffect = Fx.generatespark;
-                consumes.power(7f);
-                consumes.items(ItemStack.with(Items.surgeAlloy, 1, PrtItems.platinum, 1, Items.copper, 5));
-                requirements(Category.crafting, ItemStack.with(Items.copper, 10));
-                outputItem = new ItemStack(PrtItems.magnetite, 1);
-            }};
+            localizedName = "Magnetite Kiln";
+            description = "Make Magnetite from Platinum, Copper and Surge Alloy.";
+            health = 360;
+            liquidCapacity = 0;
+            size = 3;
+            hasPower = true;
+            hasLiquids = false;
+            hasItems = true;
+            craftTime = 180;
+            updateEffect = Fx.generatespark;
+            consumes.power(7f);
+            consumes.items(ItemStack.with(Items.surgeAlloy, 1, PrtItems.platinum, 1, Items.copper, 5));
+            requirements(Category.crafting, ItemStack.with(Items.copper, 10));
+            outputItem = new ItemStack(PrtItems.magnetite, 1);
+        }};
 
         darkFlare  = new ItemTurret("dark-flare") {{
             localizedName = "Dark Flare";
@@ -187,7 +189,7 @@ public class PrtBlocks implements ContentList {
 
         plutoniumReactor = new ImpactReactor("plutonium-reactor") {{
             localizedName = "Plutonium Reactor";
-            description = "Powerful reactor which take based on nuclear decay of Plutonium";
+            description = "powerful reactor which take based on nuclear decay of plutonium";
             size = 5;
             hasPower = true;
             hasLiquids = true;
@@ -200,50 +202,6 @@ public class PrtBlocks implements ContentList {
             consumes.liquid(Liquids.cryofluid, 0.1f);
             consumes.items(ItemStack.with(PrtItems.plutonium, 1));
             requirements(Category.power, ItemStack.with(Items.metaglass, 500, PrtItems.platinum, 300, Items.silicon, 400, Items.plastanium, 200));
-        }};
-
-        seraphim = new DroneBase("seraphim"){{
-            localizedName = "Seraphim";
-            description = "A powerful orbital drone, carries powerful weapons.\n" +
-                    "[gray] -In order to live, you need changes, new beginnings. It's that simple. All you have to do is just press the keys.";
-            size = 3;
-            requirements(Category.turret, ItemStack.with(Items.copper, 65, Items.plastanium, 400, Items.titanium, 115));
-            itemCapacity = 15;
-            //buildVisibility = BuildVisibility.sandboxOnly;
-            ammo(
-                    Items.surgeAlloy, new PodStat(){{
-                        damage = 1000f;
-                        range = 5f;
-                        effect = StatusEffects.shocked;
-                        hitEffect = PrtFx.orbitalLaserChargeSurge;
-                        itemCap = 10;
-                        maxShots = 2;
-                    }},
-                    Items.plastanium, new PodStat(){{
-                        damage = 300f;
-                        range = 300f;
-                        effect = StatusEffects.slow;
-                        hitEffect = PrtFx.orbitalLaserChargePlast;
-                        itemCap = 10;
-                        maxShots = 3;
-                    }},
-                    Items.pyratite, new PodStat(){{
-                        damage = 150f;
-                        range = 150f;
-                        effect = StatusEffects.burning;
-                        hitEffect = PrtFx.orbitalLaserChargePyro;
-                        itemCap = 15;
-                        maxShots = 6;
-                    }},
-                    Items.silicon, new PodStat(){{
-                        damage = 400f;
-                        range = 10f;
-                        effect = StatusEffects.none;
-                        hitEffect = PrtFx.orbitalLaserCharge;
-                        itemCap = 10;
-                        maxShots = 3;
-                    }}
-            );
         }};
         sentinel = new ItemTurret("sentinel"){{
             localizedName = "Zodiac";
@@ -292,6 +250,98 @@ public class PrtBlocks implements ContentList {
             health = 160 * size * size;
             coolantUsage = 1f;
 
+        }};
+
+        seraphim = new DroneBase("seraphim"){{
+            size = 4;
+            range = 220;
+            requirements(Category.turret, ItemStack.with(Items.copper, 65, Items.lead, 40, Items.titanium, 115));
+            itemCapacity = 20;
+            buildVisibility = BuildVisibility.sandboxOnly;
+            shootEffect = PrtFx.orbitalLaserCharge;
+            ammo(
+                    Items.surgeAlloy, new PodStat(){{
+                        damage = 1000f;
+                        range = 10f;
+                        effect = StatusEffects.shocked;
+                        hitEffect = PrtFx.orbitalLaserChargeSurge;
+                        itemCap = 10;
+                        maxShots = 3;
+                        speedScale = 0.5f;
+                    }},
+                    Items.plastanium, new PodStat(){{
+                        damage = 300f;
+                        range = 150f;
+                        effect = StatusEffects.slow;
+                        hitEffect = PrtFx.orbitalLaserChargePlast;
+                        itemCap = 20;
+                        maxShots = 3;
+                        speedScale = 0.2f;
+                    }},
+                    Items.pyratite, new PodStat(){{
+                        damage = 150f;
+                        range = 100f;
+                        effect = StatusEffects.burning;
+                        hitEffect = PrtFx.orbitalLaserChargePyro;
+                        itemCap = 15;
+                        maxShots = 6;
+                    }},
+                    Items.silicon, new PodStat(){{
+                        damage = 400f;
+                        range = 50f;
+                        effect = StatusEffects.none;
+                        hitEffect = PrtFx.orbitalLaserCharge;
+                        itemCap = 10;
+                        maxShots = 5;
+                        speedScale = 1.2f;
+                    }}
+            );
+        }};
+        adam = new DroneBase("adam"){{
+            size = 7;
+            range = 460;
+            requirements(Category.turret, ItemStack.with(Items.copper, 1500, Items.lead, 2000, Items.metaglass, 500, PrtItems.platinum, 400, Items.silicon, 800, Items.plastanium, 400));
+            itemCapacity = 1000;
+            buildVisibility = BuildVisibility.sandboxOnly;
+            shootEffect = PrtFx.orbitalLaserCharge;
+            ammo(
+                    Items.surgeAlloy, new PodStat(){{
+                        damage = 3000f;
+                        range = 1f;
+                        effect = StatusEffects.shocked;
+                        hitEffect = PrtFx.orbitalLaserChargeSurge;
+                        itemCap = 250;
+                        maxShots = 10;
+                        speedScale = 2f;
+                    }},
+                    Items.plastanium, new PodStat(){{
+                        damage = 400f;
+                        range = 150f;
+                        effect = StatusEffects.slow;
+                        hitEffect = PrtFx.orbitalLaserChargePlast;
+                        itemCap = 200;
+                        maxShots = 50;
+                        speedScale = 0.5f;
+                    }},
+                    Items.pyratite, new PodStat(){{
+                        damage = 150f;
+                        range = 100f;
+                        effect = StatusEffects.burning;
+                        hitEffect = PrtFx.orbitalLaserChargePyro;
+                        itemCap = 400;
+                        maxShots = 100;
+                        speedScale = 0.8f;
+                    }},
+                    Items.lead, new PodStat(){{
+                        damage = 500f;
+                        range = 4f;
+                        effect = StatusEffects.none;
+                        hitEffect = PrtFx.orbitalLaserCharge;
+                        itemCap = 1000;
+                        maxShots = 70;
+                        speedScale = 10f;
+                    }}
+            );
         }};
     }
 }
