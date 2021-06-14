@@ -28,11 +28,6 @@ function newRegenWall(name, health, size, liCha, liDam, liLength, liColor, insul
 
 const platinumWall = newRegenWall("platinum-wall", 1000, 1, 0, 0, 0, "#000000", false, false);
 
-Events.on(ClientLoadEvent, cons(e=>{
-    platinumWall.requirements = ItemStack.with(Vars.content.getByName(ContentType.item,"prometheus-platinum"), 100);
-}));
-
-
 platinumWall.buildType = () => extendContent(Wall.WallBuild, platinumWall, {
     update(){
          if (this.damaged() && timer.get(0, 1800)) {
@@ -59,3 +54,13 @@ magnetiteWall.chanceDeflect = 12.3;
 const magnetiteWallLarge = newRegenWall("magnetite-wall-large", 1200, 2, 0.25, 30, 6.3, "#FF8D5C", true,true);
 magnetiteWallLarge.flashHit = true;
 magnetiteWallLarge.chance = 12.3;
+
+//MOD ITEMS
+
+Events.on(ClientLoadEvent, cons(e=>{
+    platinumWall.requirements = ItemStack.with(Vars.content.getByName(ContentType.item,"prometheus-platinum"), 6);
+    platinumWallLarge.requirements = ItemStack.with(Vars.content.getByName(ContentType.item,"prometheus-platinum", 24);
+
+    magnetiteWall.requirements = ItemStack.with(Vars.content.getByName(ContentType.item,"prometheus-magnetite", 6);
+    magnetiteWallLarge.requirements = ItemStack.with(Vars.content.getByName(ContentType.item,"prometheus-magnetite", 24);
+}));
