@@ -18,7 +18,6 @@ import mindustry.world.Block;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.production.GenericSmelter;
 import mindustry.world.meta.BuildVisibility;
-import prometheus.world.blocks.production.ExchangeBoard;
 import prometheus.world.blocks.turrets.DroneBase;
 import prometheus.world.meta.PodStat;
 
