@@ -26,13 +26,12 @@ function newRegenWall(name, health, size, liCha, liDam, liLength, liColor, insul
     return regWall;
 };
 
-const platinumWall = newRegenWall("platinum-wall", 1000, 1, 0, 0, 0, "#000000", false, false);
-platinumWall.init = function(){
-    this.super$init();
-    const platinum = PrtItems.platinum;
-    
-    this.requirements = ItemStack.with(platinum, 100);
-  };
+var platinumWall = newRegenWall("platinum-wall", 1000, 1, 0, 0, 0, "#000000", false, false);
+
+Events.on(ClientLoadEvent, cons(e=>{
+    platinumWall.requirements = ItemStack.with(Vars.content.getByName(ContentType.item,"prometheus-platinum"), 100);
+}));
+
 
 platinumWall.buildType = () => extendContent(Wall.WallBuild, platinumWall, {
     update(){
