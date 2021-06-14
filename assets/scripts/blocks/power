@@ -1,0 +1,27 @@
+///POOOOOOWER///
+DA
+//CONTENT//
+
+const tokamak = extendContent(ImpactReactor, "tokamak", {});
+tokamak.size = 3;
+tokamak.health = 650;
+tokamak.ambientSound = Sounds.pulse;
+tokamak.ambientSoundVolume = 0.10;
+
+tokamak.hasItems = false;
+tokamak.itemDuration = 0;
+
+
+impactReactor = new ImpactReactor("impact-reactor"){{
+            requirements(Category.power, with(Items.lead, 500, Items.silicon, 300, Items.graphite, 400, Items.thorium, 100, Items.surgeAlloy, 250, Items.metaglass, 250));
+            size = 4;
+            health = 900;
+            powerProduction = 130f;
+            itemDuration = 140f;
+            ambientSound = Sounds.pulse;
+            ambientSoundVolume = 0.07f;
+
+            consumes.power(25f);
+            consumes.item(Items.blastCompound);
+            consumes.liquid(Liquids.cryofluid, 0.25f);
+        }};
