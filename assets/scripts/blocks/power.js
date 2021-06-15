@@ -25,5 +25,5 @@ tokamak.Category = Category.power;
 
 Events.on(ClientLoadEvent, cons(e=>{
    tokamak.consumes.item(Vars.content.getByName(ContentType.item,"prometheus-plutonium"));
-   tokamak.requirements = ItemStack.with(Vars.content.getByName(ContentType.item,"prometheus-magnetite"), 250, Items.graphite, 350, Items.plutonium, 50, Items.silicon, 300);
+   tokamak.requirements = ItemStack.with(Vars.content.getByName(ContentType.item,"prometheus-magnetite"), 250, Items.graphite, 350, Vars.content.getByName(ContentType.item,"prometheus-plutonium"), 50, Items.silicon, 300);
 }));
