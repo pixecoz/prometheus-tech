@@ -1,5 +1,5 @@
 ///POOOOOOWER///
-DA
+const aboba = "aboba"
 //CONTENT//
 
 const tokamak = extendContent(ImpactReactor, "tokamak", {});
