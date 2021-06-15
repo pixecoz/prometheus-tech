@@ -2,11 +2,12 @@
 
 function R(dir){require(dir)};
 
-R("blocks/defense");
-
 R("planets&environment");
 
 R("techTree");//в самом конце
+
+R("blocks/defense");
+R("blocks/power");
 
 //NOT WORK//
 
