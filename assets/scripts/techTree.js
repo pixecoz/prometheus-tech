@@ -27,7 +27,7 @@ return PB;
 ///TECH TREE///
 
 const SunStarIcon = createPhantomBlock("SunStarIcon", 64);
-SerpuloStarIcon.alwaysUnlocked = true;
+SunStarIcon.alwaysUnlocked = true;
 
 const SerpuloPlanetIcon = createPhantomBlock("SerpuloPlanetIcon", 64);
 SerpuloPlanetIcon.alwaysUnlocked = true;
