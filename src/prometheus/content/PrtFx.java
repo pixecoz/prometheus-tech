@@ -4,6 +4,7 @@ import arc.Core;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
+import arc.math.geom.Vec2;
 import arc.util.Interval;
 import arc.util.Tmp;
 import mindustry.Vars;
@@ -154,5 +155,12 @@ public class PrtFx {
         Draw.rect(region, cx + Tmp.v1.x, cy + Tmp.v1.y, rw, rh, rotation);
 
         Draw.reset();
+    }),
+
+    shootGreen = new Effect(30f,100f, e->{
+        Draw.color(Pal.heal);
+        Angles.randLenVectors(e.id * 2, Mathf.random(10, 15), e.fout(), (x, y)->{
+            Lines.lineAngle(e.x, e.y, Mathf.angle(x, y), e.fout() * 20f);
+        });
     });
 }
