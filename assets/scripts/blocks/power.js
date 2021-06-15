@@ -1,6 +1,8 @@
 ///POOOOOOWER///
+
 const aboba = "aboba"
-const amogus = "AMOGUS"
+//No amogus ha ha
+
 //CONTENT//
 
 const tokamak = extendContent(ImpactReactor, "tokamak", {});
@@ -14,6 +16,7 @@ tokamak.itemDuration = 100;
 
 tokamak.powerProduction = 145;
 tokamak.consumes.power(48);
+tokamak.buildVisibility = BuildVisibility.editorOnly;
 
 tokamak.consumes.liquid(Liquids.water, 0.42);
 tokamak.Category = Category.power;
