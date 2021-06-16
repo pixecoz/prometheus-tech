@@ -1,13 +1,19 @@
 package prometheus.content;
 
 import arc.graphics.Color;
+import arc.graphics.g2d.Draw;
+import arc.graphics.g2d.Fill;
 import arc.math.Mathf;
 import mindustry.content.*;
 import mindustry.ctype.ContentList;
+import mindustry.entities.Effect;
 import mindustry.entities.bullet.ArtilleryBulletType;
+import mindustry.entities.bullet.ContinuousLaserBulletType;
 import mindustry.entities.bullet.LaserBulletType;
 import mindustry.entities.bullet.PointBulletType;
 import mindustry.gen.Sounds;
+import mindustry.graphics.Layer;
+import mindustry.graphics.Pal;
 import mindustry.type.Item;
 import mindustry.world.blocks.power.*;
 import mindustry.type.Category;
@@ -15,8 +21,10 @@ import mindustry.type.ItemStack;
 import mindustry.world.Block;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.production.GenericSmelter;
+import mindustry.world.consumers.ConsumeLiquidFilter;
 import mindustry.world.meta.BuildVisibility;
 import prometheus.entities.bullet.EmpPointBulletType;
+import prometheus.graphics.PrtShaders;
 import prometheus.world.blocks.turrets.ChargeTurret;
 import prometheus.world.blocks.turrets.DroneBase;
 import prometheus.world.blocks.turrets.SomeTurret;
@@ -356,9 +364,29 @@ public class PrtBlocks implements ContentList {
            health = 170*size*size;
            requirements(Category.turret, ItemStack.with(Items.copper,1));
            reloadTime = 30;
-           shootType = Bullets.standardCopper;
+           shootType = new ContinuousLaserBulletType(70){{
+               length = 200f;
+               hitEffect = Fx.hitMeltdown;
+               hitColor = Pal.meltdownHit;
+               drawSize = 420f;
+
+               incendChance = 0.4f;
+               incendSpread = 5f;
+               incendAmount = 1;
+               ammoMultiplier = 1f;
+           }};
            range = 300;
            outlineIcon = false;
+           shootLength = -35;
+           chargeBeginEffect = new Effect(120,e -> {
+               Draw.draw(Layer.turret,() -> {
+                   Draw.shader(PrtShaders.destroyerSphere);
+                   Fill.circle(e.x,e.y,8);
+                   Draw.shader();
+               });
+           });
+           chargeTime = 120;
+           consumes.add(new ConsumeLiquidFilter(liquid -> liquid.temperature <= 0.5f && liquid.flammability < 0.1f, 1f)).update(false);
         }};
     }
 }

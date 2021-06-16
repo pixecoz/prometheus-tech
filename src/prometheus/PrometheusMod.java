@@ -37,7 +37,7 @@ public class PrometheusMod extends Mod{
 
     @Override
     public void init(){
-//        PrtShaders.init();
+        PrtShaders.init();
     }
 
     @Override
