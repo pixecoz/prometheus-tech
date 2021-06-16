@@ -8,6 +8,7 @@ import mindustry.entities.bullet.ArtilleryBulletType;
 import mindustry.entities.bullet.LaserBulletType;
 import mindustry.entities.bullet.PointBulletType;
 import mindustry.gen.Sounds;
+import mindustry.type.Item;
 import mindustry.world.blocks.power.*;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
@@ -15,6 +16,8 @@ import mindustry.world.Block;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.production.GenericSmelter;
 import mindustry.world.meta.BuildVisibility;
+import prometheus.entities.bullet.EmpPointBulletType;
+import prometheus.world.blocks.turrets.ChargeTurret;
 import prometheus.world.blocks.turrets.DroneBase;
 import prometheus.world.blocks.turrets.SomeTurret;
 import prometheus.world.meta.PodStat;
@@ -25,13 +28,20 @@ public class PrtBlocks implements ContentList {
             //production
             platinumForge, plutoniumForge, magnetiteKiln,
             //turrets
-            darkFlare, dystopia, seraphim, adam, sentinel, planetaryDestroyer,
+            darkFlare, dystopia, seraphim, adam, sentinel, testTurret, planetaryDestroyer,
             //power
             plutoniumReactor,
             //defense
             platinumWall, platinumWalLarge, magnetiteWall, magnetiteWallLarge;
 
     public void load() {
+        testTurret = new ItemTurret("test-turret"){{
+            requirements(Category.turret, ItemStack.with(Items.copper, 1));
+            size = 3;
+            ammo(
+                    Items.copper, PrtBullets.empPointBulletType
+            );
+        }};
 
         /*platinumForge = new GenericSmelter("platinum-forge") {
             {
@@ -139,9 +149,10 @@ public class PrtBlocks implements ContentList {
             size = 5;
             health = 2500;
         }};
-        dystopia = new ItemTurret("dystopia"){{
+        dystopia = new ChargeTurret("dystopia"){{
             localizedName = "Dystopia";
             description = "";
+            chargeTime = 100f;
             float brange = range = 500f;
 
             requirements(Category.turret, ItemStack.with(Items.copper, 1000, Items.metaglass, 600, Items.surgeAlloy, 300, Items.plastanium, 200, Items.silicon, 600));
