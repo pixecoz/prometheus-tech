@@ -2,16 +2,12 @@ package prometheus.content;
 
 import arc.graphics.Color;
 import arc.math.Mathf;
-import mindustry.content.Fx;
-import mindustry.content.Items;
-import mindustry.content.Liquids;
-import mindustry.content.StatusEffects;
+import mindustry.content.*;
 import mindustry.ctype.ContentList;
 import mindustry.entities.bullet.ArtilleryBulletType;
 import mindustry.entities.bullet.LaserBulletType;
 import mindustry.entities.bullet.PointBulletType;
 import mindustry.gen.Sounds;
-import mindustry.type.Item;
 import mindustry.world.blocks.power.*;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
@@ -19,9 +15,8 @@ import mindustry.world.Block;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.production.GenericSmelter;
 import mindustry.world.meta.BuildVisibility;
-import prometheus.entities.bullet.EmpPointBulletType;
-import prometheus.world.blocks.turrets.ChargeTurret;
 import prometheus.world.blocks.turrets.DroneBase;
+import prometheus.world.blocks.turrets.SomeTurret;
 import prometheus.world.meta.PodStat;
 
 public class PrtBlocks implements ContentList {
@@ -30,20 +25,13 @@ public class PrtBlocks implements ContentList {
             //production
             platinumForge, plutoniumForge, magnetiteKiln,
             //turrets
-            darkFlare, dystopia, seraphim, adam, sentinel, testTurret,
+            darkFlare, dystopia, seraphim, adam, sentinel, planetaryDestroyer,
             //power
             plutoniumReactor,
             //defense
             platinumWall, platinumWalLarge, magnetiteWall, magnetiteWallLarge;
 
     public void load() {
-        testTurret = new ItemTurret("test-turret"){{
-            requirements(Category.turret, ItemStack.with(Items.copper, 1));
-            size = 3;
-            ammo(
-                    Items.copper, PrtBullets.empPointBulletType
-            );
-        }};
 
         /*platinumForge = new GenericSmelter("platinum-forge") {
             {
@@ -151,10 +139,9 @@ public class PrtBlocks implements ContentList {
             size = 5;
             health = 2500;
         }};
-        dystopia = new ChargeTurret("dystopia"){{
+        dystopia = new ItemTurret("dystopia"){{
             localizedName = "Dystopia";
             description = "";
-            chargeTime = 100f;
             float brange = range = 500f;
 
             requirements(Category.turret, ItemStack.with(Items.copper, 1000, Items.metaglass, 600, Items.surgeAlloy, 300, Items.plastanium, 200, Items.silicon, 600));
@@ -352,6 +339,15 @@ public class PrtBlocks implements ContentList {
                         speedScale = 10f;
                     }}
             );
+        }};
+        planetaryDestroyer = new SomeTurret("planetary-destroyer"){{
+           size = 12;
+           health = 170*size*size;
+           requirements(Category.turret, ItemStack.with(Items.copper,1));
+           reloadTime = 30;
+           shootType = Bullets.standardCopper;
+           range = 300;
+           outlineIcon = false;
         }};
     }
 }
