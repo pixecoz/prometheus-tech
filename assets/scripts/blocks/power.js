@@ -1,7 +1,7 @@
 ///POOOOOOWER///
 
-const aboba = "aboba"
-//No amogus ha ha
+const amogus = "amogus"
+//No ABOBA ha ha XdXdXDXDXD
 
 //CONTENT//
 
