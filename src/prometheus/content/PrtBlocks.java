@@ -261,7 +261,7 @@ public class PrtBlocks implements ContentList {
         seraphim = new DroneBase("seraphim"){{
             size = 4;
             range = 220;
-            description = "Seraphim[/n]A powerful orbital drone, carries powerful weapons.[/n][#E72323] -In order to live, you need changes, new beginnings. It's that simple. All you have to do is just press the keys."
+            description = "Seraphim[/n]A powerful orbital drone, carries powerful weapons.[/n][#E72323] -In order to live, you need changes, new beginnings. It's that simple. All you have to do is just press the keys.";
             requirements(Category.turret, ItemStack.with(Items.copper, 65, Items.lead, 40, Items.titanium, 115));
             itemCapacity = 20;
             buildVisibility = BuildVisibility.sandboxOnly;
@@ -307,7 +307,7 @@ public class PrtBlocks implements ContentList {
         adam = new DroneBase("adam"){{
             size = 7;
             range = 460;
-            description = "Adam[/n]Heavy orbital station, attacks with heavy explosive objects and high-speed bolts, knocking them out of near-earth orbit.[/n][#E72323]- The creature is afraid of darkness, therefore it expels it with fire. I accept darkness and expel it with light"
+            description = "Adam[/n]Heavy orbital station, attacks with heavy explosive objects and high-speed bolts, knocking them out of near-earth orbit.[/n][#E72323]- The creature is afraid of darkness, therefore it expels it with fire. I accept darkness and expel it with light";
             requirements(Category.turret, ItemStack.with(Items.copper, 1500, Items.lead, 2000, Items.metaglass, 500, PrtItems.platinum, 400, Items.silicon, 800, Items.plastanium, 400));
             itemCapacity = 1000;
             buildVisibility = BuildVisibility.sandboxOnly;
