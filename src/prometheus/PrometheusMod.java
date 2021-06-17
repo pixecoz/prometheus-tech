@@ -2,12 +2,13 @@ package prometheus;
 
 import arc.Core;
 import arc.Events;
-import arc.util.Log;
-import arc.util.Time;
+import arc.util.*;
+
 import mindustry.ctype.ContentList;
 import mindustry.game.EventType;
 import mindustry.mod.Mod;
 import mindustry.ui.dialogs.BaseDialog;
+
 import prometheus.content.*;
 
 public class PrometheusMod extends Mod{

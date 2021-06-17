@@ -1,23 +1,16 @@
 package prometheus.content;
 
-import arc.Core;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
-import arc.math.geom.Vec2;
-import arc.util.Interval;
-import arc.util.Tmp;
-import mindustry.Vars;
+import arc.util.*;
+import static arc.math.Angles.randLenVectors;
+
 import mindustry.content.Fx;
 import mindustry.entities.*;
-import mindustry.gen.Tex;
-import mindustry.graphics.Drawf;
-import mindustry.graphics.Layer;
-import mindustry.graphics.Pal;
-import prometheus.world.blocks.turrets.DroneBase;
+import mindustry.graphics.*;
 
-import static arc.graphics.g2d.Lines.lineAngle;
-import static arc.math.Angles.randLenVectors;
+import prometheus.world.blocks.turrets.DroneBase;
 
 public class PrtFx {
     public static final Effect

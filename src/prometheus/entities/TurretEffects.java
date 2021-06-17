@@ -1,15 +1,10 @@
 package prometheus.entities;
 
-import arc.graphics.g2d.Draw;
-import arc.graphics.g2d.Lines;
+import arc.graphics.g2d.*;
 import arc.math.Angles;
-import arc.math.Mathf;
-import arc.math.geom.Vec2;
-import arc.util.Log;
 import arc.util.Tmp;
+
 import mindustry.entities.Effect;
-import mindustry.entities.Units;
-import mindustry.gen.EntityMapping;
 import mindustry.gen.Posc;
 import mindustry.graphics.Pal;
 

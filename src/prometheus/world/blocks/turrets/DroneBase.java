@@ -1,24 +1,21 @@
 package prometheus.world.blocks.turrets;
 
 import arc.Core;
-import arc.Events;
 import arc.struct.*;
-import arc.util.Strings;
-import arc.util.io.Reads;
-import arc.util.io.Writes;
-import mindustry.Vars;
-import mindustry.game.EventType;
+import arc.util.*;
+import arc.util.io.*;
+import arc.graphics.g2d.*;
+import arc.math.Mathf;
+import arc.scene.ui.layout.Table;
+
 import mindustry.type.*;
 import mindustry.ui.*;
-import arc.graphics.g2d.*;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.world.meta.*;
 
-import arc.math.Mathf;
-import arc.scene.ui.layout.Table;
 import mindustry.world.Block;
 import mindustry.world.consumers.ConsumeItemFilter;
 

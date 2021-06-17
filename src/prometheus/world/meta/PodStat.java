@@ -2,7 +2,6 @@ package prometheus.world.meta;
 
 import mindustry.entities.Effect;
 import mindustry.type.StatusEffect;
-import prometheus.content.PrtFx;
 
 public class PodStat {
     //pod's damage

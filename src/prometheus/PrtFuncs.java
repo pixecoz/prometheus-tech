@@ -3,9 +3,9 @@ package prometheus;
 import arc.util.Log;
 
 public class PrtFuncs {
-    // работает как print в питоне - сколько угодно аргументов выводит и само ставит пробел между ними
+    // works as print() in python - outputs your arguments and puts Space between them
     public static void print(Object... args){
-        //                                    ну так, примерное число
+        //TODO:                                    example number
         StringBuilder out = new StringBuilder(args.length*6);
         for(Object obj : args){
             out.append(String.valueOf(obj));

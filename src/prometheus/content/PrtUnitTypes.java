@@ -1,15 +1,11 @@
 package prometheus.content;
 
-import arc.func.Prov;
+import mindustry.gen.*;
+import mindustry.type.*;
 import mindustry.content.Fx;
-import mindustry.content.UnitTypes;
 import mindustry.ctype.ContentList;
 import mindustry.entities.bullet.BasicBulletType;
-import mindustry.gen.EntityMapping;
-import mindustry.gen.Sounds;
-import mindustry.gen.Unit;
-import mindustry.type.UnitType;
-import mindustry.type.Weapon;
+
 import prometheus.entities.ExtendedUnitType;
 import prometheus.entities.units.Aboltus;
 

@@ -1,13 +1,5 @@
 package prometheus.world.blocks.turrets;
 
-import arc.graphics.g2d.Draw;
-import arc.graphics.g2d.Lines;
-import arc.math.Angles;
-import arc.util.Log;
-import arc.util.Tmp;
-import mindustry.entities.Effect;
-import mindustry.entities.Units;
-import mindustry.graphics.Pal;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import prometheus.entities.TurretEffects;
 
