@@ -15,7 +15,8 @@ public class PrometheusMod extends Mod{
     private final ContentList[] prometheusContent = {
             new PrtItems(),
             new PrtBlocks(),
-            new PrtLiquids()
+            new PrtLiquids(),
+            new PrtUnitTypes()
     };
 
     public PrometheusMod(){
