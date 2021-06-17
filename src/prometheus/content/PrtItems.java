@@ -17,6 +17,7 @@ public class PrtItems implements ContentList {
             {
                 this.localizedName = "Platinum";
                 this.description = "Shiny and heavy resource.";
+                this.details = "-we need gold"
                 this.hardness = 3;
                 this.cost = 1;
                 this.radioactivity = 0.0f;
@@ -27,6 +28,7 @@ public class PrtItems implements ContentList {
                     {
                         this.localizedName = "Plutonium";
                         this.description = "Shiny and radioactive resource.";
+                        this.details = "-mm..maybe we can make energy"
                         this.hardness = 3;
                         //this.cost = 1;
                         this.radioactivity = 0.9f;
@@ -37,6 +39,7 @@ public class PrtItems implements ContentList {
                     {
                         this.localizedName = "Magnetite";
                         this.description = "Shiny and magnite resource.";
+                        this.details = "[#E72323]-how does it work \n[white]-I dont Know.-. "
                         this.hardness = 4;
                         this.cost = 2;
                         this.radioactivity = 0.0f;
