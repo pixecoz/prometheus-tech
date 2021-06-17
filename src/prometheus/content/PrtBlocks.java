@@ -61,7 +61,7 @@ public class PrtBlocks implements ContentList {
 
         plutoniumForge = new GenericSmelter("plutonium-forge") {{
             localizedName = "Plutonium Forge";
-            description = "Make Plutonium from Plastanium and Lead.";
+            description = "-Make Plutonium from Plastanium and Lead.[/n][#E72323]-why from lead?[/n][white]-IDK";
             health = 360;
             liquidCapacity = 0;
             size = 3;
@@ -78,7 +78,7 @@ public class PrtBlocks implements ContentList {
 
         magnetiteKiln = new GenericSmelter("magnetite-kiln") {{
             localizedName = "Magnetite Kiln";
-            description = "Make Magnetite from Platinum, Copper and Surge Alloy.";
+            description = "-Make Magnetite from Platinum, Copper and Surge Alloy.[/n][#E72323]-hmm...";
             health = 360;
             liquidCapacity = 0;
             size = 3;
@@ -95,7 +95,7 @@ public class PrtBlocks implements ContentList {
 
         darkFlare  = new ItemTurret("dark-flare") {{
             localizedName = "Dark Flare";
-            description = "Fires a beam of death at enemies. Total destruction.";
+            description = "-Fires a beam of death at enemies. Total destruction.[/n][#E72323]-why it isnt black ,_,";
             requirements(Category.turret, ItemStack.with(PrtItems.magnetite, 470, Items.silicon, 500, Items.surgeAlloy, 220, Items.thorium, 420, Items.phaseFabric, 230, PrtItems.platinum, 250));
             ammo(
                     Items.surgeAlloy, new LaserBulletType() {
@@ -148,7 +148,7 @@ public class PrtBlocks implements ContentList {
         }};
         dystopia = new ChargeTurret("dystopia"){{
             localizedName = "Dystopia";
-            description = "";
+            description = "-Strong foreshadow-like EMP weapon[/n][#E72323]-What does it mean EMP?";
             chargeTime = 100f;
             float brange = range = 500f;
 
@@ -194,7 +194,7 @@ public class PrtBlocks implements ContentList {
 
         plutoniumReactor = new ImpactReactor("plutonium-reactor") {{
             localizedName = "Plutonium Reactor";
-            description = "powerful reactor which take based on nuclear decay of plutonium";
+            description = "-Powerful reactor which take based on nuclear decay of plutonium[/n][#E72323]-Can it be dangerous?";
             size = 5;
             hasPower = true;
             hasLiquids = true;
@@ -210,6 +210,7 @@ public class PrtBlocks implements ContentList {
         }};
         sentinel = new ItemTurret("sentinel"){{
             localizedName = "Zodiac";
+            description = "-Cyclone-like weapon with splash attacks and debaffs.[/n][#E72323]-Does it Legal?";
             requirements(Category.turret,  ItemStack.with(Items.copper, 900, Items.graphite, 300, Items.surgeAlloy, 250, Items.plastanium, 175, Items.thorium, 250));
             ammo(
                     PrtItems.platinum, new ArtilleryBulletType(3.4f, 20, "shell"){
@@ -220,7 +221,7 @@ public class PrtBlocks implements ContentList {
                             width = height = 15f;
                             collidesTiles = false;
                             splashDamageRadius = 35f * 0.75f;
-                            splashDamage = 50f;
+                            splashDamage = 20f;
                             fragBullet = new ArtilleryBulletType(3.4f, 20, "shell"){
                                 {
                                     hitEffect = Fx.plasticExplosion;
@@ -229,11 +230,11 @@ public class PrtBlocks implements ContentList {
                                     width = height = 14f;
                                     collidesTiles = false;
                                     splashDamageRadius = 35f * 0.75f;
-                                    splashDamage = 50f;
+                                    splashDamage = 10f;
                                     backColor = PrtColors.platinumBackColor;
                                     frontColor = PrtColors.platinumFrontColor;
                                 }};
-                            fragBullets = 12;
+                            fragBullets = 6;
                             backColor = PrtColors.platinumBackColor;
                             frontColor = PrtColors.platinumFrontColor;
                         }});
@@ -260,6 +261,7 @@ public class PrtBlocks implements ContentList {
         seraphim = new DroneBase("seraphim"){{
             size = 4;
             range = 220;
+            description = "Seraphim[/n]A powerful orbital drone, carries powerful weapons.[/n][#E72323] -In order to live, you need changes, new beginnings. It's that simple. All you have to do is just press the keys."
             requirements(Category.turret, ItemStack.with(Items.copper, 65, Items.lead, 40, Items.titanium, 115));
             itemCapacity = 20;
             buildVisibility = BuildVisibility.sandboxOnly;
@@ -305,6 +307,7 @@ public class PrtBlocks implements ContentList {
         adam = new DroneBase("adam"){{
             size = 7;
             range = 460;
+            description = "Adam[/n]Heavy orbital station, attacks with heavy explosive objects and high-speed bolts, knocking them out of near-earth orbit.[/n][#E72323]- The creature is afraid of darkness, therefore it expels it with fire. I accept darkness and expel it with light"
             requirements(Category.turret, ItemStack.with(Items.copper, 1500, Items.lead, 2000, Items.metaglass, 500, PrtItems.platinum, 400, Items.silicon, 800, Items.plastanium, 400));
             itemCapacity = 1000;
             buildVisibility = BuildVisibility.sandboxOnly;
