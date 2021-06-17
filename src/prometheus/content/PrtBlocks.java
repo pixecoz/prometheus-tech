@@ -80,7 +80,7 @@ public class PrtBlocks implements ContentList {
         magnetiteKiln = new GenericSmelter("magnetite-kiln") {{
             localizedName = "Magnetite Kiln";
             description = "-Make Magnetite from Platinum, Copper and Surge Alloy.";
-            details = "[#E72323]-hmm..."
+            details = "[#E72323]-hmm...";
             health = 360;
             liquidCapacity = 0;
             size = 3;
