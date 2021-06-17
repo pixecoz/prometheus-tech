@@ -1,13 +1,16 @@
 package prometheus.content;
 
+import arc.func.Prov;
 import mindustry.content.Fx;
 import mindustry.content.UnitTypes;
 import mindustry.ctype.ContentList;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.gen.EntityMapping;
 import mindustry.gen.Sounds;
+import mindustry.gen.Unit;
 import mindustry.type.UnitType;
 import mindustry.type.Weapon;
+import prometheus.entities.ExtendedUnitType;
 import prometheus.entities.units.Aboltus;
 
 import static prometheus.PrtFuncs.print;
@@ -19,10 +22,18 @@ public class PrtUnitTypes implements ContentList {
     public void load(){
         print("load prtunits");
 
-        aboba = new UnitType("aboltus"){{
+        aboba = new ExtendedUnitType("aboltus"){{
 
             constructor = Aboltus::new;
-            EntityMapping.nameMap.put(this.name, Aboltus::new);
+            EntityMapping.nameMap.put(this.name, this.constructor);
+
+            for(int i = 0; i<EntityMapping.idMap.length; i++){
+                if(EntityMapping.idMap[i] == null){
+                    EntityMapping.idMap[i] = constructor;
+                    classId = i;
+                    break;
+                }
+            }
 
             speed = 3f;
             accel = 0.08f;
@@ -51,7 +62,14 @@ public class PrtUnitTypes implements ContentList {
                 shootSound = Sounds.pew;
             }});
 
-        }};
+        }
+
+            @Override
+            public void update(Unit unit) {
+                super.update(unit);
+                print(unit);
+            }
+        };
 
         print("prtunits loaded");
         print(aboba);
