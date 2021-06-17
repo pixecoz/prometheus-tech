@@ -1,6 +1,7 @@
 package prometheus.content;
 
 import mindustry.content.Fx;
+import mindustry.content.UnitTypes;
 import mindustry.ctype.ContentList;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.gen.EntityMapping;

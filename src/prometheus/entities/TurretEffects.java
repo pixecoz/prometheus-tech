@@ -9,6 +9,7 @@ import arc.util.Log;
 import arc.util.Tmp;
 import mindustry.entities.Effect;
 import mindustry.entities.Units;
+import mindustry.gen.EntityMapping;
 import mindustry.gen.Posc;
 import mindustry.graphics.Pal;
 
