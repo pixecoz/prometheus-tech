@@ -9,13 +9,16 @@ import mindustry.type.UnitType;
 import mindustry.type.Weapon;
 import prometheus.entities.units.Aboltus;
 
+import static prometheus.PrtFuncs.print;
+
 public class PrtUnitTypes implements ContentList {
 
     public static  UnitType aboba;
 
     public void load(){
+        print("load prtunits");
 
-        aboba = new UnitType("аболтус"){{
+        aboba = new UnitType("aboltus"){{
 
             constructor = Aboltus::new;
             EntityMapping.nameMap.put(this.name, Aboltus::new);
@@ -48,6 +51,9 @@ public class PrtUnitTypes implements ContentList {
             }});
 
         }};
+
+        print("prtunits loaded");
+        print(aboba);
 
     }
 }
