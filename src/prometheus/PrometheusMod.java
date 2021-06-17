@@ -9,7 +9,6 @@ import mindustry.game.EventType;
 import mindustry.mod.Mod;
 import mindustry.ui.dialogs.BaseDialog;
 import prometheus.content.*;
-import prometheus.graphics.PrtShaders;
 
 public class PrometheusMod extends Mod{
 
@@ -37,7 +36,7 @@ public class PrometheusMod extends Mod{
 
     @Override
     public void init(){
-        PrtShaders.init();
+
     }
 
     @Override
