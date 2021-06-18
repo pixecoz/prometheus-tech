@@ -3,6 +3,7 @@ package prometheus.content;
 import arc.Core;
 import arc.Events;
 import arc.input.KeyCode;
+import arc.util.Time;
 import mindustry.game.EventType;
 import mindustry.gen.*;
 import mindustry.type.*;
@@ -17,6 +18,8 @@ import static prometheus.PrtFuncs.print;
 public class PrtUnitTypes implements ContentList {
 
     public static  UnitType aboba;
+    public static float pressTime, longPressTime = 10f;
+
 
     public void load(){
         print("load prtunits");
@@ -64,11 +67,18 @@ public class PrtUnitTypes implements ContentList {
         Events.run(EventType.Trigger.update,() ->{
             if(player.unit().type == aboba){
                 if(mobile){
-
-                    int i = 1+1;
+                    if (Core.input.isTouched()){
+                        pressTime += Time.delta;
+                        if(pressTime > longPressTime){
+                            action();
+                            pressTime = 0f;
+                        }
+                    } else {
+                        pressTime = 0f;
+                    }
                 } else {
                     if(Core.input.keyTap(KeyCode.h)){
-                        Fx.bigShockwave.at(player.x,player.y);
+                        action();
                     }
                 }
             }
@@ -78,4 +88,9 @@ public class PrtUnitTypes implements ContentList {
         print("prtunits loaded");
 
     }
+
+    private static void action(){
+        Fx.bigShockwave.at(player.x,player.y);
+    }
+
 }
