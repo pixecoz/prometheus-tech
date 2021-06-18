@@ -1,13 +1,16 @@
 package prometheus.content;
 
+import arc.Core;
+import arc.Events;
+import arc.input.KeyCode;
+import mindustry.game.EventType;
 import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.content.Fx;
 import mindustry.ctype.ContentList;
 import mindustry.entities.bullet.BasicBulletType;
 
-import prometheus.entities.ExtendedUnitType;
-import prometheus.entities.units.Aboltus;
+import static mindustry.Vars.*;
 
 import static prometheus.PrtFuncs.print;
 
@@ -18,18 +21,9 @@ public class PrtUnitTypes implements ContentList {
     public void load(){
         print("load prtunits");
 
-        aboba = new ExtendedUnitType("aboltus"){{
+        aboba = new UnitType("aboltus"){{
 
-            constructor = Aboltus::new;
-            EntityMapping.nameMap.put(this.name, this.constructor);
-
-            for(int i = 0; i<EntityMapping.idMap.length; i++){
-                if(EntityMapping.idMap[i] == null){
-                    EntityMapping.idMap[i] = constructor;
-                    classId = i;
-                    break;
-                }
-            }
+            constructor = UnitEntity::create;
 
             speed = 3f;
             accel = 0.08f;
@@ -67,8 +61,21 @@ public class PrtUnitTypes implements ContentList {
             }
         };
 
+        Events.run(EventType.Trigger.update,() ->{
+            if(player.unit().type == aboba){
+                if(mobile){
+
+                    int i = 1+1;
+                } else {
+                    if(Core.input.keyTap(KeyCode.h)){
+                        Fx.bigShockwave.at(player.x,player.y);
+                    }
+                }
+            }
+
+        });
+
         print("prtunits loaded");
-        print(aboba);
 
     }
 }
