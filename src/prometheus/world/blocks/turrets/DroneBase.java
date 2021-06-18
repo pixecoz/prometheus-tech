@@ -117,7 +117,7 @@ public class DroneBase extends Block {
             public void build(Building tile, Table table){
                 MultiReqImage image = new MultiReqImage();
                 //TODO: 7.0 remove
-                content.items().each(i -> filter.get(i), item -> image.add(new ReqImage(item.icon(Cicon.tiny),
+                content.items().each(i -> filter.get(i), item -> image.add(new ReqImage(item.icon(Cicon.full),
                         () -> tile instanceof DroneBaseBuild && !tile.items().empty() && tile.items.has(item, 1))));
                 table.add(image).size(8 * 4);
             }
