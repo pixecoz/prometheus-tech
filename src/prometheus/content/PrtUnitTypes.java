@@ -1,57 +1,45 @@
 package prometheus.content;
 
-import arc.Core;
-import arc.Events;
-import arc.input.KeyCode;
 import arc.util.Time;
-import mindustry.game.EventType;
+import mindustry.Vars;
+import mindustry.entities.Damage;
 import mindustry.gen.*;
 import mindustry.type.*;
-import mindustry.content.Fx;
 import mindustry.ctype.ContentList;
-import mindustry.entities.bullet.BasicBulletType;
-
-import static mindustry.Vars.*;
-
-import static prometheus.staff.PrtFuncs.print;
+import prometheus.type.PrtUnitType;
 
 public class PrtUnitTypes implements ContentList {
 
-    public static  UnitType aboba;
+    //naval
+    public static UnitType castor, vega, nembus, arcturus, betelgeuse;
 
 
     public void load(){
 
-        aboba = new UnitType("aboltus"){{
+        castor = new PrtUnitType("castor"){{
 
-            constructor = UnitEntity::create;
+            constructor = UnitWaterMove::create;
 
-            speed = 3f;
-            accel = 0.08f;
-            drag = 0.01f;
-            flying = true;
-            health = 75;
-            engineOffset = 5.5f;
-            range = 140f;
-            targetAir = false;
-            commandLimit = 4;
-            circleTarget = true;
+            speed = 1.1f;
+            drag = 0.13f;
+            hitSize = 9f;
+            health = 280;
+            accel = 0.4f;
+            rotateSpeed = 3.3f;
+            trailLength = 20;
+            rotateShooting = false;
+            armor = 2f;
 
-            weapons.add(new Weapon(){{
-                y = 0f;
-                x = 2f;
-                reload = 13f;
-                ejectEffect = Fx.casing1;
-                bullet = new BasicBulletType(2.5f, 9){{
-                    width = 7f;
-                    height = 9f;
-                    lifetime = 45f;
-                    shootEffect = Fx.shootSmall;
-                    smokeEffect = Fx.shootSmallSmoke;
-                    ammoMultiplier = 2;
-                }};
-                shootSound = Sounds.pew;
-            }});
+            hasSpecialAbility = true;
+            specialAbility = (Unit unit) -> {
+                PrtFx.destroyCount.at(unit.x,unit.y,0,unit);
+                PrtFx.destroyLights.at(unit.x,unit.y,0,unit);
+
+                Time.run(60f, () -> {
+                    Damage.damage(unit.team, unit.x,unit.y,25f * Vars.tilesize, 1500f);
+                    unit.kill();
+                });
+            };
 
         }};
 

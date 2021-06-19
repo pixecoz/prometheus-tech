@@ -22,7 +22,7 @@ public class PrtInputCheck {
 
         Events.run(EventType.Trigger.update,() ->{
 
-            if(player.unit().type instanceof PrtUnitType && ((PrtUnitType)player.unit().type).hasAbility){
+            if(player.unit().type instanceof PrtUnitType && ((PrtUnitType)player.unit().type).hasSpecialAbility){
 
                 if(mobile){
 

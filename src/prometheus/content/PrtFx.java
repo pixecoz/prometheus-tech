@@ -8,6 +8,7 @@ import static arc.math.Angles.randLenVectors;
 
 import mindustry.content.Fx;
 import mindustry.entities.*;
+import mindustry.gen.Unit;
 import mindustry.graphics.*;
 
 import prometheus.world.blocks.turrets.DroneBase;
@@ -152,8 +153,26 @@ public class PrtFx {
 
     shootGreen = new Effect(30f,100f, e->{
         Draw.color(Pal.heal);
-        Angles.randLenVectors(e.id * 2, Mathf.random(10, 15), e.fout(), (x, y)->{
+        Angles.randLenVectors((long) e.id * 2, Mathf.random(10, 15), e.fout(), (x, y)->{
             Lines.lineAngle(e.x, e.y, Mathf.angle(x, y), e.fout() * 20f);
         });
+    }),
+
+    destroyLights = new Effect(60f,e -> {
+
+    }),
+
+    destroyCount = new Effect(60f,e -> {
+
+//        if(e.data instanceof Unit){
+//            Unit u = (Unit)e.data;
+//            e.x = u.x;
+//            e.y = u.y;
+//            Draw.color(Color.valueOf("ff0000"),0.8f);
+//            Lines.circle(e.x,e.y,u.type.hitSize*2f);
+//            Lines.stroke(u.type.hitSize*2f-5f);
+//        }
+
+
     });
 }
