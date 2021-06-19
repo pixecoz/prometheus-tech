@@ -10,6 +10,7 @@ import mindustry.mod.Mod;
 import mindustry.ui.dialogs.BaseDialog;
 
 import prometheus.content.*;
+import prometheus.staff.PrtInputCheck;
 
 public class PrometheusMod extends Mod{
 
@@ -38,7 +39,7 @@ public class PrometheusMod extends Mod{
 
     @Override
     public void init(){
-
+        PrtInputCheck.init();
     }
 
     @Override

@@ -1,0 +1,51 @@
+package prometheus.staff;
+
+import arc.Core;
+import arc.Events;
+import arc.input.KeyCode;
+import arc.util.Time;
+import mindustry.game.EventType;
+import prometheus.type.PrtUnitType;
+
+import static mindustry.Vars.mobile;
+import static mindustry.Vars.player;
+
+public class PrtInputCheck {
+
+    public static float pressTime;
+    public static final float longPressTime = 30f;
+    // чтобы при длительном нажатии не использовалась абилка несколько раз
+    public static boolean pressed;
+    public static KeyCode unitAbilityKey = KeyCode.h;
+
+    public static void init(){
+
+        Events.run(EventType.Trigger.update,() ->{
+
+            if(player.unit().type instanceof PrtUnitType && ((PrtUnitType)player.unit().type).hasAbility){
+
+                if(mobile){
+
+                    if (Core.input.isTouched()){
+                        pressTime += Time.delta;
+                        if(pressTime > longPressTime && !pressed){
+                            ((PrtUnitType)player.unit().type).specialAbility(player.unit());
+                            pressTime = 0f;
+                            pressed = true;
+                        }
+                    } else {
+                        pressed = false;
+                        pressTime = 0f;
+                    }
+
+                } else {
+                    if(Core.input.keyTap(unitAbilityKey)){
+                        ((PrtUnitType)player.unit().type).specialAbility(player.unit());
+                    }
+                }
+            }
+
+        });
+
+    }
+}
