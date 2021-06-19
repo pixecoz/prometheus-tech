@@ -6,7 +6,7 @@ const greenLightning = extend(LightningBulletType, {});
 greenLightning.damage = 36;
 greenLightning.lightningLength = 41;
 greenLightning.lightningLengthRand = 3;
-greenLightning.lightningColor = Color.valueOf("");
+greenLightning.lightningColor = Color.lime;
 greenLightning.collidesAir = false;
 greenLightning.ammoMultiplier = 2;
 
