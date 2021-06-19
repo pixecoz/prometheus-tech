@@ -13,7 +13,7 @@ import mindustry.entities.bullet.BasicBulletType;
 
 import static mindustry.Vars.*;
 
-import static prometheus.PrtFuncs.print;
+import static prometheus.staff.PrtFuncs.print;
 
 public class PrtUnitTypes implements ContentList {
 
