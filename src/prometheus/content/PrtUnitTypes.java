@@ -22,7 +22,7 @@ public class PrtUnitTypes implements ContentList{
 
     //test
     public static UnitType test1;
-    //Meep of faith, thanks
+    //Meep of faith and BetaMindy, thanks
     public static Entry<Class<? extends Entityc>, Prov<? extends Entityc>>[] unitList = new Entry[]{
         entry(ArmorRechargeEntity.class, ArmorRechargeEntity::new)
     };
