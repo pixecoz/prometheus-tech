@@ -21,7 +21,7 @@ public class PrtBlocks implements ContentList {
 
     public static Block
             //production
-            platinumForge, plutoniumForge, magnetiteKiln,
+            platinumForge, plutoniumForge, magnetiteKiln, magnetiteFurnace,
             //turrets
             darkFlare, dystopia, seraphim, adam, sentinel, testTurret,
             //power
@@ -38,7 +38,7 @@ public class PrtBlocks implements ContentList {
             );
         }};
 
-        /*platinumForge = new GenericSmelter("platinum-forge") {
+        platinumForge = new GenericSmelter("platinum-smelter") {
             {
                 this.localizedName = "Platinum Forge";
                 this.description = "Make Platinum from Titanium and Lead.";
@@ -55,9 +55,9 @@ public class PrtBlocks implements ContentList {
                 this.requirements(Category.crafting, ItemStack.with(Items.plastanium, 80, Items.titanium, 100, Items.metaglass, 120, Items.silicon, 200, Items.graphite, 200));
                 this.outputItem = new ItemStack(PrtItems.platinum, 1);
             }
-        };*/
+        };
 
-        plutoniumForge = new GenericSmelter("plutonium-forge") {{
+        plutoniumForge = new GenericSmelter("plutonium-synthezier") {{
             health = 360;
             liquidCapacity = 0;
             size = 3;
@@ -67,7 +67,8 @@ public class PrtBlocks implements ContentList {
             craftTime = 120;
             updateEffect = Fx.plasticburn;
             consumes.power(3.5f);
-            consumes.items(ItemStack.with(Items.lead, 3, Items.plastanium, 1));
+            consumes.items(ItemStack.with(Items.thorium, 3));
+            consumes.liquid(Liquids.cryofluid, 0.2f);
             requirements(Category.crafting, ItemStack.with(Items.copper, 10));
             outputItem = new ItemStack(PrtItems.plutonium, 1);
         }};
@@ -83,6 +84,22 @@ public class PrtBlocks implements ContentList {
             updateEffect = Fx.generatespark;
             consumes.power(7f);
             consumes.items(ItemStack.with(Items.surgeAlloy, 1, PrtItems.platinum, 1, Items.copper, 5));
+            requirements(Category.crafting, ItemStack.with(Items.copper, 10));
+            outputItem = new ItemStack(PrtItems.magnetite, 1);
+        }};
+
+        magnetiteFurnace = new GenericSmelter("magnetite-furnace") {{
+            health = 560;
+            liquidCapacity = 0;
+            size = 4;
+            hasPower = true;
+            hasLiquids = false;
+            hasItems = true;
+            craftTime = 170;
+            updateEffect = Fx.generatespark;
+            consumes.power(8f);
+            consumes.liquid(Liquids.oil, 0.1f);
+            consumes.items(ItemStack.with(Items.surgeAlloy, 2, PrtItems.platinum, 3, Items.copper, 6));
             requirements(Category.crafting, ItemStack.with(Items.copper, 10));
             outputItem = new ItemStack(PrtItems.magnetite, 1);
         }};
@@ -197,6 +214,7 @@ public class PrtBlocks implements ContentList {
             requirements(Category.power, ItemStack.with(Items.metaglass, 500, PrtItems.platinum, 300, Items.silicon, 400, Items.plastanium, 200));
         }};
         sentinel = new ItemTurret("sentinel"){{
+            localizedName = "Zodiac";
             requirements(Category.turret,  ItemStack.with(Items.copper, 900, Items.graphite, 300, Items.surgeAlloy, 250, Items.plastanium, 175, Items.thorium, 250));
             ammo(
                     PrtItems.platinum, new ArtilleryBulletType(3.4f, 20, "shell"){
