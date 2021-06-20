@@ -36,7 +36,7 @@ public class PrtUnitTypes implements ContentList{
                 nextId++;
                 EntityMapping.idMap[i] = unitList[nextId].value;
                 idMap.put(unitList[nextId].key, i);
-                if (nextId > unitList.length)
+                if (nextId >= unitList.length-1)
                     break;
             }
         }
