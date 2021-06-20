@@ -4,6 +4,7 @@ import arc.math.Mathf;
 import arc.util.Time;
 import mindustry.Vars;
 import mindustry.content.Bullets;
+import mindustry.content.UnitTypes;
 import mindustry.entities.Damage;
 import mindustry.game.Team;
 import mindustry.gen.*;
@@ -11,7 +12,7 @@ import mindustry.type.*;
 import mindustry.ctype.ContentList;
 import prometheus.type.PrtUnitType;
 
-public class PrtUnitTypes implements ContentList {
+public class PrtUnitTypes implements ContentList{
 
     //naval
     public static UnitType castor, vega, nembus, arcturus, betelgeuse;
@@ -51,6 +52,90 @@ public class PrtUnitTypes implements ContentList {
 
         }};
 
+        vega = new PrtUnitType("vega"){{
+
+            constructor = UnitWaterMove::create;
+
+            health = 340;
+
+            speed = 0.9f;
+            drag = 0.15f;
+            hitSize = 11f;
+            armor = 4f;
+            accel = 0.3f;
+            rotateSpeed = 2.6f;
+            rotateShooting = false;
+
+            trailLength = 20;
+            trailX = 5.5f;
+            trailY = -4f;
+            trailScl = 1.9f;
+
+        }};
+
+        nembus = new PrtUnitType("nembus"){{
+
+            constructor = UnitWaterMove::create;
+
+            health = 690;
+
+            speed = 0.85f;
+            accel = 0.2f;
+            rotateSpeed = 1.8f;
+            drag = 0.17f;
+            hitSize = 16f;
+            armor = 7f;
+            rotateShooting = false;
+
+            trailLength = 22;
+            trailX = 7f;
+            trailY = -9f;
+            trailScl = 1.5f;
+
+        }};
+
+        arcturus = new PrtUnitType("arcturus"){{
+
+            constructor = UnitWaterMove::create;
+
+            health = 8600;
+
+            armor = 12f;
+
+            speed = 0.73f;
+            drag = 0.17f;
+            hitSize = 39f;
+            accel = 0.2f;
+            rotateSpeed = 1.3f;
+            rotateShooting = false;
+
+            trailLength = 50;
+            trailX = 18f;
+            trailY = -21f;
+            trailScl = 3f;
+
+        }};
+
+        betelgeuse = new PrtUnitType("betelgeuse"){{
+
+            constructor = UnitWaterMove::create;
+
+            health = 17900;
+
+            speed = 0.62f;
+            drag = 0.18f;
+            hitSize = 50f;
+            armor = 16f;
+            accel = 0.19f;
+            rotateSpeed = 0.9f;
+            rotateShooting = false;
+
+            trailLength = 70;
+            trailX = 23f;
+            trailY = -32f;
+            trailScl = 3.5f;
+
+        }};
 
     }
 
