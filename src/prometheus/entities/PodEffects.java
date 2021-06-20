@@ -1,25 +1,17 @@
 package prometheus.entities;
 
 import arc.Core;
+import arc.graphics.g2d.*;
+import arc.math.*;
 import arc.graphics.Color;
-import arc.graphics.g2d.Draw;
-import arc.graphics.g2d.Fill;
-import arc.graphics.g2d.Lines;
-import arc.graphics.g2d.TextureRegion;
-import arc.math.Interp;
-import arc.math.Mathf;
-import mindustry.Vars;
-import mindustry.entities.Effect;
-import mindustry.entities.Fires;
-import mindustry.graphics.Drawf;
-import mindustry.graphics.Layer;
-import mindustry.graphics.Pal;
-import mindustry.world.Tile;
-
-import java.util.Random;
-
 import static arc.graphics.g2d.Lines.lineAngle;
 import static arc.math.Angles.randLenVectors;
+
+import mindustry.entities.*;
+import mindustry.graphics.*;
+import mindustry.world.Tile;
+
+import mindustry.Vars;
 
 public class PodEffects {
     public static void podFallEffect(float x, float y, float fireRadius, float shakeIntensity, float shakeDuration){

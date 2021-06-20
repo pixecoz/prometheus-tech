@@ -1,24 +1,21 @@
 package prometheus.world.blocks.turrets;
 
 import arc.Core;
-import arc.Events;
 import arc.struct.*;
-import arc.util.Strings;
-import arc.util.io.Reads;
-import arc.util.io.Writes;
-import mindustry.Vars;
-import mindustry.game.EventType;
+import arc.util.*;
+import arc.util.io.*;
+import arc.graphics.g2d.*;
+import arc.math.Mathf;
+import arc.scene.ui.layout.Table;
+
 import mindustry.type.*;
 import mindustry.ui.*;
-import arc.graphics.g2d.*;
 import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.world.meta.*;
 
-import arc.math.Mathf;
-import arc.scene.ui.layout.Table;
 import mindustry.world.Block;
 import mindustry.world.consumers.ConsumeItemFilter;
 
@@ -52,7 +49,9 @@ public class DroneBase extends Block {
     public void load(){
         super.load();
         if(podRegion == null)
-            podRegion = Core.atlas.find("launchpod");
+            podRegion = Core.atlas.find(name + "-pod");
+            if(podRegion == null)
+                podRegion = Core.atlas.find("launchpod");
     }
 
     @Override
@@ -118,7 +117,7 @@ public class DroneBase extends Block {
             public void build(Building tile, Table table){
                 MultiReqImage image = new MultiReqImage();
                 //TODO: 7.0 remove
-                content.items().each(i -> filter.get(i), item -> image.add(new ReqImage(item.icon(Cicon.tiny),
+                content.items().each(i -> filter.get(i), item -> image.add(new ReqImage(item.icon(Cicon.full),
                         () -> tile instanceof DroneBaseBuild && !tile.items().empty() && tile.items.has(item, 1))));
                 table.add(image).size(8 * 4);
             }

@@ -1,22 +1,17 @@
 package prometheus.content;
 
-import arc.Core;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
-import arc.util.Interval;
-import arc.util.Tmp;
-import mindustry.Vars;
+import arc.util.*;
+import static arc.math.Angles.randLenVectors;
+
 import mindustry.content.Fx;
 import mindustry.entities.*;
-import mindustry.gen.Tex;
-import mindustry.graphics.Drawf;
-import mindustry.graphics.Layer;
-import mindustry.graphics.Pal;
-import prometheus.world.blocks.turrets.DroneBase;
+import mindustry.gen.Unit;
+import mindustry.graphics.*;
 
-import static arc.graphics.g2d.Lines.lineAngle;
-import static arc.math.Angles.randLenVectors;
+import prometheus.world.blocks.turrets.DroneBase;
 
 public class PrtFx {
     public static final Effect
@@ -26,7 +21,7 @@ public class PrtFx {
             float m = i == 0 ? 1.0F : 0.5F;
             float rot = e.rotation + 180.0F;
             float w = 20.0F * e.fout() * m;
-            Drawf.tri(e.x, e.y, w, (35.0F + Mathf.randomSeedRange((long) e.id, 19.0F)) * m, rot);
+            Drawf.tri(e.x, e.y, w, (35.0F + Mathf.randomSeedRange(e.id, 19.0F)) * m, rot);
             Drawf.tri(e.x, e.y, w, 15.0F * m, 90);
         }
 
@@ -35,7 +30,7 @@ public class PrtFx {
     dystopiaShoot = new Effect(60.0F, (e) -> {
         e.scaled(32.0F, (b) -> {
             Draw.color(Color.white, PrtColors.dystopiaFrontColor, b.fin());
-            Lines.stroke(b.fout() * 5.0F + 1.7F);
+            Lines.stroke(b.fout() * 6.5F);
             Lines.circle(b.x, b.y, b.fin() * 50.0F);
             Lines.square(e.x, e.y, b.fin() * 40.0F, 60);
         });
@@ -61,9 +56,9 @@ public class PrtFx {
             float m = i == 0 ? 1.0F : 0.5F;
 
             for (int j = 0; j < 5; ++j) {
-                float rot = e.rotation + Mathf.randomSeedRange((long) (e.id + j), 50.0F);
+                float rot = e.rotation + Mathf.randomSeedRange(e.id + j, 50.0F);
                 float w = 23.0F * e.fout() * m;
-                Drawf.tri(e.x, e.y, w, (80.0F + Mathf.randomSeedRange((long) (e.id + j), 40.0F)) * m, rot);
+                Drawf.tri(e.x, e.y, w, (80.0F + Mathf.randomSeedRange(e.id + j, 40.0F)) * m, rot);
                 Drawf.tri(e.x, e.y, w, 20.0F * m, rot + 180.0F);
                 Drawf.circles(e.x, e.y, 40);
             }
@@ -76,7 +71,7 @@ public class PrtFx {
         });
         e.scaled(12.0F, (c) -> {
             Draw.color(PrtColors.dystopiaColor);
-            randLenVectors((long) e.id, 25, 5.0F + e.fin() * 80.0F, e.rotation, 60.0F, (x, y) -> {
+            randLenVectors(e.id, 25, 5.0F + e.fin() * 80.0F, e.rotation, 60.0F, (x, y) -> {
                 Fill.square(e.x + x, e.y + y, c.fout() * 3.0F, 45.0F);
             });
         });
@@ -154,5 +149,30 @@ public class PrtFx {
         Draw.rect(region, cx + Tmp.v1.x, cy + Tmp.v1.y, rw, rh, rotation);
 
         Draw.reset();
+    }),
+
+    shootGreen = new Effect(30f,100f, e->{
+        Draw.color(Pal.heal);
+        Angles.randLenVectors((long) e.id * 2, Mathf.random(10, 15), e.fout(), (x, y)->{
+            Lines.lineAngle(e.x, e.y, Mathf.angle(x, y), e.fout() * 20f);
+        });
+    }),
+
+    destroyLights = new Effect(60f,e -> {
+
+    }),
+
+    destroyCount = new Effect(60f,e -> {
+
+//        if(e.data instanceof Unit){
+//            Unit u = (Unit)e.data;
+//            e.x = u.x;
+//            e.y = u.y;
+//            Draw.color(Color.valueOf("ff0000"),0.8f);
+//            Lines.circle(e.x,e.y,u.type.hitSize*2f);
+//            Lines.stroke(u.type.hitSize*2f-5f);
+//        }
+
+
     });
 }
