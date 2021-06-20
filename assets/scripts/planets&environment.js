@@ -45,7 +45,7 @@ function newPine(name, variants){
   return pine;
 };
 
-//ATTREIBUTES and OTHER write separately!!!
+//ATTRIBUTES and OTHER write separately!!!
 
 ///CONTENT///
 

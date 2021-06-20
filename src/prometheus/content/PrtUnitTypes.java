@@ -1,15 +1,18 @@
 package prometheus.content;
 
+import arc.func.Prov;
 import arc.math.Mathf;
+import arc.struct.ObjectMap;
+import arc.struct.ObjectMap.Entry;
 import arc.util.Time;
 import mindustry.Vars;
 import mindustry.content.Bullets;
-import mindustry.content.UnitTypes;
 import mindustry.entities.Damage;
-import mindustry.game.Team;
 import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.ctype.ContentList;
+import prometheus.entities.units.ArmorRechargeEntity;
+import prometheus.entities.units.ArmorRechargeUnitType;
 import prometheus.type.PrtUnitType;
 
 public class PrtUnitTypes implements ContentList{
@@ -17,8 +20,47 @@ public class PrtUnitTypes implements ContentList{
     //naval
     public static UnitType castor, vega, nembus, arcturus, betelgeuse;
 
+    //test
+    public static UnitType test1;
+    //Meep of faith, thanks
+    public static Entry<Class<? extends Entityc>, Prov<? extends Entityc>>[] unitList = new Entry[]{
+        entry(ArmorRechargeEntity.class, ArmorRechargeEntity::new)
+    };
+    public static ObjectMap<Class<? extends Entityc>, Integer> idMap = new ObjectMap<>();
+    public static int nextId = -1;
+
+     public static void putIDS(){
+        for(int i = 0; i < EntityMapping.idMap.length; i++){
+            if(EntityMapping.idMap[i] == null){
+                //found free id
+                nextId++;
+                EntityMapping.idMap[i] = unitList[nextId].value;
+                idMap.put(unitList[nextId].key, i);
+                if (nextId > unitList.length)
+                    break;
+            }
+        }
+    }
+
+    public static Entry entry(Class<? extends Entityc> clazz, Prov<? extends Entityc> prov){
+        Entry<Class<? extends Entityc>, Prov<? extends Entityc>> entry = new Entry<>();
+        entry.key = clazz;
+        entry.value = prov;
+        return entry;
+    }
 
     public void load(){
+        putIDS();
+
+        EntityMapping.nameMap.put("amogus", ArmorRechargeEntity::new);
+        test1 = new ArmorRechargeUnitType("amogus"){{
+            description = "SUS";
+
+            health = 100;
+            speed = 2f;
+            flying = false;
+            canBoost = false;
+        }};
 
         castor = new PrtUnitType("castor"){{
 
