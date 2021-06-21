@@ -174,5 +174,17 @@ public class PrtFx {
 //        }
 
 
+    }),
+    empShoot = new Effect(100f, e->{
+        Draw.color(Color.white, Pal.lancerLaser, e.fin());
+        float amount = 7f;
+
+        Lines.circle(e.x, e.y, 100f);
+
+        for (int i = 0; i < amount; i++){
+            float angle = i / amount * 360f;
+
+            Drawf.tri(e.x + Angles.trnsx(angle, 100f), e.y + Angles.trnsy(angle, 100f), 6f, 50f * e.fout(), angle - 180);
+        }
     });
 }

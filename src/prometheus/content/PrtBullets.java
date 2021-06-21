@@ -14,8 +14,6 @@ public class PrtBullets {
         //trailEffect = Fx.instTrail;
         despawnEffect = Fx.instBomb;
         //trailSpacing = 20f;
-        width = 20f;
-        height = 10f;
         damage = 1350;
         buildingDamageMultiplier = 0.25f;
         speed = 500f;

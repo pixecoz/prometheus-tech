@@ -14,6 +14,7 @@ import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.production.GenericSmelter;
 import mindustry.world.meta.BuildVisibility;
 
+import prometheus.entities.bullet.EmpPointBulletType;
 import prometheus.world.blocks.turrets.*;
 import prometheus.world.meta.PodStat;
 
@@ -161,7 +162,7 @@ public class PrtBlocks implements ContentList {
 
             requirements(Category.turret, ItemStack.with(Items.copper, 1000, Items.metaglass, 600, Items.surgeAlloy, 300, Items.plastanium, 200, Items.silicon, 600));
             ammo(
-                    Items.surgeAlloy, new PointBulletType(){{
+                    Items.surgeAlloy, new EmpPointBulletType(){{
                         shootEffect = PrtFx.dystopiaShoot;
                         hitEffect = PrtFx.dystopiaHit;
                         smokeEffect = Fx.smokeCloud;
