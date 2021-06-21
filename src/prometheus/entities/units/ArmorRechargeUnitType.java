@@ -13,7 +13,7 @@ public class ArmorRechargeUnitType extends UnitType {
     //armor per second
     public float armorPerSecond = 1f;
     //max armor
-    public float armorLimit = 500f;
+    public float addedArmorLimit = 200f;
     public ArmorRechargeUnitType(String name) {
         super(name);
     }
@@ -45,14 +45,15 @@ public class ArmorRechargeUnitType extends UnitType {
     @Override
     public void draw(Unit u){
         super.draw(u);
+        ArmorRechargeEntity unit = ((ArmorRechargeEntity) u);
         Draw.z(Layer.effect);
 
         Draw.color(Pal.lighterOrange);
-        Draw.alpha(u.armor / 100f);
+        Draw.alpha(unit.addedArmor / 100f);
         Lines.circle(u.x, u.y, 15f);
 
         Draw.color(Pal.lightishOrange);
-        Draw.alpha(u.armor / 500f);
+        Draw.alpha(unit.addedArmor / 200f);
         Lines.circle(u.x, u.y, 20f);
     }
 }

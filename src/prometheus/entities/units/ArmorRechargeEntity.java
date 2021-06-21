@@ -6,18 +6,21 @@ import prometheus.content.PrtUnitTypes;
 
 public class ArmorRechargeEntity extends UnitEntity {
     public float prevHealth = health;
+    private final float normalArmor = armor;
+    public float addedArmor = 0f;
 
     //Im sorry, Good code god...
     //TODO move this to UnitType
     @Override
     public void update(){
         super.update();
-        if(armor > 0){
-            armor -= Math.min(armor, ((ArmorRechargeUnitType)type).armorPerSecond * Time.delta);
+        if(addedArmor > 0){
+            addedArmor -= Math.min(armor, ((ArmorRechargeUnitType)type).armorPerSecond * Time.delta);
         }
-        if (prevHealth > health && armor < ((ArmorRechargeUnitType)type).armorLimit)
-            armor += ((ArmorRechargeUnitType)type).armorPerHit;
+        if (prevHealth > health && addedArmor < ((ArmorRechargeUnitType)type).addedArmorLimit)
+            addedArmor += ((ArmorRechargeUnitType)type).armorPerHit;
         prevHealth = health;
+        armor = normalArmor + addedArmor;
     }
 
     @Override
