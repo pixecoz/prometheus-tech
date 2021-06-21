@@ -18,6 +18,16 @@ import prometheus.type.PrtUnitType;
 
 public class PrtUnitTypes implements ContentList{
 
+    /**
+    Мануал для будущих поколений.
+     Вы хотите добавить нового юнита (? extends Entityc)? Тогда...
+     1. В unitList добавьте новый
+        entry(Юнит.class, Юнит::new);
+
+     2. Перед типом юнита (? extends UnitType или же просто UnitType) пишите:
+        EntityMapping.nameMap.put("название_юнита", Юнит::new);
+     */
+
     //naval
     public static UnitType castor, vega, nembus, arcturus, betelgeuse;
 
