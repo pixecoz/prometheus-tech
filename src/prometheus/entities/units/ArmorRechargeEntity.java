@@ -25,6 +25,6 @@ public class ArmorRechargeEntity extends UnitEntity {
 
     @Override
     public int classId(){
-        return PrtUnitTypes.idMap.get(ArmorRechargeEntity.class);
+        return PrtUnitTypes.idMap.get(this.getClass());
     }
 }

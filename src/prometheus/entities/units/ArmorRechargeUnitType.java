@@ -5,9 +5,9 @@ import arc.graphics.g2d.*;
 import mindustry.graphics.*;
 import mindustry.game.Team;
 import mindustry.gen.Unit;
-import mindustry.type.UnitType;
+import prometheus.type.PrtUnitType;
 
-public class ArmorRechargeUnitType extends UnitType {
+public class ArmorRechargeUnitType extends PrtUnitType {
     //armor per health
     public float armorPerHit = 100f;
     //armor per second
@@ -16,6 +16,7 @@ public class ArmorRechargeUnitType extends UnitType {
     public float addedArmorLimit = 200f;
     public ArmorRechargeUnitType(String name) {
         super(name);
+        hasSpecialAbility = false;
     }
 
     @Override
