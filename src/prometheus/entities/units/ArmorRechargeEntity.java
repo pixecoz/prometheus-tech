@@ -15,7 +15,7 @@ public class ArmorRechargeEntity extends UnitEntity {
         if(armor > 0){
             armor -= Math.min(armor, ((ArmorRechargeUnitType)type).armorPerSecond * Time.delta);
         }
-        if (prevHealth > health)
+        if (prevHealth > health && armor < ((ArmorRechargeUnitType)type).armorLimit)
             armor += ((ArmorRechargeUnitType)type).armorPerHit;
         prevHealth = health;
     }

@@ -1,14 +1,10 @@
 package prometheus.entities.units;
 
-import arc.graphics.g2d.Draw;
-import arc.graphics.g2d.Lines;
-import arc.util.Log;
-import arc.util.Time;
+import arc.graphics.g2d.*;
+
+import mindustry.graphics.*;
 import mindustry.game.Team;
-import mindustry.gen.Building;
 import mindustry.gen.Unit;
-import mindustry.graphics.Layer;
-import mindustry.graphics.Pal;
 import mindustry.type.UnitType;
 
 public class ArmorRechargeUnitType extends UnitType {
@@ -16,7 +12,8 @@ public class ArmorRechargeUnitType extends UnitType {
     public float armorPerHit = 100f;
     //armor per second
     public float armorPerSecond = 1f;
-
+    //max armor
+    public float armorLimit = 500f;
     public ArmorRechargeUnitType(String name) {
         super(name);
     }
@@ -49,7 +46,13 @@ public class ArmorRechargeUnitType extends UnitType {
     public void draw(Unit u){
         super.draw(u);
         Draw.z(Layer.effect);
+
+        Draw.color(Pal.lighterOrange);
+        Draw.alpha(u.armor / 100f);
+        Lines.circle(u.x, u.y, 15f);
+
         Draw.color(Pal.lightishOrange);
-        Lines.circle(u.x, u.y, u.armor + 5f);
+        Draw.alpha(u.armor / 500f);
+        Lines.circle(u.x, u.y, 20f);
     }
 }

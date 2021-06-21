@@ -5,14 +5,15 @@ import arc.math.Mathf;
 import arc.struct.ObjectMap;
 import arc.struct.ObjectMap.Entry;
 import arc.util.Time;
+
+import mindustry.gen.*;
+import mindustry.type.*;
 import mindustry.Vars;
 import mindustry.content.Bullets;
 import mindustry.entities.Damage;
-import mindustry.gen.*;
-import mindustry.type.*;
 import mindustry.ctype.ContentList;
-import prometheus.entities.units.ArmorRechargeEntity;
-import prometheus.entities.units.ArmorRechargeUnitType;
+
+import prometheus.entities.units.*;
 import prometheus.type.PrtUnitType;
 
 public class PrtUnitTypes implements ContentList{
@@ -20,8 +21,8 @@ public class PrtUnitTypes implements ContentList{
     //naval
     public static UnitType castor, vega, nembus, arcturus, betelgeuse;
 
-    //test
-    public static UnitType test1;
+    //ground + passive ability
+    public static UnitType diplomat;
     //Meep of faith and BetaMindy, thanks
     public static Entry<Class<? extends Entityc>, Prov<? extends Entityc>>[] unitList = new Entry[]{
         entry(ArmorRechargeEntity.class, ArmorRechargeEntity::new)
@@ -52,12 +53,14 @@ public class PrtUnitTypes implements ContentList{
     public void load(){
         putIDS();
 
-        EntityMapping.nameMap.put("amogus", ArmorRechargeEntity::new);
-        test1 = new ArmorRechargeUnitType("amogus"){{
-            description = "SUS";
+        EntityMapping.nameMap.put("diplomat", ArmorRechargeEntity::new);
+        diplomat = new ArmorRechargeUnitType("diplomat"){{
 
             health = 100;
-            speed = 2f;
+            speed = 0.5f;
+            rotateShooting = true;
+            rotateSpeed = 2f;
+
             flying = false;
             canBoost = false;
         }};
