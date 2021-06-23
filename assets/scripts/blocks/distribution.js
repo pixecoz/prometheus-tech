@@ -2,15 +2,15 @@
 
 const platinumRouter = extendContent(Router, "platinum-router", {});
 platinumRouter.buildCostMultiplier = 4;
-platinumRouter.Category = Category.distribution;
-platinumRouter.BuildVisibility = BuildVisibility.shown;
+platinumRouter.category = Category.distribution;
+platinumRouter.buildVisibility = BuildVisibility.shown;
 
 const magnetiteConveyor = extendContent(ItemBridge, "magnetite-conveyor", {});
 magnetiteConveyor.range = 16;
 magnetiteConveyor.hasPower = true;
 //magnetiteConveyor.consumes.power(0.30f);
-magnetiteConveyor.Category = Category.distribution;
-magnetiteConveyor.BuildVisibility = BuildVisibility.shown;
+magnetiteConveyor.category = Category.distribution;
+magnetiteConveyor.buildVisibility = BuildVisibility.shown;
 
 Events.on(ClientLoadEvent, cons(e=>{
     platinumRouter.requirements = ItemStack.with(Vars.content.getByName(ContentType.item,"prometheus-platinum"), 3);
@@ -18,3 +18,4 @@ Events.on(ClientLoadEvent, cons(e=>{
 }));
 
 const abomus = "aboba" + "amogus" + "anukus" + "beLikus"
+const abobus = "abobus"
