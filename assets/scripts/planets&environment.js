@@ -163,6 +163,11 @@ const CarputoGenerator = extend(PlanetGenerator, {
         if(rid.getValue(position.x, position.y, position.z, 22) > 0.32){
             tile.block = Blocks.air;
         }
+    },
+	
+    generate(){
+	Schematics.placeLaunchLoadout(spawn.x, spawn.y);
+	///loading...
     }
 });
 
@@ -216,3 +221,11 @@ CarputoPlanet.rotateTime = 10800;
 CarputoPlanet.orbitTime = Mathf.pow((1.0 + 10.0 + 0.66), 1.5) * 90;
 
 CarputoPlanet.accessible = true;//In tech tree normal is false			
+
+//SECTORS//
+
+const testSector = new SectorPreset("test-sector", CarputoPlanet, 78);
+testSector.alwaysUnlocked = true;
+testSector.difficulty = 6;
+testSector.captureWave = 20;
+
