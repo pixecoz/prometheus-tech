@@ -25,14 +25,14 @@ public class PrtUnitTypes implements ContentList{
         entry(Юнит.class, Юнит::new);
 
      2. Перед типом юнита (? extends UnitType или же просто UnitType) пишите:
-        EntityMapping.nameMap.put("название_юнита", Юнит::new);
+        EntityMapping.nameMap.put("название-юнита", Юнит::new);
      */
 
     //naval
     public static UnitType castor, vega, nembus, arcturus, betelgeuse;
 
     //ground + passive ability
-    public static UnitType diplomat;
+    public static UnitType berserk;
     //Meep of faith and BetaMindy, thanks
     public static Entry<Class<? extends Entityc>, Prov<? extends Entityc>>[] unitList = new Entry[]{
         entry(ArmorRechargeEntity.class, ArmorRechargeEntity::new)
@@ -63,8 +63,8 @@ public class PrtUnitTypes implements ContentList{
     public void load(){
         putIDS();
 
-        EntityMapping.nameMap.put("diplomat", ArmorRechargeEntity::new);
-        diplomat = new ArmorRechargeUnitType("diplomat"){{
+        EntityMapping.nameMap.put("berserk", ArmorRechargeEntity::new);
+        berserk = new ArmorRechargeUnitType("berserk"){{
 
             health = 100;
             speed = 0.5f;

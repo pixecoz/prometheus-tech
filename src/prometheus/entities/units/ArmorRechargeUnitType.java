@@ -1,10 +1,12 @@
 package prometheus.entities.units;
 
+import arc.Core;
 import arc.graphics.g2d.*;
 
 import mindustry.graphics.*;
 import mindustry.game.Team;
 import mindustry.gen.Unit;
+import mindustry.world.meta.Stat;
 import prometheus.type.PrtUnitType;
 
 public class ArmorRechargeUnitType extends PrtUnitType {
@@ -31,6 +33,20 @@ public class ArmorRechargeUnitType extends PrtUnitType {
             entity.armor += armorPerHit;
         entity.prevHealth = health;
          */
+    }
+    @Override
+    public void setStats(){
+        super.setStats();
+        stats.add(Stat.abilities, table -> {
+            table.row();
+            table.table(bt ->{
+                bt.left().defaults().padLeft(20f).left();
+                bt.add(Core.bundle.format("unit.armor-recharge")).row();
+                bt.defaults().padLeft(40f);
+                bt.add(Core.bundle.format("unit.armor-per-hit", armorPerHit)).row();
+                bt.add(Core.bundle.format("unit.armor-per-second", armorPerSecond * 60f)).row();
+            });
+        });
     }
 
     @Override

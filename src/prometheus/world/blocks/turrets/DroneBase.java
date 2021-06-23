@@ -87,11 +87,11 @@ public class DroneBase extends Block {
                     bt.left().defaults().padRight(3).left();
                     bt.add(Core.bundle.format("bullet.damage", stat.damage));
                     bt.row();
-                    bt.add(Core.bundle.format("pod.damageradius", stat.range));
+                    bt.add(Core.bundle.format("pod.damage-radius", stat.range));
                     bt.row();
-                    bt.add(Core.bundle.format("pod.neededitems", stat.itemCap));
+                    bt.add(Core.bundle.format("pod.needed-items", stat.itemCap));
                     bt.row();
-                    bt.add(Core.bundle.format("pod.maxshots", stat.maxShots));
+                    bt.add(Core.bundle.format("pod.max-shots", stat.maxShots));
                     if (stat.speedScale != 1f){
                         bt.row();
                         bt.add(Core.bundle.format("bullet.reload", Strings.autoFixed(stat.speedScale, 2)));

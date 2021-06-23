@@ -1,37 +1,20 @@
 package prometheus.content;
 
 import arc.graphics.Color;
-import arc.graphics.g2d.Draw;
-import arc.graphics.g2d.Lines;
-import arc.util.Log;
-import mindustry.content.StatusEffects;
 import mindustry.ctype.ContentList;
-import mindustry.entities.Effect;
-import mindustry.graphics.Pal;
 import mindustry.type.StatusEffect;
 
 public class PrtStatusEffects implements ContentList {
     public static StatusEffect timeEater;
 
     public void load() {
-        Log.info("Amogus");
+        //this son of a bitch doesn't work. Fuck
         timeEater = new StatusEffect("time-eating"){{
             color = Color.valueOf("7b2999");
-            damage = 0f;
-            speedMultiplier = 0f;
+            damage = 0.001f;
+            speedMultiplier = 0.001f;
             reloadMultiplier = 0.1f;
-            buildSpeedMultiplier = 0f;
-            effectChance = 1f;
-
-            effect = new Effect(100f, 100f, e->{
-                Draw.color(Pal.lighterOrange);
-                Lines.circle(e.x, e.y, 20);
-            });
-
-            init(()->{
-                opposite(StatusEffects.overclock, StatusEffects.overdrive);
-            });
-
+            buildSpeedMultiplier = 0.001f;
         }};
     }
 }
