@@ -24,7 +24,6 @@ public class PrometheusMod extends Mod{
     };
 
     public PrometheusMod(){
-
         //да да, каждый уважающий себя жава мод должен иметь такую всплывающую картинку, ведь так?
         //listen for game load event
         Events.on(EventType.ClientLoadEvent.class, e -> {

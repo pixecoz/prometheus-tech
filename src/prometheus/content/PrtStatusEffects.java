@@ -12,7 +12,7 @@ import mindustry.type.StatusEffect;
 
 public class PrtStatusEffects implements ContentList {
     public static StatusEffect timeEater;
-    @Override
+
     public void load() {
         Log.info("Amogus");
         timeEater = new StatusEffect("time-eating"){{
