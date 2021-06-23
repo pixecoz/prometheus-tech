@@ -268,7 +268,7 @@ public class PrtBlocks implements ContentList {
             range = 220;
             requirements(Category.turret, ItemStack.with(Items.copper, 65, Items.lead, 40, Items.titanium, 115));
             itemCapacity = 20;
-            buildVisibility = BuildVisibility.campaignOnly;
+            buildVisibility = BuildVisibility.sandboxOnly;
             shootEffect = PrtFx.orbitalLaserCharge;
             ammo(
                     Items.surgeAlloy, new PodStat(){{

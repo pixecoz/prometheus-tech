@@ -171,6 +171,7 @@ public class DroneBase extends Block {
         @Override
         public void updateTile() {
             //TODO: recode this for better look
+            //NOTE: don't use Time.run, because it works unstable
             if(shots == maxShots && launched)
                 reloadLaunch();
 
