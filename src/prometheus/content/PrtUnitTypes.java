@@ -75,7 +75,7 @@ public class PrtUnitTypes implements ContentList{
             canBoost = false;
         }};
 
-            Superbia = new ArmorRechargeUnitType("Superbia"){{
+            superbia = new ArmorRechargeUnitType("Superbia"){{
 
             health = 16000;
             speed = 0.9f;
