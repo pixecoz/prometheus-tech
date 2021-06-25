@@ -79,11 +79,34 @@ public class PrtUnitTypes implements ContentList{
 
             health = 16000;
             speed = 0.9f;
-            rotateShooting = true;
-            rotateSpeed = 4f;
+            drag = 0.1f;
+            hitSize = 26f;
+            armor = 13f;
+            lightRadius = 140f;
 
-            flying = false;
-            canBoost = false;
+            rotateSpeed = 1.9f;
+
+            legCount = 8;
+            legMoveSpace = 0.8f;
+            legPairOffset = 3;
+            legLength = 75f;
+            legExtension = -20;
+            legBaseOffset = 8f;
+            landShake = 1f;
+            legSpeed = 0.1f;
+            legLengthScl = 0.93f;
+            rippleScale = 3f;
+            legSpeed = 0.19f;
+            ammoType = AmmoTypes.powerHigh;
+            buildSpeed = 1f;
+
+            legSplashDamage = 80;
+            legSplashRange = 60;
+
+            hovering = true;
+            allowLegStep = true;
+            visualElevation = 0.95f;
+            groundLayer = Layer.legUnit;
         }};
         
         castor = new PrtUnitType("castor"){{
