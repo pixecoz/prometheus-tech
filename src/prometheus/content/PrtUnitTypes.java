@@ -149,6 +149,8 @@ public class PrtUnitTypes implements ContentList{
                     }
                     Damage.createIncend(unit.x,unit.y,5*Vars.tilesize,10);
                     unit.kill();
+                   });
+            };
 
         }};
 
@@ -183,6 +185,8 @@ public class PrtUnitTypes implements ContentList{
                     }
                     Damage.createIncend(unit.x,unit.y,5*Vars.tilesize,10);
                     unit.kill();
+                    });
+            };
         }};
 
         arcturus = new PrtUnitType("arcturus"){{
@@ -217,6 +221,8 @@ public class PrtUnitTypes implements ContentList{
                     }
                     Damage.createIncend(unit.x,unit.y,5*Vars.tilesize,10);
                     unit.kill();
+                 });
+            };
         }};
 
         betelgeuse = new PrtUnitType("betelgeuse"){{
@@ -250,6 +256,8 @@ public class PrtUnitTypes implements ContentList{
                     }
                     Damage.createIncend(unit.x,unit.y,5*Vars.tilesize,10);
                     unit.kill();
+                });
+            };
         }};
 
     }
