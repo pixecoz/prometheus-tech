@@ -32,7 +32,7 @@ public class PrtUnitTypes implements ContentList{
     public static UnitType castor, vega, nembus, arcturus, betelgeuse;
 
     //ground + passive ability
-    public static UnitType berserk, superbia;
+    public static UnitType berserk;
     //Meep of faith and BetaMindy, thanks
     public static Entry<Class<? extends Entityc>, Prov<? extends Entityc>>[] unitList = new Entry[]{
         entry(ArmorRechargeEntity.class, ArmorRechargeEntity::new)
@@ -74,41 +74,6 @@ public class PrtUnitTypes implements ContentList{
             flying = false;
             canBoost = false;
         }};
-            EntityMapping.nameMap.put("superbia", ArmorRechargeEntity::new);
-            superbia = new ArmorRechargeUnitType("Superbia"){{
-
-            health = 16000;
-            speed = 0.9f;
-            drag = 0.1f;
-            hitSize = 26f;
-            armor = 13f;
-            lightRadius = 140f;
-
-            rotateSpeed = 1.9f;
-
-            legCount = 8;
-            legMoveSpace = 0.8f;
-            legPairOffset = 3;
-            legLength = 75f;
-            legExtension = -20;
-            legBaseOffset = 8f;
-            landShake = 1f;
-            legSpeed = 0.1f;
-            legLengthScl = 0.93f;
-            rippleScale = 3f;
-            legSpeed = 0.19f;
-            ammoType = AmmoTypes.powerHigh;
-            buildSpeed = 1f;
-
-            legSplashDamage = 80;
-            legSplashRange = 60;
-
-            hovering = true;
-            allowLegStep = true;
-            visualElevation = 0.95f;
-            groundLayer = Layer.legUnit;
-        }};
-        
         castor = new PrtUnitType("castor"){{
 
             constructor = UnitWaterMove::create;
