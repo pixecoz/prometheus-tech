@@ -32,7 +32,7 @@ public class PrtUnitTypes implements ContentList{
     public static UnitType castor, vega, nembus, arcturus, betelgeuse;
 
     //ground + passive ability
-    public static UnitType berserk;
+    public static UnitType berserk, superbia;
     //Meep of faith and BetaMindy, thanks
     public static Entry<Class<? extends Entityc>, Prov<? extends Entityc>>[] unitList = new Entry[]{
         entry(ArmorRechargeEntity.class, ArmorRechargeEntity::new)
@@ -74,7 +74,7 @@ public class PrtUnitTypes implements ContentList{
             flying = false;
             canBoost = false;
         }};
-
+            EntityMapping.nameMap.put("superbia", ArmorRechargeEntity::new);
             superbia = new ArmorRechargeUnitType("Superbia"){{
 
             health = 16000;
