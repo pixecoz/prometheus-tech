@@ -162,16 +162,16 @@ public class PrtFx {
 
     }),
 
-    destroyCount = new Effect(60f,e -> {
+    destroyCount = new Effect(120f,e -> {
 
-//        if(e.data instanceof Unit){
-//            Unit u = (Unit)e.data;
-//            e.x = u.x;
-//            e.y = u.y;
-//            Draw.color(Color.valueOf("ff0000"),0.8f);
-//            Lines.circle(e.x,e.y,u.type.hitSize*2f);
-//            Lines.stroke(u.type.hitSize*2f-5f);
-//        }
+        if(e.data instanceof Unit){
+            Unit u = (Unit)e.data;
+            e.x = u.x;
+            e.y = u.y;
+            Draw.color(Color.valueOf("ff0000"));
+            Lines.stroke(1f+u.hitSize()/10f);
+            Lines.swirl(e.x,e.y,u.hitSize()*1.5f,e.fout());
+        }
 
 
     }),
@@ -179,6 +179,7 @@ public class PrtFx {
         Draw.color(Color.white, Pal.lancerLaser, e.fin());
         float amount = 7f;
 
+        Lines.stroke(e.fout()/1.5f+0.33f);
         Lines.circle(e.x, e.y, 100f);
 
         for (int i = 0; i < amount; i++){

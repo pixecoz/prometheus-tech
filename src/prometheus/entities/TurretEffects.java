@@ -5,7 +5,6 @@ import arc.math.Angles;
 import arc.math.geom.Vec2;
 import arc.util.Tmp;
 
-import jdk.nashorn.internal.ir.Block;
 import mindustry.entities.Effect;
 import mindustry.gen.BlockUnitc;
 import mindustry.gen.Posc;
@@ -73,7 +72,7 @@ public class TurretEffects {
     }
 
     public static void beamsCharge(float x, float y, Vec2 t, float rotation){
-        Effect effect = new Effect(100f,100f, e-> {
+        Effect effect = new Effect(100f,300f, e-> {
             Tmp.v1.set(0, 10);
             Tmp.v2.set(0, -10);
             Tmp.v3.set(10, 0);
@@ -91,7 +90,7 @@ public class TurretEffects {
             Tmp.v2.set(0, -10);
             Tmp.v3.set(10, 0);
 
-            Draw.color(Pal.surge);
+            Draw.color(Pal.surge,e.fin()*2f);
 
             Lines.lineAngle(e.x + Angles.trnsx(rotation + 90, Tmp.v1.x, Tmp.v1.y), e.y + Angles.trnsy(rotation + 90, Tmp.v1.x, Tmp.v1.y), ang3, len1);
             Lines.lineAngle(e.x + Angles.trnsx(rotation + 90, Tmp.v2.x, Tmp.v2.y), e.y + Angles.trnsy(rotation + 90, Tmp.v2.x, Tmp.v2.y), ang4, len2);
