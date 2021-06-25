@@ -75,6 +75,17 @@ public class PrtUnitTypes implements ContentList{
             canBoost = false;
         }};
 
+            Superbia = new ArmorRechargeUnitType("Superbia"){{
+
+            health = 16000;
+            speed = 0.9f;
+            rotateShooting = true;
+            rotateSpeed = 4f;
+
+            flying = false;
+            canBoost = false;
+        }};
+        
         castor = new PrtUnitType("castor"){{
 
             constructor = UnitWaterMove::create;
@@ -125,6 +136,19 @@ public class PrtUnitTypes implements ContentList{
             trailX = 5.5f;
             trailY = -4f;
             trailScl = 1.9f;
+            
+            hasSpecialAbility = true;
+            specialAbility = (Unit unit) -> {
+//                PrtFx.destroyCount.at(unit.x,unit.y,0,unit);
+//                PrtFx.destroyLights.at(unit.x,unit.y,0,unit);
+
+                Time.run(480f, () -> {
+                    Damage.damage(unit.team, unit.x,unit.y,6f * Vars.tilesize, 120f);
+                    for(int i = 0;i<0;i++){
+                        Call.createBullet(Bullets.fireball, unit.team, unit.x, unit.y, Mathf.random(360f), Bullets.fireball.damage, 1, 0.8f);
+                    }
+                    Damage.createIncend(unit.x,unit.y,5*Vars.tilesize,10);
+                    unit.kill();
 
         }};
 
@@ -146,7 +170,19 @@ public class PrtUnitTypes implements ContentList{
             trailX = 7f;
             trailY = -9f;
             trailScl = 1.5f;
+            
+            hasSpecialAbility = true;
+            specialAbility = (Unit unit) -> {
+//                PrtFx.destroyCount.at(unit.x,unit.y,0,unit);
+//                PrtFx.destroyLights.at(unit.x,unit.y,0,unit);
 
+                Time.run(720f, () -> {
+                    Damage.damage(unit.team, unit.x,unit.y,7f * Vars.tilesize, 3200f);
+                    for(int i = 0;i<0;i++){
+                        Call.createBullet(Bullets.fireball, unit.team, unit.x, unit.y, Mathf.random(360f), Bullets.fireball.damage, 1, 0.8f);
+                    }
+                    Damage.createIncend(unit.x,unit.y,5*Vars.tilesize,10);
+                    unit.kill();
         }};
 
         arcturus = new PrtUnitType("arcturus"){{
@@ -169,6 +205,18 @@ public class PrtUnitTypes implements ContentList{
             trailY = -21f;
             trailScl = 3f;
 
+            hasSpecialAbility = true;
+            specialAbility = (Unit unit) -> {
+//                PrtFx.destroyCount.at(unit.x,unit.y,0,unit);
+//                PrtFx.destroyLights.at(unit.x,unit.y,0,unit);
+
+                Time.run(1920f, () -> {
+                    Damage.damage(unit.team, unit.x,unit.y,12f * Vars.tilesize, 18000f);
+                    for(int i = 0;i<0;i++){
+                        Call.createBullet(Bullets.fireball, unit.team, unit.x, unit.y, Mathf.random(360f), Bullets.fireball.damage, 1, 0.8f);
+                    }
+                    Damage.createIncend(unit.x,unit.y,5*Vars.tilesize,10);
+                    unit.kill();
         }};
 
         betelgeuse = new PrtUnitType("betelgeuse"){{
@@ -190,6 +238,18 @@ public class PrtUnitTypes implements ContentList{
             trailY = -32f;
             trailScl = 3.5f;
 
+            hasSpecialAbility = true;
+            specialAbility = (Unit unit) -> {
+//                PrtFx.destroyCount.at(unit.x,unit.y,0,unit);
+//                PrtFx.destroyLights.at(unit.x,unit.y,0,unit);
+
+                Time.run(7200f, () -> {
+                    Damage.damage(unit.team, unit.x,unit.y,16f * Vars.tilesize, 60000f);
+                    for(int i = 0;i<0;i++){
+                        Call.createBullet(Bullets.fireball, unit.team, unit.x, unit.y, Mathf.random(360f), Bullets.fireball.damage, 1, 0.8f);
+                    }
+                    Damage.createIncend(unit.x,unit.y,5*Vars.tilesize,10);
+                    unit.kill();
         }};
 
     }
