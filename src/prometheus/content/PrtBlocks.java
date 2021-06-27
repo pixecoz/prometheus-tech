@@ -1,5 +1,6 @@
 package prometheus.content;
 
+import arc.Core;
 import arc.graphics.Color;
 import arc.math.Mathf;
 import mindustry.content.*;
