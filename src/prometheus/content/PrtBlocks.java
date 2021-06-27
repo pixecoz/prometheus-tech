@@ -16,6 +16,7 @@ import mindustry.world.blocks.production.GenericSmelter;
 import mindustry.world.meta.BuildVisibility;
 
 import prometheus.entities.bullet.EmpPointBulletType;
+import prometheus.world.blocks.experimental.UnitTeleport;
 import prometheus.world.blocks.turrets.*;
 import prometheus.world.meta.PodStat;
 
@@ -29,7 +30,9 @@ public class PrtBlocks implements ContentList {
             //power
             plutoniumReactor,
             //defense
-            platinumWall, platinumWalLarge, magnetiteWall, magnetiteWallLarge;
+            platinumWall, platinumWalLarge, magnetiteWall, magnetiteWallLarge,
+            //experimental
+            unitTeleport;
 
     public void load() {
         testTurret = new ItemTurret("test-turret"){{
@@ -354,6 +357,13 @@ public class PrtBlocks implements ContentList {
                         speedScale = 10f;
                     }}
             );
+        }};
+        unitTeleport = new UnitTeleport("unit-teleport-test"){{
+            size = 1;
+            requirements(Category.units, ItemStack.with(Items.copper, 1));
+            consumes.power(120f);
+            unlocked = true;
+            alwaysUnlocked = true;
         }};
 
     }
