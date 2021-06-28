@@ -1,11 +1,18 @@
 package prometheus.content;
 
+import arc.func.Cons;
 import arc.func.Prov;
+import arc.graphics.Color;
+import arc.graphics.g2d.Draw;
+import arc.graphics.g2d.Lines;
 import arc.math.Mathf;
 import arc.struct.ObjectMap;
 import arc.struct.ObjectMap.Entry;
 import arc.util.Time;
 
+import mindustry.content.StatusEffects;
+import mindustry.entities.Effect;
+import mindustry.entities.bullet.ArtilleryBulletType;
 import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.Vars;
@@ -13,6 +20,7 @@ import mindustry.content.Bullets;
 import mindustry.entities.Damage;
 import mindustry.ctype.ContentList;
 
+import prometheus.entities.abilities.active.SelfDestructionAbility;
 import prometheus.entities.units.*;
 import prometheus.type.PrtUnitType;
 
@@ -74,6 +82,7 @@ public class PrtUnitTypes implements ContentList{
             flying = false;
             canBoost = false;
         }};
+
         castor = new PrtUnitType("castor"){{
 
             constructor = UnitWaterMove::create;
@@ -89,20 +98,9 @@ public class PrtUnitTypes implements ContentList{
             rotateShooting = false;
             armor = 2f;
 
-            hasSpecialAbility = true;
-            specialAbility = (Unit unit) -> {
-//                PrtFx.destroyCount.at(unit.x,unit.y,0,unit);
-//                PrtFx.destroyLights.at(unit.x,unit.y,0,unit);
-
-                Time.run(120f, () -> {
-                    Damage.damage(unit.team, unit.x,unit.y,5f * Vars.tilesize, 340f);
-                    for(int i = 0;i<0;i++){
-                        Call.createBullet(Bullets.fireball, unit.team, unit.x, unit.y, Mathf.random(360f), Bullets.fireball.damage, 1, 0.8f);
-                    }
-                    Damage.createIncend(unit.x,unit.y,5*Vars.tilesize,10);
-                    unit.kill();
-                });
-            };
+            activeAbility = new SelfDestructionAbility(120f,340f,5*Vars.tilesize){{
+                incendAmount = 5;
+            }};
 
         }};
 
@@ -124,21 +122,16 @@ public class PrtUnitTypes implements ContentList{
             trailX = 5.5f;
             trailY = -4f;
             trailScl = 1.9f;
-            
-            hasSpecialAbility = true;
-            specialAbility = (Unit unit) -> {
-//                PrtFx.destroyCount.at(unit.x,unit.y,0,unit);
-//                PrtFx.destroyLights.at(unit.x,unit.y,0,unit);
 
-                Time.run(480f, () -> {
-                    Damage.damage(unit.team, unit.x,unit.y,6f * Vars.tilesize, 120f);
-                    for(int i = 0;i<0;i++){
-                        Call.createBullet(Bullets.fireball, unit.team, unit.x, unit.y, Mathf.random(360f), Bullets.fireball.damage, 1, 0.8f);
-                    }
-                    Damage.createIncend(unit.x,unit.y,5*Vars.tilesize,10);
-                    unit.kill();
-                   });
-            };
+            activeAbility = new SelfDestructionAbility(8*60f,1200f,6*Vars.tilesize){{
+                incendAmount = 8;
+                bullets = 6;
+                bullet = new ArtilleryBulletType(3,0){{
+                    lifetime = 20;
+                    splashDamage = 60f;
+                    splashDamageRadius = Vars.tilesize*1f;
+                }};
+            }};
 
         }};
 
@@ -160,21 +153,13 @@ public class PrtUnitTypes implements ContentList{
             trailX = 7f;
             trailY = -9f;
             trailScl = 1.5f;
-            
-            hasSpecialAbility = true;
-            specialAbility = (Unit unit) -> {
-//                PrtFx.destroyCount.at(unit.x,unit.y,0,unit);
-//                PrtFx.destroyLights.at(unit.x,unit.y,0,unit);
 
-                Time.run(720f, () -> {
-                    Damage.damage(unit.team, unit.x,unit.y,7f * Vars.tilesize, 3200f);
-                    for(int i = 0;i<0;i++){
-                        Call.createBullet(Bullets.fireball, unit.team, unit.x, unit.y, Mathf.random(360f), Bullets.fireball.damage, 1, 0.8f);
-                    }
-                    Damage.createIncend(unit.x,unit.y,5*Vars.tilesize,10);
-                    unit.kill();
-                    });
-            };
+            activeAbility = new SelfDestructionAbility(12*60f,3200f,7f*Vars.tilesize){{
+                bullets = 9;
+                bullet = Bullets.fireball;
+                bulletDamage = 70f;
+            }};
+
         }};
 
         arcturus = new PrtUnitType("arcturus"){{
@@ -197,20 +182,21 @@ public class PrtUnitTypes implements ContentList{
             trailY = -21f;
             trailScl = 3f;
 
-            hasSpecialAbility = true;
-            specialAbility = (Unit unit) -> {
-//                PrtFx.destroyCount.at(unit.x,unit.y,0,unit);
-//                PrtFx.destroyLights.at(unit.x,unit.y,0,unit);
+            activeAbility = new SelfDestructionAbility(32*60f,18000f,12*Vars.tilesize){{
+                incendAmount = 20;
 
-                Time.run(1920f, () -> {
-                    Damage.damage(unit.team, unit.x,unit.y,12f * Vars.tilesize, 18000f);
-                    for(int i = 0;i<0;i++){
-                        Call.createBullet(Bullets.fireball, unit.team, unit.x, unit.y, Mathf.random(360f), Bullets.fireball.damage, 1, 0.8f);
-                    }
-                    Damage.createIncend(unit.x,unit.y,5*Vars.tilesize,10);
-                    unit.kill();
-                 });
-            };
+                status = StatusEffects.melting;
+                statusDuration = 600f;
+
+                bullets = 18;
+                bullet = new ArtilleryBulletType(4,90){{
+                    lifetime = 40;
+                    splashDamage = 90f;
+                    splashDamageRadius = Vars.tilesize*4;
+                }};
+
+            }};
+
         }};
 
         betelgeuse = new PrtUnitType("betelgeuse"){{
@@ -232,20 +218,21 @@ public class PrtUnitTypes implements ContentList{
             trailY = -32f;
             trailScl = 3.5f;
 
-            hasSpecialAbility = true;
-            specialAbility = (Unit unit) -> {
-//                PrtFx.destroyCount.at(unit.x,unit.y,0,unit);
-//                PrtFx.destroyLights.at(unit.x,unit.y,0,unit);
+            activeAbility = new SelfDestructionAbility(120*60f,60000f,16*Vars.tilesize){{
+                incendAmount = 20;
 
-                Time.run(7200f, () -> {
-                    Damage.damage(unit.team, unit.x,unit.y,16f * Vars.tilesize, 60000f);
-                    for(int i = 0;i<0;i++){
-                        Call.createBullet(Bullets.fireball, unit.team, unit.x, unit.y, Mathf.random(360f), Bullets.fireball.damage, 1, 0.8f);
-                    }
-                    Damage.createIncend(unit.x,unit.y,5*Vars.tilesize,10);
-                    unit.kill();
-                });
-            };
+                status = StatusEffects.melting;
+                statusDuration = 600f;
+
+                bullets = 32;
+                bullet = new ArtilleryBulletType(5,90){{
+                    lifetime = 56;
+                    splashDamage = 90f;
+                    splashDamageRadius = Vars.tilesize*3;
+                }};
+
+            }};
+
         }};
 
     }

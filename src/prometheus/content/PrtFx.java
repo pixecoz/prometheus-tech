@@ -4,10 +4,13 @@ import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.util.*;
+
 import static arc.math.Angles.randLenVectors;
 
 import mindustry.content.Fx;
 import mindustry.entities.*;
+import mindustry.gen.EffectState;
+import mindustry.gen.Groups;
 import mindustry.gen.Unit;
 import mindustry.graphics.*;
 
@@ -84,29 +87,29 @@ public class PrtFx {
 
         Lines.circle(e.x, e.y, 100f * e.fin());
     }),
-    orbitalLaserChargePyro = new Effect(80f, 100f, e->{
-        Draw.color(Pal.lightPyraFlame);
-        Lines.stroke(2f * e.fout());
-        Lines.circle(e.x, e.y, 100f);
+            orbitalLaserChargePyro = new Effect(80f, 100f, e -> {
+                Draw.color(Pal.lightPyraFlame);
+                Lines.stroke(2f * e.fout());
+                Lines.circle(e.x, e.y, 100f);
 
-        Lines.circle(e.x, e.y, 100f * e.fout());
-    }),
-    orbitalLaserChargeSurge = new Effect(80f, 100f, e->{
-        Draw.color(Pal.surge);
-        Lines.stroke(2f * e.fout());
-        Lines.circle(e.x, e.y, 100f);
-        Lines.circle(e.x, e.y, 100f * e.fout());
-        Lines.circle(e.x, e.y, 100f + 25f * e.fin());
-    }),
-    orbitalLaserChargePlast = new Effect(80, 100f, e -> {
-        Draw.color(Pal.plastanium);
-        Lines.stroke(2f * e.fout());
-        Lines.circle(e.x, e.y, 100f);
-        Lines.circle(e.x, e.y, 100f * e.fin());
-        Lines.circle(e.x, e.y, 100f + 25f * e.fout());
-    }),
+                Lines.circle(e.x, e.y, 100f * e.fout());
+            }),
+            orbitalLaserChargeSurge = new Effect(80f, 100f, e -> {
+                Draw.color(Pal.surge);
+                Lines.stroke(2f * e.fout());
+                Lines.circle(e.x, e.y, 100f);
+                Lines.circle(e.x, e.y, 100f * e.fout());
+                Lines.circle(e.x, e.y, 100f + 25f * e.fin());
+            }),
+            orbitalLaserChargePlast = new Effect(80, 100f, e -> {
+                Draw.color(Pal.plastanium);
+                Lines.stroke(2f * e.fout());
+                Lines.circle(e.x, e.y, 100f);
+                Lines.circle(e.x, e.y, 100f * e.fin());
+                Lines.circle(e.x, e.y, 100f + 25f * e.fout());
+            }),
 
-    launchPodLaunch = new Effect(150f, 100f, e->{
+    launchPodLaunch = new Effect(150f, 100f, e -> {
         Interval in = new Interval();
         float alpha = e.fout(Interp.pow5Out);
         float scale = (1f - alpha) * 1.3f + 1f;
@@ -115,7 +118,7 @@ public class PrtFx {
         float rotation = e.fin() * (130f + Mathf.randomSeedRange(e.id, 50f));
         float r = 3f;
 
-        if(in.get(4f - e.fin()*2f)){
+        if (in.get(4f - e.fin() * 2f)) {
             Fx.rocketSmoke.at(cx + Mathf.range(r), cy + Mathf.range(r), e.fin());
         }
 
@@ -125,11 +128,11 @@ public class PrtFx {
 
         float rad = 0.2f + e.fslope();
 
-        Fill.light(cx, cy, 10, 25f * (rad + scale-1f), Tmp.c2.set(Pal.engine).a(alpha), Tmp.c1.set(Pal.engine).a(0f));
+        Fill.light(cx, cy, 10, 25f * (rad + scale - 1f), Tmp.c2.set(Pal.engine).a(alpha), Tmp.c1.set(Pal.engine).a(0f));
 
         Draw.alpha(alpha);
-        for(int i = 0; i < 4; i++){
-            Drawf.tri(cx, cy, 6f, 40f * (rad + scale-1f), i * 90f + rotation);
+        for (int i = 0; i < 4; i++) {
+            Drawf.tri(cx, cy, 6f, 40f * (rad + scale - 1f), i * 90f + rotation);
         }
 
         Draw.color();
@@ -151,41 +154,52 @@ public class PrtFx {
         Draw.reset();
     }),
 
-    shootGreen = new Effect(30f,100f, e->{
+    shootGreen = new Effect(30f, 100f, e -> {
         Draw.color(Pal.heal);
-        Angles.randLenVectors((long) e.id * 2, Mathf.random(10, 15), e.fout(), (x, y)->{
+        Angles.randLenVectors((long) e.id * 2, Mathf.random(10, 15), e.fout(), (x, y) -> {
             Lines.lineAngle(e.x, e.y, Mathf.angle(x, y), e.fout() * 20f);
         });
     }),
 
-    destroyLights = new Effect(60f,e -> {
+    destroyLights = new Effect(60f, e -> {
 
     }),
 
-    destroyCount = new Effect(120f,e -> {
-
-        if(e.data instanceof Unit){
-            Unit u = (Unit)e.data;
+    destroyCount = new Effect(120f, e -> {
+        if (e.data instanceof Unit) {
+            Unit u = (Unit) e.data;
             e.x = u.x;
             e.y = u.y;
             Draw.color(Color.valueOf("ff0000"));
-            Lines.stroke(1f+u.hitSize()/10f);
-            Lines.swirl(e.x,e.y,u.hitSize()*1.5f,e.fout());
+            Lines.stroke(1f + u.hitSize() / 10f);
+            Lines.swirl(e.x, e.y, u.hitSize() * 1.5f, e.fout());
         }
-
-
     }),
-    empShoot = new Effect(100f, e->{
+
+    empShoot = new Effect(100f, e -> {
         Draw.color(Color.white, Pal.lancerLaser, e.fin());
         float amount = 7f;
 
-        Lines.stroke(e.fout()/1.5f+0.33f);
+        Lines.stroke(e.fout() / 1.5f + 0.33f);
         Lines.circle(e.x, e.y, 100f);
 
-        for (int i = 0; i < amount; i++){
+        for (int i = 0; i < amount; i++) {
             float angle = i / amount * 360f;
 
             Drawf.tri(e.x + Angles.trnsx(angle, 100f), e.y + Angles.trnsy(angle, 100f), 6f, 50f * e.fout(), angle - 180);
         }
     });
+
+    public static Effect destroyCount(float delay) {
+        return new Effect(delay, e -> {
+            if (e.data instanceof Unit) {
+                Unit u = (Unit) e.data;
+                e.x = u.x;
+                e.y = u.y;
+                Draw.color(Color.valueOf("ff0000"));
+                Lines.stroke(1f + u.hitSize() / 10f);
+                Lines.swirl(e.x, e.y, u.hitSize() * 1.5f, e.fout());
+            }
+        });
+    }
 }

@@ -18,7 +18,6 @@ public class ArmorRechargeUnitType extends PrtUnitType {
     public float addedArmorLimit = 200f;
     public ArmorRechargeUnitType(String name) {
         super(name);
-        hasSpecialAbility = false;
     }
 
     @Override

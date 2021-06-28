@@ -41,14 +41,14 @@ public class PrtInputCheck {
 
             //TODO должна ли работать абилка в паузе?
             if (!Vars.state.is(GameState.State.menu)) {
-                if (player.unit().type instanceof PrtUnitType && ((PrtUnitType) player.unit().type).hasSpecialAbility) {
+                if (player.unit().type instanceof PrtUnitType && ((PrtUnitType) player.unit().type).hasActiveAbility()) {
 
                     if (mobile) {
 
                         if (Core.input.isTouched()) {
                             pressTime += Time.delta;
                             if (pressTime > longPressTime && !pressed) {
-                                ((PrtUnitType) player.unit().type).specialAbility(player.unit());
+                                ((PrtUnitType) player.unit().type).useActiveAbility(player.unit());
                                 pressTime = 0f;
                                 pressed = true;
                             }
@@ -59,7 +59,7 @@ public class PrtInputCheck {
 
                     } else {
                         if (Core.input.keyTap(unitAbilityKey)) {
-                            ((PrtUnitType) player.unit().type).specialAbility(player.unit());
+                            ((PrtUnitType) player.unit().type).useActiveAbility(player.unit());
                         }
                     }
                 }
