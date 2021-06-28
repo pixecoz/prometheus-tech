@@ -11,6 +11,7 @@ import mindustry.ui.dialogs.BaseDialog;
 
 import prometheus.content.*;
 import prometheus.staff.PrtInputCheck;
+import prometheus.staff.PrtSounds;
 
 public class PrometheusMod extends Mod{
     public static final String MOD_NAME = "prometheus-";
@@ -52,5 +53,6 @@ public class PrometheusMod extends Mod{
 
             Log.info("@: Loaded content list: @", getClass().getSimpleName(), list.getClass().getSimpleName());
         }
+        PrtSounds.load();
     }
 }
