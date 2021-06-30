@@ -18,6 +18,7 @@ import mindustry.Vars;
 import mindustry.content.Blocks;
 import mindustry.content.UnitTypes;
 import mindustry.ctype.ContentType;
+import mindustry.entities.Units;
 import mindustry.gen.*;
 import mindustry.graphics.FloorRenderer;
 import mindustry.graphics.Layer;
@@ -54,32 +55,33 @@ public class UnitTeleport extends Block {
             if(countdown <= 0) {
                 countdown = chargeTime / 60f;
                 Time.run(chargeTime, () -> {
-                    Groups.unit.each(unit -> unit.team == this.team && unit.type != UnitTypes.alpha
-                                    && unit.type != UnitTypes.beta
-                                    && unit.type != UnitTypes.gamma,
-                            unit -> {
-                                if (Tmp.v1.set(x, y).dst(unit.x, unit.y) < pullRadius) {
-                                    units.add(unit);
-                                    unit.destroy();
-                                    Vars.world.tiles.eachTile(t -> {
-                                        if(Tmp.v1.set(t.worldx(), t.worldy()).dst(x, y) < fractureRadius && t.build != this
-                                            && Mathf.random() < 0.01f){
-                                            Call.setFloor(t, Blocks.space, Blocks.air);
-                                            t.setBlock(Blocks.air);
-                                        }
-                                    });
-                                    //Vars.renderer.blocks.floor.clearTiles();
-                                    try {
-                                        Method refresh = Vars.renderer.blocks.floor.getClass().getDeclaredMethod("cacheChunk", int.class, int.class);
-                                        refresh.setAccessible(true);
-                                        Log.info("X: " + x / 32 + "\nY: " + y / 32);
-                                        //32 * 8
-                                        refresh.invoke(Vars.renderer.blocks.floor, (int) (x / 256), (int) (y / 256));
-                                    }catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e){
-                                        Log.err(e);
-                                    }
+                    Units.nearby(team, x, y, pullRadius, unit -> {
+                        if(unit.type != UnitTypes.alpha && unit.type != UnitTypes.beta && unit.type != UnitTypes.gamma) {
+                            units.add(unit);
+                            unit.destroy();
+                            Vars.world.tiles.eachTile(t -> {
+                                if (Tmp.v1.set(t.worldx(), t.worldy()).dst(x, y) < fractureRadius && t.build != this
+                                        && Mathf.random() < 0.01f) {
+                                    Call.setFloor(t, Blocks.space, Blocks.air);
+                                    t.setBlock(Blocks.air);
                                 }
                             });
+                            //todo: choose cache method
+                            //Vars.renderer.blocks.floor.clearTiles();
+                            /*
+                            try {
+                                Method refresh = Vars.renderer.blocks.floor.getClass().getDeclaredMethod("cacheChunk", int.class, int.class);
+                                refresh.setAccessible(true);
+                                Log.info("X: " + x / 32 + "\nY: " + y / 32);
+                                //32 * 8
+                                refresh.invoke(Vars.renderer.blocks.floor, (int) (x / 256), (int) (y / 256));
+                            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                                Log.err(e);
+                            }
+
+                             */
+                        }
+                    });
                 });
             }
         });
