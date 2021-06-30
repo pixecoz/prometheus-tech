@@ -59,9 +59,9 @@ public class UnitAnnotationProcessor {
                 UnitType ut = (UnitType) f.get(clazz);
                 Class<? extends UnitEntity> a = f.getAnnotation(ModAnnotations.UnitDef.class).value();
                 Prov<? extends Entityc> prov = ut.constructor;
-                Log.info(prov);
                 unitList[i] = entry(a, prov);
                 EntityMapping.nameMap.put(ut.name, prov);
+                i++;
             }
         }
         putIDS();
