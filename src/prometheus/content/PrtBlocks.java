@@ -362,6 +362,8 @@ public class PrtBlocks implements ContentList {
             size = 1;
             requirements(Category.units, ItemStack.with(Items.copper, 1));
             consumes.power(120f);
+            pullRadius = 250f;
+            fractureRadius = 250f;
             unlocked = true;
             alwaysUnlocked = true;
         }};

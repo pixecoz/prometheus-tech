@@ -4,36 +4,42 @@ import arc.graphics.Color;
 import arc.graphics.g2d.Draw;
 import arc.graphics.g2d.Lines;
 import arc.math.Mathf;
-import arc.math.geom.Geometry;
-import arc.math.geom.Intersector;
-import arc.scene.Group;
-import arc.scene.event.ClickListener;
-import arc.scene.ui.Button;
-import arc.scene.ui.Image;
 import arc.scene.ui.ImageButton;
 import arc.scene.ui.Label;
 import arc.scene.ui.layout.Table;
 import arc.scene.utils.Elem;
 import arc.struct.Seq;
 import arc.util.Log;
+import arc.util.Time;
 import arc.util.Tmp;
 import arc.util.io.Reads;
 import arc.util.io.Writes;
 import mindustry.Vars;
+import mindustry.content.Blocks;
 import mindustry.content.UnitTypes;
 import mindustry.ctype.ContentType;
-import mindustry.game.Team;
 import mindustry.gen.*;
+import mindustry.graphics.FloorRenderer;
 import mindustry.graphics.Layer;
 import mindustry.graphics.Pal;
+import mindustry.logic.LExecutor;
 import mindustry.type.UnitType;
 import mindustry.world.Block;
-import mindustry.world.Build;
-import mindustry.world.Tile;
+import mindustry.world.blocks.environment.Floor;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+
+import mindustry.Vars.*;
+import mindustry.graphics.FloorRenderer.*;
 
 public class UnitTeleport extends Block {
     public Seq<Unit> units = new Seq<>();
     public float pullRadius = 75f;
+    public float chargeTime = 240f;
+    public float fractureRadius = pullRadius;
     public UnitTeleport(String name) {
         super(name);
         update = true;
@@ -42,24 +48,40 @@ public class UnitTeleport extends Block {
     }
 
     public class UnitTeleportBuild extends Building{
+        float countdown = 0f;
         Label amount = new Label("");
         ImageButton send = Elem.newImageButton(Icon.up, ()->{
-            Groups.unit.each(unit -> unit.team == this.team && unit.type != UnitTypes.alpha
-                            && unit.type != UnitTypes.beta
-                            && unit.type != UnitTypes.gamma,
-                    unit -> {
-                        if(Tmp.v1.set(x, y).dst(unit.x, unit.y) < pullRadius) {
-                            units.add(unit);
-                            unit.destroy();
-                            /*
-                            Log.info("Unit ID: " + unit.id);
-                            Log.info("Unit class ID: " + unit.classId());
-                            Log.info("Class: ID:" + Vars.content.getByID(ContentType.unit, unit.classId()).id
-                                     + "UnitType: classID: " + ((UnitType)Vars.content.getByID(ContentType.unit, unit.classId())).id);
-
-                             */
-                        }
-            });
+            if(countdown <= 0) {
+                countdown = chargeTime / 60f;
+                Time.run(chargeTime, () -> {
+                    Groups.unit.each(unit -> unit.team == this.team && unit.type != UnitTypes.alpha
+                                    && unit.type != UnitTypes.beta
+                                    && unit.type != UnitTypes.gamma,
+                            unit -> {
+                                if (Tmp.v1.set(x, y).dst(unit.x, unit.y) < pullRadius) {
+                                    units.add(unit);
+                                    unit.destroy();
+                                    Vars.world.tiles.eachTile(t -> {
+                                        if(Tmp.v1.set(t.worldx(), t.worldy()).dst(x, y) < fractureRadius && t.build != this
+                                            && Mathf.random() < 0.01f){
+                                            Call.setFloor(t, Blocks.space, Blocks.air);
+                                            t.setBlock(Blocks.air);
+                                        }
+                                    });
+                                    //Vars.renderer.blocks.floor.clearTiles();
+                                    try {
+                                        Method refresh = Vars.renderer.blocks.floor.getClass().getDeclaredMethod("cacheChunk", int.class, int.class);
+                                        refresh.setAccessible(true);
+                                        Log.info("X: " + x / 32 + "\nY: " + y / 32);
+                                        //32 * 8
+                                        refresh.invoke(Vars.renderer.blocks.floor, (int) (x / 256), (int) (y / 256));
+                                    }catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e){
+                                        Log.err(e);
+                                    }
+                                }
+                            });
+                });
+            }
         });
         ImageButton revert = Elem.newImageButton(Icon.down, ()->{
             units.each(unit -> {
@@ -87,18 +109,25 @@ public class UnitTeleport extends Block {
                 send.setDisabled(false);
                 revert.setDisabled(false);
             }
-            amount.setText("Total units: " + units.size);
+            if(countdown > 0){
+                countdown -= 0.016;
+                amount.setText("Countdown: " + Mathf.round(countdown * 100, 1f) / 100);
+            }
+            else{
+                amount.setText("Total units: " + units.size);
+            }
         }
         @Override
         public void buildConfiguration(Table t){
             super.buildConfiguration(t);
+            t.background(Tex.buttonDisabled);
             t.table(table -> {
-                table.background(Tex.buttonDisabled);
-                table.defaults().center();
-                table.add(amount).row();
-                table.add(send).row();
-                table.add(revert);
-            });
+                table.defaults().left();
+                table.add(amount);
+            }).row();
+            t.defaults().center();
+            t.add(send).row();
+            t.add(revert);
         }
         //fuck id's
         //all my homies use 'name'
