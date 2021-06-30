@@ -10,8 +10,8 @@ import mindustry.mod.Mod;
 import mindustry.ui.dialogs.BaseDialog;
 
 import prometheus.content.*;
-import prometheus.staff.PrtInputCheck;
-import prometheus.staff.PrtSounds;
+import prometheus.core.PrtInputCheck;
+import prometheus.core.PrtSounds;
 
 public class PrometheusMod extends Mod{
     public static final String MOD_NAME = "prometheus-";

@@ -1,27 +1,25 @@
-package prometheus.staff;
+package prometheus.core;
 
 import arc.Core;
 import arc.Events;
 import arc.input.KeyCode;
-import arc.math.Interp;
-import arc.math.Mathf;
-import arc.scene.actions.Actions;
-import arc.scene.event.Touchable;
-import arc.scene.ui.layout.Cell;
-import arc.scene.ui.layout.Scl;
-import arc.scene.ui.layout.Table;
+import arc.math.geom.Point2;
+import arc.struct.IntSet;
+import arc.util.Interval;
 import arc.util.Log;
 import arc.util.Time;
 import mindustry.Vars;
+import mindustry.content.Blocks;
 import mindustry.core.GameState;
-import mindustry.entities.Effect;
 import mindustry.game.EventType;
-import mindustry.ui.Styles;
-import org.graalvm.compiler.virtual.phases.ea.EffectList;
+import mindustry.gen.Call;
+import mindustry.graphics.FloorRenderer;
+import mindustry.world.Tile;
 import prometheus.type.PrtUnitType;
 
+import java.lang.reflect.Field;
+
 import static mindustry.Vars.*;
-import static prometheus.staff.PrtFuncs.print;
 
 public class PrtInputCheck {
 
@@ -34,6 +32,7 @@ public class PrtInputCheck {
 
     static float x,y;
     static float time;
+    static Interval timer = new Interval();
 
     public static void init() {
 
@@ -70,7 +69,30 @@ public class PrtInputCheck {
 //                Vars.state.set(GameState.State.playing);
 //            }
 
-            time = Mathf.clamp(time-Time.delta,0f,180f);
+//            time = Mathf.clamp(time-Time.delta,0f,180f);
+
+
+
+            if (state.isGame()){
+                if(timer.get(200f)){
+
+                    Tile tile = world.tileWorld(player.x,player.y);
+
+                    Call.setFloor(tile, Blocks.water, Blocks.air);
+//                    renderer.blocks.floor.clearTiles();
+
+                    try {
+//                        Log.info(Arrays.toString(FloorRenderer.class.getDeclaredFields()));
+                        Field set = FloorRenderer.class.getDeclaredField("recacheSet");
+                        set.setAccessible(true);
+                        ((IntSet)set.get(renderer.blocks.floor)).add(Point2.pack(tile.x / 32 / 8, tile.y / 32 / 8));
+                        Log.info("recahced");
+                    } catch (Exception e){
+                        Log.info(e);
+                    }
+
+                }
+            }
 
         });
 

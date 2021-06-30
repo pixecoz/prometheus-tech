@@ -1,4 +1,4 @@
-package prometheus.staff;
+package prometheus.core;
 
 import arc.Core;
 import arc.audio.Sound;
