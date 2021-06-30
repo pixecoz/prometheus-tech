@@ -1,27 +1,26 @@
 package prometheus.content;
 
-import arc.func.Cons;
 import arc.func.Prov;
 import arc.graphics.Color;
-import arc.graphics.g2d.Draw;
-import arc.graphics.g2d.Lines;
-import arc.math.Mathf;
 import arc.struct.ObjectMap;
 import arc.struct.ObjectMap.Entry;
-import arc.util.Time;
 
+import mindustry.content.Fx;
 import mindustry.content.StatusEffects;
-import mindustry.entities.Effect;
+import mindustry.content.UnitTypes;
 import mindustry.entities.bullet.ArtilleryBulletType;
+import mindustry.entities.bullet.BasicBulletType;
+import mindustry.entities.bullet.MissileBulletType;
 import mindustry.gen.*;
+import mindustry.graphics.Pal;
 import mindustry.type.*;
 import mindustry.Vars;
 import mindustry.content.Bullets;
-import mindustry.entities.Damage;
 import mindustry.ctype.ContentList;
 
 import prometheus.entities.abilities.active.SelfDestructionAbility;
 import prometheus.entities.units.*;
+import prometheus.type.ArmorRechargeUnitType;
 import prometheus.type.PrtUnitType;
 
 public class PrtUnitTypes implements ContentList{
@@ -102,6 +101,31 @@ public class PrtUnitTypes implements ContentList{
                 incendAmount = 5;
             }};
 
+            weapons.add(new Weapon("castor-weapon"){{
+                reload = 50f;
+//                x = 5f;
+                y = -5f;
+                rotate = true;
+                mirror = false;
+                inaccuracy = 2f;
+                rotateSpeed = 2f;
+                shake = 1.4f;
+                ejectEffect = Fx.casing2;
+                shootSound = Sounds.bang;
+                bullet = new ArtilleryBulletType(2.5f, 1,"missile"){{
+                    keepVelocity = true;
+                    width = 8f;
+                    height = 8f;
+                    splashDamageRadius = 16f;
+                    splashDamage = 40f;
+                    lifetime = 60f;
+                    backColor = Pal.bulletYellowBack;
+                    frontColor = Pal.bulletYellow;
+                    hitEffect = Fx.blastExplosion;
+                    despawnEffect = Fx.blastExplosion;
+                }};
+            }});
+
         }};
 
         vega = new PrtUnitType("vega"){{
@@ -133,6 +157,46 @@ public class PrtUnitTypes implements ContentList{
                 }};
             }};
 
+            weapons.add(new Weapon("vega-weapon"){{
+                reload = 45f;
+                x = 10f;
+                y = -5f;
+                rotate = true;
+                inaccuracy = 5f;
+                rotateSpeed = 1.6f;
+                shake = 1.1f;
+                ejectEffect = Fx.casing2;
+                shootSound = Sounds.bang;
+                bullet = new ArtilleryBulletType(3.3f, 0,"missile"){{
+                    keepVelocity = true;
+                    splashDamageRadius = 25f;
+                    splashDamage = 25f;
+                    lifetime = 60f;
+                    backColor = Pal.bulletYellowBack;
+                    frontColor = Pal.bulletYellow;
+                    hitEffect = Fx.blastExplosion;
+                    status = StatusEffects.burning;
+                    pierce = true;
+                    pierceCap = 2;
+
+                    fragBullets = 2;
+                    fragLifeMin = 0f;
+                    fragCone = 30f;
+
+                    fragBullet = new MissileBulletType(7f, 8){{
+                        width = 5f;
+                        height = 5f;
+                        pierce = true;
+                        pierceBuilding = true;
+                        pierceCap = 3;
+
+                        lifetime = 15f;
+                        hitEffect = Fx.hitBulletSmall;
+                    }};
+
+                }};
+            }});
+
         }};
 
         nembus = new PrtUnitType("nembus"){{
@@ -159,6 +223,56 @@ public class PrtUnitTypes implements ContentList{
                 bullet = Bullets.fireball;
                 bulletDamage = 70f;
             }};
+
+            weapons.add(new Weapon("nembus-artillery"){{
+                reload = 50f;
+                x = 0;
+                y = -10f;
+                rotate = true;
+                mirror = false;
+                inaccuracy = 2f;
+                rotateSpeed = 1.3f;
+                shake = 1.9f;
+                ejectEffect = Fx.casing2;
+                shootSound = Sounds.bang;
+                bullet = new ArtilleryBulletType(3.8f, 30f){{
+                    keepVelocity = true;
+                    splashDamageRadius = 25f;
+                    splashDamage = 50f;
+                    lifetime = 60f;
+                    hitEffect = Fx.blastExplosion;
+
+                    fragBullets = 3;
+
+                    fragBullet = new BasicBulletType(6f, 20f){{
+                        shrinkX = 0.08f;
+                        width = 6f;
+                        height = 6f;
+                        lifetime = 11f;
+                        hitEffect = Fx.hitBulletSmall;
+                    }};
+
+                }};
+            }});
+
+            weapons.add(new Weapon("nembus-missile"){{
+                reload = 60f;
+                x = 15;
+                y = -15f;
+                rotate = true;
+                inaccuracy = 3f;
+                rotateSpeed = 1.8f;
+                shake = 1.2f;
+                shootSound = Sounds.missile;
+                bullet = new MissileBulletType(4f, 30f){{
+                    keepVelocity = true;
+                    splashDamageRadius = 30f;
+                    splashDamage = 100f;
+                    lifetime = 50f;
+                    hitEffect = Fx.blastExplosion;
+                    despawnEffect = Fx.blastsmoke;
+                }};
+            }});
 
         }};
 

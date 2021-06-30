@@ -3,6 +3,7 @@ package prometheus.entities.units;
 import arc.util.Time;
 import mindustry.gen.UnitEntity;
 import prometheus.content.PrtUnitTypes;
+import prometheus.type.ArmorRechargeUnitType;
 
 public class ArmorRechargeEntity extends UnitEntity {
     public float prevHealth = health;

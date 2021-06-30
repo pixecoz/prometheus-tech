@@ -1,4 +1,4 @@
-package prometheus.entities.units;
+package prometheus.type;
 
 import arc.Core;
 import arc.graphics.g2d.*;
@@ -7,6 +7,7 @@ import mindustry.graphics.*;
 import mindustry.game.Team;
 import mindustry.gen.Unit;
 import mindustry.world.meta.Stat;
+import prometheus.entities.units.ArmorRechargeEntity;
 import prometheus.type.PrtUnitType;
 
 public class ArmorRechargeUnitType extends PrtUnitType {
