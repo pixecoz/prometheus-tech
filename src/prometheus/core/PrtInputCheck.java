@@ -72,7 +72,7 @@ public class PrtInputCheck {
 //            time = Mathf.clamp(time-Time.delta,0f,180f);
 
 
-
+            /*
             if (state.isGame()){
                 if(timer.get(200f)){
 
@@ -92,7 +92,7 @@ public class PrtInputCheck {
                     }
 
                 }
-            }
+            }*/
 
         });
 
