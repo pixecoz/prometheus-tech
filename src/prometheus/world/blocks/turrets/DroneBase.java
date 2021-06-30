@@ -26,7 +26,7 @@ import prometheus.world.meta.PodStat;
 import static mindustry.Vars.*;
 
 public class DroneBase extends Block {
-    public static TextureRegion podRegion;
+    public TextureRegion podRegion;
     public float range = 200f;
     public float buildTime = 20f;
 
@@ -156,15 +156,16 @@ public class DroneBase extends Block {
             launched = true;
             ready = true;
             shots = 0;
-            PrtFx.launchPodLaunch.at(x, y);
-            Fx.launch.at(this);
+            PodEffects.podLaunchEffect(podRegion, x, y);
+            //PrtFx.launchPodLaunch.at(x, y);
+            //Fx.launch.at(this);
             Effect.shake(3f, 3f, this);
         }
 
         public void reloadLaunch(){
             launched = false;
             countDown = buildTime;
-            PodEffects.podFallEffect(x + Mathf.random(-range, range), y + Mathf.random(-range, range), fallFireRange, fallShakeIntensity, fallShakeDuration);
+            PodEffects.podFallEffect(podRegion,x + Mathf.random(-range, range), y + Mathf.random(-range, range), fallFireRange, fallShakeIntensity, fallShakeDuration);
         }
 
         @Override

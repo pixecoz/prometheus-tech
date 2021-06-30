@@ -108,7 +108,7 @@ public class PrtFx {
                 Lines.circle(e.x, e.y, 100f * e.fin());
                 Lines.circle(e.x, e.y, 100f + 25f * e.fout());
             }),
-
+    /*
     launchPodLaunch = new Effect(150f, 100f, e -> {
         Interval in = new Interval();
         float alpha = e.fout(Interp.pow5Out);
@@ -153,6 +153,8 @@ public class PrtFx {
 
         Draw.reset();
     }),
+
+     */
 
     shootGreen = new Effect(30f, 100f, e -> {
         Draw.color(Pal.heal);

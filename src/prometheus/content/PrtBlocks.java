@@ -314,11 +314,12 @@ public class PrtBlocks implements ContentList {
         }};
         adam = new DroneBase("adam"){{
             size = 7;
-            range = 460;
+            range = 220;
             requirements(Category.turret, ItemStack.with(Items.copper, 1500, Items.lead, 2000, Items.metaglass, 500, PrtItems.platinum, 400, Items.silicon, 800, Items.plastanium, 400));
             itemCapacity = 1000;
             buildVisibility = BuildVisibility.sandboxOnly;
             shootEffect = PrtFx.orbitalLaserCharge;
+            buildTime = 10;
             ammo(
                     Items.surgeAlloy, new PodStat(){{
                         damage = 3000f;
