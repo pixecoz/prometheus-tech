@@ -23,7 +23,6 @@ dependencies {
 
 jar {
     archiveFileName.set pArtifactFilename
-    destinationDir(new File("C:\\Users\\storm\\AppData\\Roaming\\Mindustry\\mods"))
 }
 
 task dexify(type: Jar) {
