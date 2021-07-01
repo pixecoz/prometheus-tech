@@ -319,11 +319,11 @@ public class PrtBlocks implements ContentList {
             itemCapacity = 1000;
             buildVisibility = BuildVisibility.sandboxOnly;
             shootEffect = PrtFx.orbitalLaserCharge;
-            buildTime = 10;
+            buildTime = 120;
             ammo(
                     Items.surgeAlloy, new PodStat(){{
                         damage = 3000f;
-                        range = 1f;
+                        range = 10f;
                         effect = StatusEffects.shocked;
                         hitEffect = PrtFx.orbitalLaserChargeSurge;
                         itemCap = 250;
