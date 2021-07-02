@@ -72,27 +72,27 @@ public class PrtInputCheck {
 //            time = Mathf.clamp(time-Time.delta,0f,180f);
 
 
+            /*
+            if (state.isGame()){
+                if(timer.get(200f)){
 
-//            if (state.isGame()){
-//                if(timer.get(200f)){
-//
-//                    Tile tile = world.tileWorld(player.x,player.y);
-//
-//                    Call.setFloor(tile, Blocks.water, Blocks.air);
-////                    renderer.blocks.floor.clearTiles();
-//
-//                    try {
-////                        Log.info(Arrays.toString(FloorRenderer.class.getDeclaredFields()));
-//                        Field set = FloorRenderer.class.getDeclaredField("recacheSet");
-//                        set.setAccessible(true);
-//                        ((IntSet)set.get(renderer.blocks.floor)).add(Point2.pack(tile.x / 32 / 8, tile.y / 32 / 8));
-//                        Log.info("recahced");
-//                    } catch (Exception e){
-//                        Log.info(e);
-//                    }
-//
-//                }
-//            }
+                    Tile tile = world.tileWorld(player.x,player.y);
+
+                    Call.setFloor(tile, Blocks.water, Blocks.air);
+//                    renderer.blocks.floor.clearTiles();
+
+                    try {
+//                        Log.info(Arrays.toString(FloorRenderer.class.getDeclaredFields()));
+                        Field set = FloorRenderer.class.getDeclaredField("recacheSet");
+                        set.setAccessible(true);
+                        ((IntSet)set.get(renderer.blocks.floor)).add(Point2.pack(tile.x / 32 / 8, tile.y / 32 / 8));
+                        Log.info("recahced");
+                    } catch (Exception e){
+                        Log.info(e);
+                    }
+
+                }
+            }*/
 
         });
 

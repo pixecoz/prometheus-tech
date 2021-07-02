@@ -19,8 +19,10 @@ import mindustry.Vars;
 import mindustry.content.Bullets;
 import mindustry.ctype.ContentList;
 
+import prometheus.ModAnnotations;
 import prometheus.entities.abilities.active.SelfDestructionAbility;
 import prometheus.entities.units.*;
+import prometheus.tools.UnitAnnotationProcessor;
 import prometheus.type.ArmorRechargeUnitType;
 import prometheus.type.PrtUnitType;
 
@@ -40,53 +42,20 @@ public class PrtUnitTypes implements ContentList{
     public static UnitType castor, vega, nembus, arcturus, betelgeuse;
 
     //ground + passive ability
+    @ModAnnotations.UnitDef(ArmorRechargeEntity.class)
     public static UnitType berserk;
 
-    public static UnitType timeEater;
-
-    //Meep of faith and BetaMindy, thanks
-    public static Entry<Class<? extends Entityc>, Prov<? extends Entityc>>[] unitList = new Entry[]{
-        entry(ArmorRechargeEntity.class, ArmorRechargeEntity::new),
-        entry(RespawnEntity.class, RespawnEntity::new)
-    };
-    public static ObjectMap<Class<? extends Entityc>, Integer> idMap = new ObjectMap<>();
-    public static int nextId = -1;
-
-     public static void putIDS(){
-        for(int i = 0; i < EntityMapping.idMap.length; i++){
-            if(EntityMapping.idMap[i] == null){
-                //found free id
-                nextId++;
-                EntityMapping.idMap[i] = unitList[nextId].value;
-                idMap.put(unitList[nextId].key, i);
-                if (nextId >= unitList.length-1)
-                    break;
-            }
-        }
-    }
-
-    public static Entry entry(Class<? extends Entityc> clazz, Prov<? extends Entityc> prov){
-        Entry<Class<? extends Entityc>, Prov<? extends Entityc>> entry = new Entry<>();
-        entry.key = clazz;
-        entry.value = prov;
-        return entry;
-    }
-
     public void load(){
-        putIDS();
-
-        EntityMapping.nameMap.put("berserk", ArmorRechargeEntity::new);
         berserk = new ArmorRechargeUnitType("berserk"){{
-
             health = 100;
             speed = 0.5f;
             rotateShooting = true;
+            constructor = ArmorRechargeEntity::new;
             rotateSpeed = 2f;
 
             flying = false;
             canBoost = false;
         }};
-
         castor = new PrtUnitType("castor"){{
 
             constructor = UnitWaterMove::create;
@@ -354,7 +323,13 @@ public class PrtUnitTypes implements ContentList{
 
         }};
 
-
+        try {
+            UnitAnnotationProcessor.setMapping(this.getClass());
+            Log.info("DONE WORK");
+        }catch (IllegalAccessException e){
+            Log.err("PIZDEC NACHALSYA");
+            Log.err(e);
+        }
     }
 
 }

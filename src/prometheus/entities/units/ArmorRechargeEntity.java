@@ -3,6 +3,7 @@ package prometheus.entities.units;
 import arc.util.Time;
 import mindustry.gen.UnitEntity;
 import prometheus.content.PrtUnitTypes;
+import prometheus.tools.UnitAnnotationProcessor;
 import prometheus.type.ArmorRechargeUnitType;
 
 public class ArmorRechargeEntity extends UnitEntity {
@@ -26,6 +27,6 @@ public class ArmorRechargeEntity extends UnitEntity {
 
     @Override
     public int classId(){
-        return PrtUnitTypes.idMap.get(this.getClass());
+        return UnitAnnotationProcessor.idMap.get(this.getClass());
     }
 }
