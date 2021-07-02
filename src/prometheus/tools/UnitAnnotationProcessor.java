@@ -5,10 +5,7 @@ import arc.struct.ObjectMap;
 import arc.struct.ObjectMap.Entry;
 import arc.struct.ObjectSet;
 import arc.util.Log;
-import mindustry.gen.EntityMapping;
-import mindustry.gen.Entityc;
-import mindustry.gen.UnitEntity;
-import mindustry.gen.UnitWaterMove;
+import mindustry.gen.*;
 import mindustry.mod.Mod;
 import mindustry.type.UnitType;
 import prometheus.ModAnnotations;
@@ -57,7 +54,7 @@ public class UnitAnnotationProcessor {
         for (Field f : fields){
             if(f.isAnnotationPresent(ModAnnotations.UnitDef.class)){
                 UnitType ut = (UnitType) f.get(clazz);
-                Class<? extends UnitEntity> a = f.getAnnotation(ModAnnotations.UnitDef.class).value();
+                Class<? extends Unit> a = f.getAnnotation(ModAnnotations.UnitDef.class).value();
                 Prov<? extends Entityc> prov = ut.constructor;
                 unitList[i] = entry(a, prov);
                 EntityMapping.nameMap.put(ut.name, prov);

@@ -45,6 +45,9 @@ public class PrtUnitTypes implements ContentList{
     @ModAnnotations.UnitDef(ArmorRechargeEntity.class)
     public static UnitType berserk;
 
+    @ModAnnotations.UnitDef(RespawnEntity.class)
+    public static UnitType timeEater;
+
     public void load(){
         berserk = new ArmorRechargeUnitType("berserk"){{
             health = 100;
@@ -322,6 +325,43 @@ public class PrtUnitTypes implements ContentList{
             }};
 
         }};
+
+
+        timeEater = new PrtUnitType("time-eater"){{
+
+            speed = 0.5f;
+            hitSize = 26f;
+            rotateSpeed = 1.65f;
+            health = 200;
+            armor = 0f;
+            mechStepParticles = true;
+            canDrown = false;
+
+            weapons.add(new Weapon("lol"){{
+                reload = 60f;
+                recoil = 4f;
+                shake = 2f;
+                ejectEffect = Fx.casing2;
+                shootSound = Sounds.artillery;
+                bullet = new BasicBulletType(4f, 8){{
+                    lifetime = 110f;
+                }
+
+                    @Override
+                    public void hitEntity(Bullet b, Hitboxc other, float initialHealth) {
+                        Log.info("hitEntity1 "+other);
+                        if(other instanceof Healthc){
+                            Healthc enemy = (Healthc) other;
+                            enemy.damage(enemy.maxHealth()*0.9f);
+                            Log.info("hitEntity2 "+enemy);
+                        }
+                    }
+
+                };
+            }});
+
+        }};
+
 
         try {
             UnitAnnotationProcessor.setMapping(this.getClass());
