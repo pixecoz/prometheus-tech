@@ -5,6 +5,7 @@ import arc.graphics.Color;
 import arc.struct.ObjectMap;
 import arc.struct.ObjectMap.Entry;
 
+import arc.util.Log;
 import mindustry.content.Fx;
 import mindustry.content.StatusEffects;
 import mindustry.content.UnitTypes;
@@ -40,9 +41,13 @@ public class PrtUnitTypes implements ContentList{
 
     //ground + passive ability
     public static UnitType berserk;
+
+    public static UnitType timeEater;
+
     //Meep of faith and BetaMindy, thanks
     public static Entry<Class<? extends Entityc>, Prov<? extends Entityc>>[] unitList = new Entry[]{
-        entry(ArmorRechargeEntity.class, ArmorRechargeEntity::new)
+        entry(ArmorRechargeEntity.class, ArmorRechargeEntity::new),
+        entry(RespawnEntity.class, RespawnEntity::new)
     };
     public static ObjectMap<Class<? extends Entityc>, Integer> idMap = new ObjectMap<>();
     public static int nextId = -1;
@@ -348,6 +353,7 @@ public class PrtUnitTypes implements ContentList{
             }};
 
         }};
+
 
     }
 

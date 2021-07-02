@@ -190,16 +190,4 @@ public class PrtFx {
         }
     });
 
-    public static Effect destroyCount(float delay) {
-        return new Effect(delay, e -> {
-            if (e.data instanceof Unit) {
-                Unit u = (Unit) e.data;
-                e.x = u.x;
-                e.y = u.y;
-                Draw.color(Color.valueOf("ff0000"));
-                Lines.stroke(1f + u.hitSize() / 10f);
-                Lines.swirl(e.x, e.y, u.hitSize() * 1.5f, e.fout());
-            }
-        });
-    }
 }

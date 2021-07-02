@@ -1,5 +1,8 @@
 package prometheus.entities.abilities.active;
 
+import arc.graphics.Color;
+import arc.graphics.g2d.Draw;
+import arc.graphics.g2d.Lines;
 import arc.math.Mathf;
 import arc.util.Time;
 import mindustry.entities.Damage;
@@ -33,7 +36,7 @@ public class SelfDestructionAbility extends ActiveAbility {
         this.delay = delay;
         this.damage = damage;
         this.radius = radius;
-        countEffect = PrtFx.destroyCount(delay);
+        countEffect = destroyCountEffect(delay);
     }
 
     @Override
@@ -60,4 +63,19 @@ public class SelfDestructionAbility extends ActiveAbility {
 
 
     }
+
+    //TODO может сделать шейдер, который будет отрисовывать окружность не так криво?
+    public static Effect destroyCountEffect(float delay) {
+        return new Effect(delay, e -> {
+            if (e.data instanceof Unit) {
+                Unit u = (Unit) e.data;
+                e.x = u.x;
+                e.y = u.y;
+                Draw.color(Color.valueOf("ff0000"));
+                Lines.stroke(1f + u.hitSize() / 10f);
+                Lines.swirl(e.x, e.y, u.hitSize() * 1.5f, e.fout());
+            }
+        });
+    }
+
 }
