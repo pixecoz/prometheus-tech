@@ -329,6 +329,8 @@ public class PrtUnitTypes implements ContentList{
 
         timeEater = new PrtUnitType("time-eater"){{
 
+            constructor = RespawnEntity::new;
+
             speed = 0.5f;
             hitSize = 26f;
             rotateSpeed = 1.65f;

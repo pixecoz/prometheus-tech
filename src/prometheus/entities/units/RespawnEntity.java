@@ -5,6 +5,7 @@ import arc.util.Log;
 import arc.util.Time;
 import mindustry.gen.MechUnit;
 import mindustry.gen.Unit;
+import prometheus.tools.UnitAnnotationProcessor;
 
 public class RespawnEntity extends MechUnit {
     public boolean respawned;
@@ -28,6 +29,11 @@ public class RespawnEntity extends MechUnit {
         if (Lol.timer.get(120)) {
             Log.info("RespawnEntity " + id);
         }
+    }
+
+    @Override
+    public int classId(){
+        return UnitAnnotationProcessor.idMap.get(this.getClass());
     }
 }
 
