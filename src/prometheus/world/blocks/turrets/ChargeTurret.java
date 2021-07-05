@@ -1,5 +1,6 @@
 package prometheus.world.blocks.turrets;
 
+import arc.math.geom.Vec2;
 import mindustry.gen.Posc;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import prometheus.entities.TurretEffects;
@@ -15,7 +16,7 @@ public class ChargeTurret extends ItemTurret {
             super.draw();
             if(target != null && !effectDone && charging){
                 effectDone = true;
-                TurretEffects.beamsCharge(x, y, targetPos, rotation - 90);
+                TurretEffects.beamsCharge(x, y, new Vec2(targetPos), rotation - 90);
             }
             else if(!charging){
                 effectDone = false;
