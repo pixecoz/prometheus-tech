@@ -1,6 +1,7 @@
 package prometheus.world.blocks.turrets;
 
 import arc.Core;
+import arc.Events;
 import arc.graphics.Color;
 import arc.struct.*;
 import arc.util.*;
@@ -10,6 +11,8 @@ import arc.math.Mathf;
 import arc.scene.ui.layout.Table;
 
 import mindustry.Vars;
+import mindustry.core.NetServer;
+import mindustry.game.EventType;
 import mindustry.type.*;
 import mindustry.ui.*;
 import mindustry.content.*;
@@ -21,9 +24,12 @@ import mindustry.world.meta.*;
 import mindustry.world.Block;
 import mindustry.world.consumers.ConsumeItemFilter;
 
+import prometheus.PrtNetServer;
 import prometheus.content.PrtFx;
 import prometheus.entities.PodEffects;
 import prometheus.world.meta.PodStat;
+
+import java.io.IOException;
 
 import static mindustry.Vars.*;
 
@@ -173,6 +179,12 @@ public class DroneBase extends Block {
 
         @Override
         public void updateTile() {
+            try {
+                PrtNetServer.writeBlockSnapshot(netServer, this);
+            }catch (IllegalAccessException | NoSuchFieldException | IOException e){
+                Log.err("FAILED TO WRITE SNAPSHOT");
+                Log.err(e);
+            }
             //TODO: recode this for better look
             //NOTE: don't use Time.run, because it works unstable
             if(shots == maxShots && launched)
