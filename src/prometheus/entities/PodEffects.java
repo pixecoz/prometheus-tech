@@ -11,6 +11,7 @@ import arc.util.Interval;
 import arc.util.Tmp;
 import mindustry.content.Fx;
 import mindustry.entities.*;
+import mindustry.gen.Call;
 import mindustry.graphics.*;
 import mindustry.world.Tile;
 
@@ -103,7 +104,7 @@ public class PodEffects {
             Draw.alpha(0.7f);
             for(int i = 0; i < 4; i++){
                 Mathf.rand.setSeed(e.id*2 + i);
-                float lenScl = Mathf.random(0.1f, 1f);
+                float lenScl = Mathf.random(0.1f, 0.5f);
                 int fi = i;
                 e.scaled(e.lifetime * lenScl, b -> {
                     randLenVectors(b.id + fi - 1, b.fin(Interp.pow5Out), (int)(1.5f * intensity), 22f * intensity, (x, y, in, out) -> {

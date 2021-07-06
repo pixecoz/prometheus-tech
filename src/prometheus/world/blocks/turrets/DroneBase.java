@@ -174,7 +174,6 @@ public class DroneBase extends Block {
             //NOTE: don't use Time.run, because it works unstable
             if(shots == maxShots && launched)
                 reloadLaunch();
-
             if(countDown != 0){
                 if(!buildStatus){
                     for (Item t : ammoTypes.keys().toSeq()) {
