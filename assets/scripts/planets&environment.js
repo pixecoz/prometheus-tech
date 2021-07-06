@@ -420,7 +420,7 @@ CarputoGenerator.water = 2 / CarputoGenerator.arr[0].length;
 
 //CARPUTO PLANET//
 
-const CarputoPlanet = extend(Planet, "Carputo", Planets.sun, 3, 1, {});
+const CarputoPlanet = extend(Planet, "Carputo", koluro, 3, 1, {});
 
 CarputoPlanet.generator = CarputoGenerator;
 CarputoPlanet.startSector = 10;
