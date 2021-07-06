@@ -436,7 +436,7 @@ CarputoPlanet.orbitRadius = 20.1;
 CarputoPlanet.rotateTime = 10800;
 CarputoPlanet.orbitTime = Mathf.pow((1.0 + 10.0 + 0.66), 1.5) * 90;
 
-CarputoPlanet.accessible = true;//In tech tree normal is false			
+CarputoPlanet.accessible = false//In tech tree normal is false			
 
 //SECTORS//
 
