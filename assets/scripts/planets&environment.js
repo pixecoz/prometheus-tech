@@ -95,7 +95,7 @@ purelySandWater.statusDuration = 90;
 
 //STAR "KOLURO"//
 
-const koluro = new JavaAdapter(Planet, {}, "Koluro", Planets.sun, 3, 1.6);
+const koluro = new JavaAdapter(Planet, {}, "Koluro", Planets.sun, 3, 1.5);
 koluro.meshLoader = () => new SunMesh( 
     koluro, 4, 5, 0.3, 1.7, 1.2, 1, 1.1, 
     Color.valueOf("e693ea"), 
@@ -105,7 +105,7 @@ koluro.meshLoader = () => new SunMesh(
     Color.valueOf("cf9cd3"),
     Color.valueOf("cd92ce")
 );
-koluro.orbitRadius = 27.3;
+koluro.orbitRadius = 28.3;
 koluro.accessible = false;
 koluro.bloom = true;
 
@@ -416,8 +416,8 @@ CarputoGenerator.arr = [
 
 CarputoGenerator.rid = new Packages.arc.util.noise.RidgedPerlin(1, 2);
 CarputoGenerator.basegen = new BaseGenerator();
-CarputoGenerator.scl = 1006.281931105;
-CarputoGenerator.waterOffset = 0.07;
+CarputoGenerator.scl = 6.381941105;
+CarputoGenerator.waterOffset = 0.06;
 CarputoGenerator.water = 2 / CarputoGenerator.arr[0].length;
 
 //CARPUTO PLANET//
@@ -434,14 +434,15 @@ CarputoPlanet.atmosphereColor = Color.valueOf("7B5959FF");
 	
 CarputoPlanet.meshLoader = () => new HexMesh(CarputoPlanet, 6);
 	
-CarputoPlanet.orbitRadius = 20.1;
+CarputoPlanet.orbitRadius = 8.4;
 CarputoPlanet.rotateTime = 10800;
 CarputoPlanet.orbitTime = Mathf.pow((1.0 + 10.0 + 0.66), 1.5) * 90;
 
 if(isDev){
-CarputoPlanet.accessible = true;
+CarputoPlanet.accessible = true
 }else{
-CarputoPlanet.accessible = false;		
+CarputoPlanet.accessible = false
+}		
 
 //SECTORS//
 
