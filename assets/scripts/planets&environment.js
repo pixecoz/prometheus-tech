@@ -445,6 +445,12 @@ testSector.alwaysUnlocked = true;
 testSector.difficulty = 6;
 testSector.captureWave = 20;
 
+//OTHER//
+
+Events.run(Trigger.acceleratorUse, run(() => {
+CarputoPlanet.accessible = true;
+}));
+
 //EXPORTS//
 
 module.exports = {
