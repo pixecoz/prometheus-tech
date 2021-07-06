@@ -46,7 +46,7 @@ const KoluroStarIcon = createPhantomBlock("KoluroStarIcon", 64);
 const CarputoPlanetIcon = createPhantomBlock("CarputoPlanetIcon", 64);
 
 Events.run(Trigger.acceleratorUse, run(() => {
-KoluroStar.unlocked = true;
+KoluroStarIcon.unlocked = true;
 CarputoPlanetIcon.unlocked = true;
 	
 testSector.unlocked = true;
