@@ -3,8 +3,6 @@
 Events.on(ClientLoadEvent, cons(e=>{
     const Koluro = Vars.content.getByName(ContentType.planet,"prometheus-koluro");
     const CarputoPlanet = Vars.content.getByName(ContentType.planet,"prometheus-CarputoPlanet");
-    
-    const testSector = Vars.content.getByName(ContentType.sector,"prometheus-testSector");
 }));
 
 ///FUNCTIONS///
@@ -32,6 +30,11 @@ return PB;
 };
 
 ///TECH TREE///
+
+const testSector = new SectorPreset("testSector", CarputoPlanet, 78);
+testSector.alwaysUnlocked = true;
+testSector.difficulty = 6;
+testSector.captureWave = 20;
 
 //MOD TECH TREE//
 
