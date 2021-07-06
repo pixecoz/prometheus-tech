@@ -440,7 +440,10 @@ CarputoPlanet.accessible = false//In tech tree normal is false
 
 //SECTORS//
 
-//SECTORS IN TECH TREE
+const testSector = new SectorPreset("testSector", CarputoPlanet, 78);
+testSector.alwaysUnlocked = true;
+testSector.difficulty = 6;
+testSector.captureWave = 20;
 
 //EXPORTS//
 
