@@ -1,10 +1,5 @@
 ///CONSTANTS///
 
-Events.on(ClientLoadEvent, cons(e=>{
-    const Koluro = Vars.content.getByName(ContentType.planet,"prometheus-koluro");
-    const CarputoPlanet = Vars.content.getByName(ContentType.planet,"prometheus-CarputoPlanet");
-}));
-
 ///FUNCTIONS///
 
 function changeParent(child, newParent){
@@ -46,10 +41,7 @@ const CarputoPlanetIcon = createPhantomBlock("CarputoPlanetIcon", 64);
 Events.run(Trigger.acceleratorUse, run(() => {
 KoluroStarIcon.unlocked = true;
 CarputoPlanetIcon.unlocked = true;
-
-CarputoPlanet.accessible = true;
 }));
-
 
 TechNode(Blocks.coreShard, SunStarIcon, ItemStack.empty);//временно
 TechNode(SunStarIcon, SerpuloPlanetIcon, ItemStack.empty);
