@@ -423,7 +423,7 @@ CarputoGenerator.water = 2 / CarputoGenerator.arr[0].length;
 const CarputoPlanet = extend(Planet, "Carputo", koluro, 3, 1, {});
 
 CarputoPlanet.generator = CarputoGenerator;
-CarputoPlanet.startSector = 10;
+CarputoPlanet.startSector = 78;
 
 CarputoPlanet.hasAtmosphere = true;
 CarputoPlanet.atmosphereRadIn = 0.019;
@@ -440,7 +440,7 @@ CarputoPlanet.accessible = true;//In tech tree normal is false
 
 //SECTORS//
 
-const testSector = new SectorPreset("test-sector", CarputoPlanet, 78);
+const testSector = new SectorPreset("testSector", CarputoPlanet, 78);
 testSector.alwaysUnlocked = true;
 testSector.difficulty = 6;
 testSector.captureWave = 20;
@@ -450,5 +450,7 @@ testSector.captureWave = 20;
 module.exports = {
     carputo: CarputoPlanet,
     koluro: koluro
-}
+}//HAXYЯ?
+
+ //X3
 
