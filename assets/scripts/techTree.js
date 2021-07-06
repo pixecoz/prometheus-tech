@@ -31,11 +31,6 @@ return PB;
 
 ///TECH TREE///
 
-const testSector = new SectorPreset("testSector", CarputoPlanet, 78);
-testSector.alwaysUnlocked = true;
-testSector.difficulty = 6;
-testSector.captureWave = 20;
-
 //MOD TECH TREE//
 
 const SunStarIcon = createPhantomBlock("SunStarIcon", 64);
@@ -51,8 +46,6 @@ const CarputoPlanetIcon = createPhantomBlock("CarputoPlanetIcon", 64);
 Events.run(Trigger.acceleratorUse, run(() => {
 KoluroStarIcon.unlocked = true;
 CarputoPlanetIcon.unlocked = true;
-	
-testSector.unlocked = true;
 
 CarputoPlanet.accessible = true;
 }));
