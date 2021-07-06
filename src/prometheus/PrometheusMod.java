@@ -4,8 +4,10 @@ import arc.Core;
 import arc.Events;
 import arc.util.*;
 
+import mindustry.Vars;
 import mindustry.ctype.ContentList;
 import mindustry.game.EventType;
+import mindustry.logic.LExecutor;
 import mindustry.mod.Mod;
 import mindustry.ui.dialogs.BaseDialog;
 
@@ -44,16 +46,19 @@ public class PrometheusMod extends Mod{
 
     @Override
     public void init(){
-        PrtInputCheck.init();
+        if(!Vars.headless)
+            PrtInputCheck.init();
     }
 
     @Override
     public void loadContent(){
-        for(ContentList list : prometheusContent){
+        for(ContentList list : prometheusContent) {
             list.load();
-
             Log.info("@: Loaded content list: @", getClass().getSimpleName(), list.getClass().getSimpleName());
         }
-        PrtSounds.load();
+        //music and sounds
+        if(!Vars.headless) {
+            PrtSounds.load();
+        }
     }
 }

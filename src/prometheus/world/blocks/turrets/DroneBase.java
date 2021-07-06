@@ -1,6 +1,7 @@
 package prometheus.world.blocks.turrets;
 
 import arc.Core;
+import arc.graphics.Color;
 import arc.struct.*;
 import arc.util.*;
 import arc.util.io.*;
@@ -8,6 +9,7 @@ import arc.graphics.g2d.*;
 import arc.math.Mathf;
 import arc.scene.ui.layout.Table;
 
+import mindustry.Vars;
 import mindustry.type.*;
 import mindustry.ui.*;
 import mindustry.content.*;
@@ -44,6 +46,7 @@ public class DroneBase extends Block {
         update = true;
         solid = true;
         group = BlockGroup.turrets;
+        sync = true;
     }
     @Override
     public void load(){
@@ -198,26 +201,30 @@ public class DroneBase extends Block {
                     launch();
             }
             if(launched) {
-                if(!ready){
-                    if(timer(nextTimer, shootReload / current.speedScale)){
-                        ready = true;
+                target = Units.closestTarget(team, x, y, range);
+                if (target != null) {
+                    if (!ready) {
+                        if (timer(nextTimer, shootReload / current.speedScale)) {
+                            ready = true;
+                        }
                     }
-                }
-                if (ready) {
-                    target = Units.closestTarget(team, x, y, range);
-                    if (target != null) {
-                       shots++;
-                       ready = false;
-                       if (current.hitEffect == null)
-                           shootEffect.at(target.x(), target.y());
-                       else {
-                           current.hitEffect.at(target.x(), target.y());
-                       }
-                       //TODO: 7.0 fix
-                       PodEffects.podDust(target.x(), target.y());
-                       Damage.damage(team, target.x(), target.y(), current.range, current.damage);
+                    if (ready) {
+                        shots++;
+                        ready = false;
+                        if (current.hitEffect == null) {
+                            shootEffect.at(target.x(), target.y());
+                            Call.effect(shootEffect, target.x(), target.y(), 0, Color.white);
+                        }
+                        else {
+                            current.hitEffect.at(target.x(), target.y());
+                            Call.effect(current.hitEffect, target.x(), target.y(), 0, Color.white);
+                        }
+                        //TODO: 7.0 fix
+                        PodEffects.podDust(target.x(), target.y());
+                        PodEffects.podDust(target.x(), target.y(), 0, Color.white);
 
-                       Damage.status(team, target.x(), target.y(), current.range, current.effect, 60f * 8, true, true);
+                        Damage.damage(team, target.x(), target.y(), current.range, current.damage);
+                        Damage.status(team, target.x(), target.y(), current.range, current.effect, 60f * 8, true, true);
                     }
                 }
             }
@@ -258,7 +265,15 @@ public class DroneBase extends Block {
             write.bool(buildStatus);
             write.i(shots);
             write.f(countDown);
-            write.i(ammoTypes.findKey(current, false).id);
+            //0 if current = null
+            //1 if current != null
+            if(current == null)
+                write.i(0);
+            else{
+                write.i(1);
+            }
+            if(current != null)
+                write.i(ammoTypes.findKey(current, false).id);
         }
         @Override
         public void read(Reads read, byte revision){
@@ -267,7 +282,9 @@ public class DroneBase extends Block {
             buildStatus = read.bool();
             shots = read.i();
             countDown = read.f();
-            current = ammoTypes.get(content.item(read.i()));
+            if(read.i() == 1){
+                current = ammoTypes.get(content.item(read.i()));
+            }
         }
     }
 }
