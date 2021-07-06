@@ -445,3 +445,10 @@ testSector.alwaysUnlocked = true;
 testSector.difficulty = 6;
 testSector.captureWave = 20;
 
+//EXPORTS//
+
+module.exports = {
+    carputo: CarputoPlanet,
+    koluro: koluro
+}
+
