@@ -36,7 +36,7 @@ import static mindustry.Vars.*;
 public class DroneBase extends Block {
     public TextureRegion podRegion;
     public float range = 200f;
-    public float buildTime = 20f;
+    public float buildTime = 1200f;
 
     public Effect shootEffect = PrtFx.orbitalLaserCharge;
     public int shootReload = 60;
@@ -203,7 +203,7 @@ public class DroneBase extends Block {
                         }
                     }
                 }
-                else if (timer(0, 60)) {
+                else {
                     countDown--;
                 }
             }

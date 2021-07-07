@@ -16,6 +16,7 @@ import mindustry.graphics.*;
 import mindustry.world.Tile;
 
 import mindustry.Vars;
+import prometheus.content.PrtFx;
 import prometheus.world.blocks.turrets.DroneBase;
 
 public class PodEffects {
@@ -30,7 +31,7 @@ public class PodEffects {
         float r = 3f;
 
         if (in.get(4f - e.fin() * 2f)) {
-            Fx.rocketSmoke.at(cx + Mathf.range(r), cy + Mathf.range(r), e.fin());
+            PrtFx.podSmoke.at(cx + Mathf.range(r), cy + Mathf.range(r), e.fin());
         }
 
         Draw.z(Layer.effect + 0.001f);
