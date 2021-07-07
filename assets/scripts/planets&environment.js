@@ -12,7 +12,7 @@ function newFloor(name, variants, speedMultiplier, emitLight, lightRadius){
   floor.lightRadius = lightRadius;
   
   return floor;
-};
+}
 
 function newLiquidFloor(name, variants, speedMultiplier){
   const liqFloor = extendContent(Floor, name, {});
@@ -23,7 +23,7 @@ function newLiquidFloor(name, variants, speedMultiplier){
   liqFloor.albedo = 0.5;
   
   return liqFloor;
-};
+}
 
 function newBlock(name, variants, solid){
   const StaticBlock = extendContent(StaticWall, name, {});
@@ -31,21 +31,36 @@ function newBlock(name, variants, solid){
   //Solid is bad!
   
   return StaticBlock;
-};
+}
+
+function newLightBlock(name, variants, lightRadius, lightColor){
+  const LightBlock = extendContent(Block, name, {});
+  LightBlock.emitLight = true;
+  LightBlock.lightRadius = lightRadius;
+  LightBlock.lightColor = Color.valueOf(lightColor);
+
+  LightBlock.breakable = false;
+  LightBlock.instantDeconstruct = true;
+  LightBlock.solid = true;
+  LightBlock.variants = variants;
+  LightBlock.cacheLayer = CacheLayer.walls;
+  
+  return LightBlock;
+}
 
 function newBoulder(name, variants){
   const boulder = extendContent(StaticTree, name, {});//Why not work type "Prop"???
   boulder.variants = variants;
   
   return boulder;
-};
+}
 
 function newPine(name, variants){
   const pine = extendContent(StaticTree, name, {});
   pine.variants = variants;
   
   return pine;
-};
+}
 
 //ATTRIBUTES and OTHER write separately!!!
 
